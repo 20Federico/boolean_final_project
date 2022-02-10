@@ -18,4 +18,8 @@ class Apartment extends Model
     return $this->belongsToMany('App\Sponsor');
   }
 
+  public function visits() {
+    return $this->hasMany('App\Visit');
+  }
+
 }
