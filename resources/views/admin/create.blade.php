@@ -31,8 +31,13 @@
                             <label for="cover_img" class="col-md-4 col-form-label text-md-right">Immagine</label>
 
                             <div class="col-md-6">
-                                <input type="file" name="cover_img" id="cover_img" class="form-control" value="">
+                                {{-- <input type="file" name="cover_img" id="cover_img" class="form-control" value=""> --}}
+                                <div class="custom-file">
+                                    <label class="custom-file-label" for="customFile">Scegli file</label>
+                                    <input type="file" class="custom-file-input" id="customFile" name="cover_img>
+                                  </div>
                             </div>
+                            
                         </div>
 
                         <div class="form-group row">
