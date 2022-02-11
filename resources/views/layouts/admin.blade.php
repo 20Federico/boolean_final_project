@@ -11,7 +11,7 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
 
-        <title>BoolBnB - Admin</title>
+        <title>@yield('title')</title>
 
         <!-- Styles -->
         {{-- <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" /> --}}
@@ -65,7 +65,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="{{route('index')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
