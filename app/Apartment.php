@@ -6,28 +6,37 @@ use Illuminate\Database\Eloquent\Model;
 
 class Apartment extends Model
 {
-  public function user() {
+  public function user()
+  {
     return $this->belongsTo('App\User');
   }
 
-  public function address() {
+  public function address()
+  {
     return $this->hasOne('App\Address');
   }
 
-  public function sponsor() {
+  public function sponsor()
+  {
     return $this->belongsToMany('App\Sponsor');
   }
 
-  public function services() {
+  public function services()
+  {
     return $this->belongsToMany('App\Service');
   }
 
-  public function visits() {
+  public function visits()
+  {
     return $this->hasMany('App\Visit');
   }
 
-  public function messages() {
+  public function messages()
+  {
     return $this->hasMany('App\Message');
   }
 
+  protected $fillable =  [
+    "title", "description", "cover_img", "price_day", "n_rooms", "n_baths", "n_beds", "square_meters", "visible", "shared"
+  ];
 }
