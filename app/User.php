@@ -8,7 +8,12 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    
+  public function apartment() {
+    return $this->hasMany('App\Apartment');
+  }
+  
+  use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'surname', 'birth_date'
     ];
 
     /**
