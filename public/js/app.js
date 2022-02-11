@@ -49775,6 +49775,8 @@ module.exports = function(module) {
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+__webpack_require__(/*! ./scripts */ "./resources/js/scripts.js");
+
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /**
  * The following block of code may be used to automatically register your
@@ -49910,6 +49912,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/scripts.js":
+/*!*********************************!*\
+  !*** ./resources/js/scripts.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/*!
+    * Start Bootstrap - SB Admin v7.0.4 (https://startbootstrap.com/template/sb-admin)
+    * Copyright 2013-2021 Start Bootstrap
+    * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-sb-admin/blob/master/LICENSE)
+    */
+// 
+// Scripts
+// 
+window.addEventListener('DOMContentLoaded', function (event) {
+  // Toggle the side navigation
+  var sidebarToggle = document.body.querySelector('#sidebarToggle');
+
+  if (sidebarToggle) {
+    // Uncomment Below to persist sidebar toggle between refreshes
+    // if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
+    //     document.body.classList.toggle('sb-sidenav-toggled');
+    // }
+    sidebarToggle.addEventListener('click', function (event) {
+      event.preventDefault();
+      document.body.classList.toggle('sb-sidenav-toggled');
+      localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
+    });
+  }
+});
 
 /***/ }),
 

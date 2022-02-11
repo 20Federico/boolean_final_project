@@ -1,0 +1,18 @@
+// 
+// Styles
+// 
+
+// Import Custom Variables
+@import "variables.scss";
+
+// Import Custom SCSS
+@import "global.scss";
+
+// Layout
+@import "layout/dashboard-default.scss";
+
+// Navigation
+@import "navigation/nav.scss";
+@import "navigation/topnav.scss";
+@import "navigation/sidenav/sidenav.scss";
+@import "navigation/sidenav/sidenav-dark.scss";
