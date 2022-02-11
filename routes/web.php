@@ -25,7 +25,6 @@ Route::namespace("Admin")
   ->name("admin.")
   ->middleware("auth")
   ->group(function () {
-    // Route::get('/', 'HomeController@index');
 
     Route::resource("apartments", "ApartmentController");
   });
