@@ -12,9 +12,7 @@ class HomeController extends Controller
      * @return void
      */
 
-    public function create(){
-        return view("admin.create");
-    }
+
 
     public function __construct()
     {
