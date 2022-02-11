@@ -42,6 +42,8 @@ class ApartmentController extends Controller
         // $apartment->address()->save($address);
 
         $apartment = new Apartment();
+        $apartment->user_id = Auth::user()->id;        
+        $apartment->address_id = 1;        
         $apartment->title  = $request->title;
         $apartment->description  = $request->description;
         $apartment->price_day  = $request->price_day;
