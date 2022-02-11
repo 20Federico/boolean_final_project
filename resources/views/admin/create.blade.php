@@ -34,18 +34,12 @@
                                 {{-- <input type="file" name="cover_img" id="cover_img" class="form-control" value=""> --}}
                                 <div class="custom-file">
                                     <label class="custom-file-label" for="customFile">Scegli file</label>
-                                    <input type="file" class="custom-file-input" id="customFile" name="cover_img>
+                                    <input type="file" class="custom-file-input" id="customFile" name="cover_img">
                                   </div>
                             </div>
                             
                         </div>
 
-                        <div class="form-group row">
-                            
-                            <div class="col-md-6">
-                                
-                            </div>
-                        </div>
                         <div class="form-group row">
                             <label for="price_day" class="col-md-4 col-form-label text-md-right" >Prezzo a notte</label>
                             <div class="col-md-6">
