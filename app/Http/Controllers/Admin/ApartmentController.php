@@ -15,7 +15,7 @@ class ApartmentController extends Controller
     public function index()
     {
         $apartmentsList = Apartment::where('user_id', Auth::user()->id)->get();
-        return view('admin.appartments.home', compact($apartmentsList));
+        return view('admin.apartments.home', compact($apartmentsList));
     }
 
 
@@ -90,7 +90,7 @@ class ApartmentController extends Controller
         $apartment->visible  = $request->visible;
         $apartment->shared  = $request->shared;
 
-        
+
         if ($request->file('cover_img')) {
             if ($oldImg) {
                 Storage::delete($oldImg);
@@ -112,14 +112,12 @@ class ApartmentController extends Controller
         Session::flash('message', 'Apartment has been updated successfully.');
 
         return redirect()->route("admin.apartments.show", $apartment->id);
-
-
     }
 
     public function destroy($id)
     {
         Apartment::destroy($id);
         Session::flash('message', 'Apartment has been deleted');
-        return redirect('admin.appartments.home');
+        return redirect('admin.apartments.home');
     }
 }
