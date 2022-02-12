@@ -6,7 +6,7 @@
 <div class="container">
 
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">Aggiungi abitazione</div>
 
@@ -24,10 +24,10 @@
 
                         <div class="form-group row">
                             <label for="street_name" class="col-md-4 col-form-label text-md-right" >Indirizzo</label>
-                            <div class="col-md-4">
+                            <div class="col-md-5">
                                 <input type="text" class="form-control" name="street_name" id="street_name" placeholder="Via">
                             </div>
-                            <div class="col-md-2 pl-0">
+                            <div class="col-md-1 pl-0">
                                 <input type="text" class="form-control" name="street_number" id="price_day" placeholder="Civico">
                             </div>
                         </div>
@@ -137,6 +137,25 @@
                                         Pubblica in seguito
                                     </label>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-md-4 col-form-label text-md-right" >Servizi aggiuntivi</label>
+                            <div class="col-md-6 d-flex align-items-center gap-3">
+                                
+                                @php
+                                    $servizi = ["wifi", "auto", "auto", "auto", "auto"]
+                                @endphp
+                                @foreach ($servizi as $item)
+                                    
+                                <div class="form-check mr-4">
+                                    <input class="form-check-input" type="checkbox" value="{{ $item }}" name="services[]" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        {{ $item }}
+                                    </label>
+                                </div>
+                                @endforeach
+                                
                             </div>
                         </div>
                         
