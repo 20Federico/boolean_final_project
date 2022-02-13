@@ -9,6 +9,7 @@ use App\Apartment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use App\Service;
 
 class ApartmentController extends Controller
 {
@@ -26,24 +27,17 @@ class ApartmentController extends Controller
 
     public function create()
     {
-        return view('admin.apartments.create');
+
+        $services = Service::all();
+        return view('admin.apartments.create', compact('services'));
     }
 
     public function store(Request $request)
     {
-        // $data = $request->all();
-        // $apartment = new Apartment();
-        // $apartment->fill($data);
-        // $apartment->save();
-
-
-        // $address = new Address();
-        // $address->fill($data);
-        // $apartment->address()->save($address);
+        
 
         $apartment = new Apartment();
-        $apartment->user_id = Auth::user()->id;        
-        $apartment->address_id = 1;        
+        $apartment->user_id = Auth::user()->id;            
         $apartment->title  = $request->title;
         $apartment->description  = $request->description;
         $apartment->price_day  = $request->price_day;
@@ -56,7 +50,6 @@ class ApartmentController extends Controller
         if ($request->file('cover_img')) {
             $apartment->cover_img = Storage::put('apartments', $request->cover_img);
         }
-
         $apartment->save();
 
         $address = new Address();
@@ -69,17 +62,15 @@ class ApartmentController extends Controller
         $address->longitude = $request->longitude;
 
         $apartment->address()->save($address);
+        $apartment->services()->sync($request->all()['services']);
+
         Session::flash('message', 'New Apartment has been added successfully.');
         return redirect()->route('admin.apartments.index');
     }
 
     public function update(Request $request, Apartment $apartment)
     {
-        // $data = $request->all();
-        // $apartment->fill($data);
-        // $apartment->address()->fill($data);
-        // $apartment->save();
-
+        
         $oldImg = $apartment->cover_img;
 
         $apartment->title  = $request->title;
@@ -110,6 +101,7 @@ class ApartmentController extends Controller
         $apartment->address->longitude = $request->longitude;
 
         $apartment->push();
+        $apartment->services()->sync($request->all()["services"]);
 
         Session::flash('message', 'Apartment has been updated successfully.');
 
@@ -120,7 +112,9 @@ class ApartmentController extends Controller
 
     public function destroy($id)
     {
-        Apartment::destroy($id);
+        $apartment = Apartment::findOrFail($id);
+        $apartment->services()->detach();
+        $apartment->delete();
         Session::flash('message', 'Apartment has been deleted');
         return redirect('admin.appartments.home');
     }

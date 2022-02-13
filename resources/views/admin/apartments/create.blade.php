@@ -102,6 +102,19 @@
                                 <input type="text" class="form-control" name="square_meters" id="square_meters" placeholder="Metri quadri">
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            <label for="longitude" class="col-md-4 col-form-label text-md-right" >Longitudine</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="longitude" id="longitude">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="latitude" class="col-md-4 col-form-label text-md-right" >Latitudine</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="latitude" id="latitude">
+                            </div>
+                        </div>
                         
                         <div class="form-group row">
                             <label for="" class="col-md-4 col-form-label text-md-right" >L'abitazione è condivisa?</label>
@@ -143,15 +156,13 @@
                             <label for="" class="col-md-4 col-form-label text-md-right" >Servizi aggiuntivi</label>
                             <div class="col-md-6 d-flex align-items-center gap-3">
                                 
-                                @php
-                                    $servizi = ["wifi", "auto", "auto", "auto", "auto"]
-                                @endphp
-                                @foreach ($servizi as $item)
+                               
+                                @foreach ($services as $service)
                                     
                                 <div class="form-check mr-4">
-                                    <input class="form-check-input" type="checkbox" value="{{ $item }}" name="services[]" id="flexCheckDefault">
+                                    <input class="form-check-input" type="checkbox" value="{{ $service->id }}" name="services[]">
                                     <label class="form-check-label" for="flexCheckDefault">
-                                        {{ $item }}
+                                        {{ $service->name }}
                                     </label>
                                 </div>
                                 @endforeach
