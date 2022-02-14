@@ -10,4 +10,7 @@
       Aggiungi nuovo
     </a>
   </div>
+  @foreach ($apartmentsList as $apartment)
+      @dump($apartment->title)
+  @endforeach
 @endsection
