@@ -26,7 +26,8 @@ class AddColumnUserIdToAddressesTable extends Migration
     public function down()
     {
         Schema::table('addresses', function (Blueprint $table) {
-            Schema::dropIfExists('apartment_id');
+          $table->dropForeign(['apartment_id']);
+          $table->dropColumn('apartment_id');
         });
     }
 }

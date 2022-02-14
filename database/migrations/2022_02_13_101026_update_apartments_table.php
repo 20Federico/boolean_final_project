@@ -26,6 +26,8 @@ class UpdateApartmentsTable extends Migration
      */
     public function down()
     {
-        //
-    }
+      Schema::table('apartments', function (Blueprint $table) {        // $table->foreign("address_id")->references('id')->on('addresses');
+        $table->foreignId("address_id")->constrained();
+      });
+    } 
 }
