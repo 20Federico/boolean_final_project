@@ -24,7 +24,6 @@ class ApartmentsSeeder extends Seeder
           'square_meters'=>60,
           'shared'=> false,
           'user_id'=>1,
-          'address_id'=>2
         ],
         [
           'title'=>'casa tua',
@@ -37,7 +36,6 @@ class ApartmentsSeeder extends Seeder
           'square_meters'=>60,
           'shared'=> false,
           'user_id'=>2,
-          'address_id'=>3
         ],
         [
           'title'=>'casa con soppalco',
@@ -50,7 +48,6 @@ class ApartmentsSeeder extends Seeder
           'square_meters'=>60,
           'shared'=> false,
           'user_id'=>6,
-          'address_id'=>4
         ],
         [
           'title'=>'villa a schiera',
@@ -63,7 +60,6 @@ class ApartmentsSeeder extends Seeder
           'square_meters'=>60,
           'shared'=> false,
           'user_id'=>7,
-          'address_id'=>5
         ],
         [
           'title'=>'bungalow',
@@ -76,7 +72,6 @@ class ApartmentsSeeder extends Seeder
           'square_meters'=>60,
           'shared'=> false,
           'user_id'=>8,
-          'address_id'=>6
         ],
         [
           'title'=>'calda igloo',
@@ -89,7 +84,6 @@ class ApartmentsSeeder extends Seeder
           'square_meters'=>60,
           'shared'=> false,
           'user_id'=>9,
-          'address_id'=>7
         ],
         [
           'title'=>'piscina con casa',
@@ -102,7 +96,6 @@ class ApartmentsSeeder extends Seeder
           'square_meters'=>60,
           'shared'=> false,
           'user_id'=>10,
-          'address_id'=>8
         ],
         [
           'title'=>'villa da riccone',
@@ -115,7 +108,6 @@ class ApartmentsSeeder extends Seeder
           'square_meters'=>60,
           'shared'=> false,
           'user_id'=>2,
-          'address_id'=>9
         ],
         [
           'title'=>'magione immersa nella natura',
@@ -128,7 +120,6 @@ class ApartmentsSeeder extends Seeder
           'square_meters'=>60,
           'shared'=> false,
           'user_id'=>2,
-          'address_id'=>10
         ],
         [
           'title'=>'casetta sull\'albero',
@@ -141,7 +132,6 @@ class ApartmentsSeeder extends Seeder
           'square_meters'=>60,
           'shared'=> false,
           'user_id'=>2,
-          'address_id'=>11
         ],
       ];
 
@@ -158,7 +148,6 @@ class ApartmentsSeeder extends Seeder
         $newApartment->square_meters = $apartment['square_meters'];
         $newApartment->shared = $apartment['shared'];
         $newApartment->user_id = $apartment['user_id'];
-        $newApartment->address_id = $apartment['address_id'];
 
         $newApartment->save();
       }
