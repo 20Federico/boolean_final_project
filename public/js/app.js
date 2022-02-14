@@ -49967,8 +49967,8 @@ window.addEventListener('DOMContentLoaded', function (event) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Federico Molino\Desktop\laravel\boolean_final_project\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Federico Molino\Desktop\laravel\boolean_final_project\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/ed/Boolean/boolean_final_project/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/ed/Boolean/boolean_final_project/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
