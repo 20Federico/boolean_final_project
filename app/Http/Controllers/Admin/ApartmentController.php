@@ -34,10 +34,10 @@ class ApartmentController extends Controller
 
     public function store(Request $request)
     {
-        
+
 
         $apartment = new Apartment();
-        $apartment->user_id = Auth::user()->id;            
+        $apartment->user_id = Auth::user()->id;
         $apartment->title  = $request->title;
         $apartment->description  = $request->description;
         $apartment->price_day  = $request->price_day;
@@ -68,9 +68,18 @@ class ApartmentController extends Controller
         return redirect()->route('admin.apartments.index');
     }
 
+    public function edit(Apartment $apartment)
+    {
+        $services = Service::all();
+        return view("admin.apartments.edit", [
+            "apartment" => $apartment,
+            "services" => $services
+        ]);
+    }
+
     public function update(Request $request, Apartment $apartment)
     {
-        
+
         $oldImg = $apartment->cover_img;
 
         $apartment->title  = $request->title;
