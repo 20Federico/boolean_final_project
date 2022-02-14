@@ -6,9 +6,12 @@ use App\Address;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Apartment;
+use App\Http\Requests\StoreApartment;
+use App\Http\Requests\StoreApartmentRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Http;
 use App\Service;
 
 class ApartmentController extends Controller
@@ -32,12 +35,32 @@ class ApartmentController extends Controller
         return view('admin.apartments.create', compact('services'));
     }
 
-    public function store(Request $request)
+    public function store(StoreApartmentRequest $request)
     {
-        
+
+
+
+        //Creo la riga con indirizzo
+        $address = $request->street_name . " " .
+            $request->street_number . " " .
+            $request->street_number . " " .
+            $request->city . " " .
+            $request->country . " " .
+            $request->zip_code;
+
+        //Cerco indirizzo con api/totom
+
+        $response = Http::get('https://api.tomtom.com/search/2/search/' . $address .
+            '.json?minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=hwUAMJjGlcfAD2Yd3w1owWJqbrrLpfoo');
+
+
+        //Dalla risposta prendo il primo indirizzo nei risultati e assegno latitudine e longitudine
+        $lat = $response->json()['results'][0]['position']['lat'];
+        $lon = $response->json()['results'][0]['position']['lon'];
+
 
         $apartment = new Apartment();
-        $apartment->user_id = Auth::user()->id;            
+        $apartment->user_id = Auth::user()->id;
         $apartment->title  = $request->title;
         $apartment->description  = $request->description;
         $apartment->price_day  = $request->price_day;
@@ -58,8 +81,8 @@ class ApartmentController extends Controller
         $address->city = $request->city;
         $address->country = $request->country;
         $address->zip_code = $request->zip_code;
-        $address->latitude = $request->latitude;
-        $address->longitude = $request->longitude;
+        $address->latitude = $lat;
+        $address->longitude = $lon;
 
         $apartment->address()->save($address);
         $apartment->services()->sync($request->all()['services']);
@@ -68,9 +91,12 @@ class ApartmentController extends Controller
         return redirect()->route('admin.apartments.index');
     }
 
-    public function update(Request $request, Apartment $apartment)
+    public function update(StoreApartmentRequest $request, Apartment $apartment)
     {
-        
+
+
+
+
         $oldImg = $apartment->cover_img;
 
         $apartment->title  = $request->title;
@@ -92,19 +118,36 @@ class ApartmentController extends Controller
         }
 
 
+        //Creo la riga con indirizzo
+        $address = $request->street_name . " " .
+            $request->street_number . " " .
+            $request->street_number . " " .
+            $request->city . " " .
+            $request->country . " " .
+            $request->zip_code;
+
+        //Cerco indirizzo con api/totom
+
+        $response = Http::get('https://api.tomtom.com/search/2/search/' . $address .
+            '.json?minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=hwUAMJjGlcfAD2Yd3w1owWJqbrrLpfoo');
+
+
+        //Dalla risposta prendo il primo indirizzo nei risultati e assegno latitudine e longitudine
+        $lat = $response->json()['results'][0]['position']['lat'];
+        $lon = $response->json()['results'][0]['position']['lon'];
+
         $apartment->address->street_name = $request->street_name;
         $apartment->address->street_number = $request->street_number;
         $apartment->address->city = $request->city;
         $apartment->address->country = $request->country;
         $apartment->address->zip_code = $request->zip_code;
-        $apartment->address->latitude = $request->latitude;
-        $apartment->address->longitude = $request->longitude;
+        $apartment->address->latitude = $lat;
+        $apartment->address->longitude = $lon;
 
         $apartment->push();
         $apartment->services()->sync($request->all()["services"]);
 
         Session::flash('message', 'Apartment has been updated successfully.');
-
         return redirect()->route("admin.apartments.show", $apartment->id);
     }
 
@@ -115,5 +158,15 @@ class ApartmentController extends Controller
         $apartment->delete();
         Session::flash('message', 'Apartment has been deleted');
         return redirect('admin.apartments.home');
+    }
+
+
+    public function edit(Apartment $apartment)
+    {
+        $services = Service::all();
+        return view('admin.apartments.edit', [
+            'apartment' => $apartment,
+            'services' => $services
+        ]);
     }
 }
