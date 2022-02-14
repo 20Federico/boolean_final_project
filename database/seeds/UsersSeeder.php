@@ -12,52 +12,35 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-      $users = [
-        [
-          'name'=>'Mario',
-          'surname'=>'Rossi',
-          'birth_date'=>'1965-04-25',
-          'email'=>'mario.rossi@gmail.com',
-          'password'=>'password'
-        ],
-        [
-          'name'=>'Giuseppe',
-          'surname'=>'Verdi',
-          'birth_date'=>'1966-04-25',
-          'email'=>'giuseppe.verdi@gmail.com',
-          'password'=>'password'
-        ],
-        [
-          'name'=>'Maria',
-          'surname'=>'Rossi',
-          'birth_date'=>'2000-04-25',
-          'email'=>'maria.rossi@gmail.com',
-          'password'=>'password'
-        ],
-        [
-          'name'=>'Mariuccio',
-          'surname'=>'Rossi',
-          'birth_date'=>'1965-07-25',
-          'email'=>'mariuccio.rossi@gmail.com',
-          'password'=>'password'
-        ],
-        [
-          'name'=>'Simone',
-          'surname'=>'Rossi',
-          'birth_date'=>'1965-04-28',
-          'email'=>'simone.rossi@gmail.com',
-          'password'=>'password'
-        ],
+      $surnames = [
+        'rossi', 'Verdi', 'Bianchi', 'Canepa', 'Leica', 'Murru', 'Nora', 'Yoda', 'Loda', 'Soda'
       ];
 
-      foreach ($users as $user) {
+      for ($i=0; $i < 5 ; $i++) { 
+
         $newUser = new User();
 
-        $newUser->name = $user['name'];
-        $newUser->surname = $user['surname'];
-        $newUser->birth_date = $user['birth_date'];
-        $newUser->email = $user['email'];
-        $newUser->password = $user['password'];
+        $randUserName = 'user';
+        $alreadyExists = User::where('name', $randUserName)->first();
+        $counter = 1;
+
+        while ($alreadyExists) {
+          $newUserName = 'user#' . $counter;
+
+          $alreadyExists = User::where('name', $newUserName)->first();
+
+          if (!$alreadyExists) {
+            $randUserName = $newUserName; 
+          } else {
+            $counter++;
+          }
+        }
+
+        $newUser->name = $randUserName;
+        $newUser->surname = $surnames[rand(0, count($surnames) - 1)];
+        $newUser->birth_date = rand(1950, 2003) . '-' . str_pad(rand(1, 12), 2, '0', STR_PAD_LEFT) . '-' . str_pad(rand(1, 28), 2, '0', STR_PAD_LEFT);
+        $newUser->email = $randUserName . '@gmail.com';
+        $newUser->password = 'password';
 
         $newUser->save();
       }
