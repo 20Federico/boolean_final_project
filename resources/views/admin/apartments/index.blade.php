@@ -21,45 +21,55 @@
       <ul class="list-group">
         @foreach ($apartmentsList as $apartment)
             {{-- @dd($apartment); --}}
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              <div class="col-4" style="text-transform: capitalize;">
-                Nome: {{ $apartment->title }}
-              </div>
-              <div class="col-7 d-flex justify-content-end align-items-center">
+            <li class="list-group-item">
+              <div class="row row-cols-md-6 row-cols-1 align-items-center">
 
-                <div class="mr-4">
-                  Aggiunto il: 
-                  @php
-                  echo date_format($apartment->created_at, 'd/m/Y');
-                  @endphp
-                </div>
-                  
               
-                <div class="mr-4" style="width: 115px;">
-                  Stato: 
-                  @if ($apartment->visible)
-                  Pubblicato
-                  @else
-                  Privato
-                  @endif
-                </div>
-                <div class="mr-4" style="width: 93px;">
-                  Prezzo: {{ $apartment->price_day }} €
-                </div>
-                <a class="btn btn-primary" href="{{ route('admin.apartments.show', $apartment->id) }}">Dettagli</a>
+              <div class="col col-md-4" style="text-transform: capitalize;">
+                {{ $apartment->title }}
+              </div>
+              <div class="col col-md-6">
+                <div class="row row-cols-md-3 row-cols-1">
+                  <div class="col col-md-5">
+                    Aggiunto il: 
+                    @php
+                    echo date_format($apartment->created_at, 'd/m/Y');
+                    @endphp
+                  </div>
+                    
                 
+                  <div class="col col-md-4" style="width: 115px;">
+                    Stato: 
+                    @if ($apartment->visible)
+                    Pubblicato
+                    @else
+                    Privato
+                    @endif
+                  </div>
+                  <div class="col col-md-3" style="width: 93px;">
+                    Prezzo: {{ $apartment->price_day }} €
+                  </div>
+                </div>
               </div>
-              <div class="col-1">
-                <form action="{{ route('admin.apartments.destroy', $apartment->id) }}" method="post">
-                  @csrf
-                  @method('delete')
-                  
-                  
-                  <button class="btn btn-outline-danger" type="submit">Elimina</button>
-                </form>
+              <div class="col col col-md-2 mt-1 mt-md-0">
+                <div class="row">
+                  <div class="col p-md-0">
+                    <a class="btn btn-primary" href="{{ route('admin.apartments.show', $apartment->id) }}">Dettagli</a>
+                  </div>
+                  <div class="col p-0">
+
+                    <form action="{{ route('admin.apartments.destroy', $apartment->id) }}" method="post">
+                      @csrf
+                      @method('delete')
+                      
+                    
+                      <button class="btn btn-outline-danger" type="submit">Elimina</button>
+                    </form>
+                  </div>
+                </div>
 
               </div>
-              
+            </div>
           </li>
             @endforeach
           </ul>
