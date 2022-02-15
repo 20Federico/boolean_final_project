@@ -27,6 +27,7 @@ Route::namespace("Admin")
   ->group(function () {
 
     Route::resource("apartments", "ApartmentController");
+    Route::resource("messages", "MessageController");
   });
 
 Auth::routes();
