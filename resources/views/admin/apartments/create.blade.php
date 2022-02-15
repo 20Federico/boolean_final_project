@@ -78,7 +78,7 @@
                         <div class="form-group row mb-3">
                             <label for="description" class="col-md-4 col-form-label text-md-right">Descrizione *</label>
                             <div class="col-md-6">
-                                <textarea name="description" id="description" cols="30" rows="10" class="form-control" required>{{ old('description') }}</textarea>
+                                <textarea name="description" id="description" cols="30" rows="7" class="form-control" required>{{ old('description') }}</textarea>
                                 @if($errors->first('description'))
                                     <div class="alert-danger text-center">{{$errors->first('description')}}</div>
                                 @endif
@@ -88,10 +88,8 @@
                         <div class="form-group row mb-3">
                             <label for="cover_img" class="col-md-4 col-form-label text-md-right">Immagine *</label>
                             <div class="col-md-6">
-                                {{-- <input type="file" name="cover_img" id="cover_img" class="form-control" value=""> --}}
                                 <div class="custom-file">
-                                    {{-- <label class="custom-file-label" for="customFile">Scegli file</label> --}}
-                                    <input type="file" class="custom-file-input" id="customFile" name="cover_img" required>
+                                    <input type="file" class="form-control" id="cover_img" name="cover_img" required>
                                     @if($errors->first('cover_img'))
                                         <div class="alert-danger text-center">{{$errors->first('cover_img')}}</div>
                                     @endif
@@ -179,14 +177,11 @@
                             <div class="col-md-6 d-flex align-items-center">
 
                                 <div class="form-check me-3">
-                                    <input class="form-check-input" type="radio" name="visible" id="flexRadioDefault1" value="1">
+                                    <input class="form-check-input" type="radio" name="visible" id="flexRadioDefault1" value="1" checked>
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         Visible
                                     </label>
                                 </div>
-
-
-
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="visible" id="flexRadioDefault2" value="0">
                                     <label class="form-check-label" for="flexRadioDefault2">

@@ -44,7 +44,9 @@
                     <!-- sottocontainer -->
                     <div class="ms-4">
 
+                      @if (isset($apartment->address))
                         <p class="fs-3">{{ $apartment->address->city }}, {{ $apartment->address->country }}</p>
+                      @endif
                         
                         <!-- posti casa -->
                         <div class="posti-casa mt-2">

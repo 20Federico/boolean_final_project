@@ -31,13 +31,13 @@
                         <div class="form-group row mb-3">
                             <label for="street_name" class="col-md-4 col-form-label text-md-right" >Indirizzo *</label>
                             <div class="col-md-5">
-                                <input type="text" class="form-control" name="street_name" id="street_name" value="{{$apartment->address->street_name}}">
+                                <input type="text" class="form-control" name="street_name" id="street_name" value="{{$apartment->address ? $apartment->address->street_name : ''}}">
                                 @if($errors->first('street_name'))
                                     <div class="alert-danger text-center">{{$errors->first('street_name')}}</div>
                                 @endif
                             </div>
                             <div class="col-md-1 pl-0">
-                                <input type="text" class="form-control" name="street_number" id="street_number" value="{{$apartment->address->street_number}}">
+                                <input type="text" class="form-control" name="street_number" id="street_number" value="{{$apartment->address ? $apartment->address->street_number : ''}}">
                                 @if($errors->first('street_number'))
                                     <div class="alert-danger text-center">{{$errors->first('street_number')}}</div>
                                 @endif
@@ -47,7 +47,7 @@
                         <div class="form-group row mb-3">
                             <label for="zip_code" class="col-md-4 col-form-label text-md-right">CAP *</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="zip_code" id="zip_code" value="{{$apartment->address->zip_code}}">
+                                <input type="text" class="form-control" name="zip_code" id="zip_code" value="{{$apartment->address ? $apartment->address->zip_code : ''}}">
                                 @if($errors->first('zip_code'))
                                     <div class="alert-danger text-center">{{$errors->first('zip_code')}}</div>
                                 @endif
@@ -57,7 +57,7 @@
                         <div class="form-group row mb-3">
                             <label for="city" class="col-md-4 col-form-label text-md-right" >Città *</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="city" id="city" value="{{$apartment->address->city}}">
+                                <input type="text" class="form-control" name="city" id="city" value="{{$apartment->address ? $apartment->address->city : ''}}">
                                 @if($errors->first('city'))
                                     <div class="alert-danger text-center">{{$errors->first('city')}}</div>
                                 @endif
@@ -67,7 +67,7 @@
                         <div class="form-group row mb-3">
                             <label for="country" class="col-md-4 col-form-label text-md-right" >Nazione *</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="country" id="country" value="{{$apartment->address->country}}">
+                                <input type="text" class="form-control" name="country" id="country" value="{{$apartment->address ? $apartment->address->country : ''}}">
                                 @if($errors->first('country'))
                                     <div class="alert-danger text-center">{{$errors->first('country')}}</div>
                                 @endif
@@ -77,7 +77,7 @@
                         <div class="form-group row mb-3">
                             <label for="description" class="col-md-4 col-form-label text-md-right">Descrizione *</label>
                             <div class="col-md-6">
-                                <textarea name="description" id="description" cols="30" rows="10" class="form-control">{!! $apartment->description!!}</textarea>
+                                <textarea name="description" id="description" cols="30" rows="7" class="form-control">{!! $apartment->description!!}</textarea>
                                 @if($errors->first('description'))
                                     <div class="alert-danger text-center">{{$errors->first('description')}}</div>
                                 @endif
@@ -87,10 +87,8 @@
                         <div class="form-group row mb-3">
                             <label for="cover_img" class="col-md-4 col-form-label text-md-right">Immagine *</label>
                             <div class="col-md-6">
-                                {{-- <input type="file" name="cover_img" id="cover_img" class="form-control" value=""> --}}
                                 <div class="custom-file">
-                                    <label class="custom-file-label" for="customFile">{{ $apartment->coverImg }}</label>
-                                    <input type="file" class="custom-file-input" id="customFile" name="cover_img" value="{{ $apartment->coverImg }}">
+                                    <input type="file" class="form-control" id="cover_img" name="cover_img" value="{{ $apartment->coverImg }}">
                                     @if($errors->first('cover_img'))
                                         <div class="alert-danger text-center">{{$errors->first('cover_img')}}</div>
                                     @endif

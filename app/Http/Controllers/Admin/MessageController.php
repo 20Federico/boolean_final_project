@@ -52,7 +52,7 @@ class MessageController extends Controller
     {
         $data = $request->all();
 
-        $newMessage = new Meggage();
+        $newMessage = new Message();
         $newMessage->email_sender = $data['email_sender'];
         $newMessage->content = $data['content'];
         $newMessage->apartment_id = $data['apartment_id'];

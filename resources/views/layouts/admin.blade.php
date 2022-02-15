@@ -73,7 +73,7 @@
                               <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
                               My Apartments
                             </a>
-                            <a class="nav-link" href="route('admin.messages.index')">
+                            <a class="nav-link" href="{{route('admin.messages.index')}}">
                               <div class="sb-nav-link-icon"><i class="fas fa-comment"></i></div>
                               Messages
                             </a>
