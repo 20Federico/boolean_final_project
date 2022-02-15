@@ -105,19 +105,6 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="longitude" class="col-md-4 col-form-label text-md-right" >Longitudine</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="longitude" id="longitude" value="{{$apartment->address->longitude}}">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="latitude" class="col-md-4 col-form-label text-md-right" >Latitudine</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="latitude" id="latitude" value="{{$apartment->address->latitude}}">
-                            </div>
-                        </div>
-                        
-                        <div class="form-group row">
                             <label for="" class="col-md-4 col-form-label text-md-right" >L'abitazione è condivisa?</label>
                             <div class="col-md-6 d-flex align-items-center">
                                 
@@ -157,7 +144,6 @@
                             <label for="" class="col-md-4 col-form-label text-md-right" >Servizi aggiuntivi</label>
                             <div class="col-md-6 d-flex align-items-center gap-3">
                                 
-                               
                                 @foreach ($services as $service)
                                     
                                 <div class="form-check mr-4">

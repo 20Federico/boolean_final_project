@@ -36,7 +36,7 @@ class ApartmentController extends Controller
     public function store(Request $request)
     {
 
-         $request->validate([
+        $request->validate([
             'title' => 'required|min:8',
             'street_name' => 'required',
             'street_number' => 'required',
@@ -51,12 +51,7 @@ class ApartmentController extends Controller
             'square_meters' => 'required|numeric',
             'shared' => 'required',
             'visible' => 'required'
-         ]);
-
-
-
-
-
+        ]);
 
         //Creo la riga con indirizzo
         $address = $request->street_name . " " .
@@ -67,7 +62,6 @@ class ApartmentController extends Controller
             $request->zip_code;
 
         //Cerco indirizzo con api/totom
-
         $response = Http::get('https://api.tomtom.com/search/2/search/' . $address .
             '.json?minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=hwUAMJjGlcfAD2Yd3w1owWJqbrrLpfoo');
 
@@ -121,7 +115,6 @@ class ApartmentController extends Controller
     public function update(Request $request, Apartment $apartment)
     {
 
-
         $request->validate([
             'title' => 'required|min:8',
             'street_name' => 'required',
@@ -137,7 +130,7 @@ class ApartmentController extends Controller
             'square_meters' => 'required|numeric',
             'shared' => 'required',
             'visible' => 'required',
-         ]);
+        ]);
 
         $oldImg = $apartment->cover_img;
         $apartment->title  = $request->title;
@@ -200,15 +193,5 @@ class ApartmentController extends Controller
         $apartment->delete();
         Session::flash('message', 'Apartment has been deleted');
         return redirect()->route('admin.apartments.index');
-    }
-
-
-    public function edit(Apartment $apartment)
-    {
-        $services = Service::all();
-        return view('admin.apartments.edit', [
-            'apartment' => $apartment,
-            'services' => $services
-        ]);
     }
 }
