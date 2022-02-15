@@ -29,37 +29,46 @@
             <div class="row ms-0">
                 <!-- inizio colonna sx -->
                 <div class="col-7 pe-5">
-                    <div class="tag"></div>
-
+                    <div class="tag">
+                        <a href="{{ route('admin.apartments.edit', $apartment->id) }}" class="btn btn-primary mb-5">Modifica</a>
+                    </div>
+                    {{-- @dd($apartment) --}}
+                    
+                {{-- Inizio casa --}}
+                    {{-- Titolo casa --}}
                     <div class="lead display-5 pb-4">{{ $apartment->title }}</div>
+
                     <!-- sottocontainer -->
                     <div class="ms-4">
 
-                        <p>{{ $apartment->address->street_name }}</p>
+                        <p class="fs-3">{{ $apartment->address->city }}, {{ $apartment->address->country }}</p>
+                        
                         <!-- posti casa -->
-                        <div class="posti-casa mt-5">
-                            <ul class="d-flex ps-0 ">
+                        <div class="posti-casa mt-2">
+                            <ul class="d-flex ps-0 fs-6 list-unstyled">
 
-                                <li class="me-3 pb-5">
-                                    <span>{{ $apartment->n_rooms }} Camere</span>
+                                <li class="me-3">
+                                    <span>{{ $apartment->n_rooms }} Camere |</span>
                                 
                                 </li>
 
-                                <li class="me-3 pb-5">
+                                <li class="me-3">
                                     <span>{{ $apartment->n_beds }}</span>
-                                    Letti
+                                    Letti |
                                 </li>
 
-                                <li class="me-3 pb-5">
-                                    <span>{{ $apartment->price_day }}$</span>
-                                    /notte
-                                </li>
-{{-- @dd($apartment) --}}
-                                <li class="me-3 pb-5">
-                                    <span>{{ $apartment->square_meter }} M.q.</span>
+                                
+
+                                <li class="me-3">
+                                    <span>{{ $apartment->square_meters }} m.q.</span>
                                 </li>
 
                             </ul>
+
+                            <p class="pt-3 pb-5 fs-5">
+                                <strong>{{ $apartment->price_day }}$</strong>
+                                /notte
+                            </p>
 
 
                             <!-- overview -->
@@ -87,7 +96,7 @@
                                 </ul>
                             </section>
 
-                            <section class="pb-5">
+                            {{-- <section class="pb-5">
                                 <h3>Bedding</h3>
                                 <hr>
                                 <ul>
@@ -99,9 +108,9 @@
                                     
 
                                 </ul>
-                            </section>
+                            </section> --}}
 
-                            <section class="pb-5">
+                            {{-- <section class="pb-5">
                                 <h3>Things to Know & Policy</h3>
                                 <hr>
                                 <ul>
@@ -113,7 +122,7 @@
                                     
 
                                 </ul>
-                            </section>
+                            </section> --}}
 
                             <section class="pb-5">
                                 <h3>Map & Location</h3>
