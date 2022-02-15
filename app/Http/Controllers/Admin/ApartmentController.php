@@ -39,7 +39,7 @@ class ApartmentController extends Controller
         $request->validate([
             'title' => 'required|min:8',
             'street_name' => 'required',
-            'street_number' => 'required',
+            'street_number' => 'required|numeric',
             'zip_code' => 'required|numeric',
             'city' => 'required',
             'country' => 'required|min:3',
@@ -96,7 +96,12 @@ class ApartmentController extends Controller
         $address->longitude = $lon;
 
         $apartment->address()->save($address);
-        $apartment->services()->sync($request->all()['services']);
+
+
+        if (!empty($request->all()['services'])) {
+            $apartment->services()->sync($request->all()['services']);
+        }
+
 
         Session::flash('message', 'New Apartment has been added successfully.');
         return redirect()->route('admin.apartments.index');
@@ -178,9 +183,11 @@ class ApartmentController extends Controller
         $apartment->address->longitude = $lon;
 
         $apartment->push();
-        $apartment->services()->sync($request->all()["services"]);
 
-        
+        if (!empty($request->all()['services'])) {
+            $apartment->services()->sync($request->all()['services']);
+        }
+        Session::flash('message', 'Apartment has been updated');
         return redirect()->route("admin.apartments.show", $apartment->id);
     }
 
@@ -190,7 +197,7 @@ class ApartmentController extends Controller
         $apartment->services()->detach();
         $apartment->address()->delete();
         $apartment->delete();
-        Session::flash('message', 'Apartment has been deleted');
+        Session::flash('message', 'Apartment with title "' . $apartment->title  . '" has been deleted');
         return redirect()->route('admin.apartments.index');
     }
 }

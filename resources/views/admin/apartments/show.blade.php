@@ -7,6 +7,9 @@
 @section('content')
 
 <div class="main-container m-auto h-50 w-100">
+    @if(session('message'))
+    <div class="alert alert-success"> {{session('message')}}</div>
+    @endif
     <!-- immagine casa -->
     <div class="housepic-container w-100 d-flex justify-content-center">
         <div class="img-container my-carousel position-relative">
@@ -14,16 +17,16 @@
         </div>
     </div>
     <!-- nav secondaria -->
-        <nav class="border-bottom w-100 mb-4">
-            <div class="sub-nav container">
-                <ul class="d-flex list-unstyled">
-                    <li class="d-flex"><a class="p-4">Overview</a></li>
-                    <li class="d-flex"><a class="p-4">Overview</a></li>
-                    <li class="d-flex"><a class="p-4">Overview</a></li>
-                </ul>
-            </div>
-        </nav>
-    
+    <nav class="border-bottom w-100 mb-4">
+        <div class="sub-nav container">
+            <ul class="d-flex list-unstyled">
+                <li class="d-flex"><a class="p-4">Overview</a></li>
+                <li class="d-flex"><a class="p-4">Overview</a></li>
+                <li class="d-flex"><a class="p-4">Overview</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <!-- colonna SX contenuto -->
         <div class="container">
             <div class="row ms-0">
@@ -63,23 +66,15 @@
                                     <span>{{ $apartment->square_meters }} m.q.</span>
                                 </li>
 
+
                             </ul>
+                        </section>
+
 
                             <p class="pt-3 pb-5 fs-5">
                                 <strong>{{ $apartment->price_day }}$</strong>
                                 /notte
                             </p>
-
-
-                            <!-- overview -->
-                            <section class="pb-5">
-                                <h3>Overview</h3>
-                                <hr>
-                                <p class="my-lh ps-3">{{ $apartment->description }}</p>
-                                
-                                
-                                
-                            </section>
 
                             {{-- @dd($apartment) --}}
                             <section class="pb-5">
@@ -135,11 +130,36 @@
                         </div>
                     </div>
 
-                </div>
-                <div class="col-5">
-                    <aside>
+                        <section class="pb-5">
+                            <h3>Things to Know & Policy</h3>
+                            <hr>
+                            <ul>
+                                <li class="my-lh"><span class="ps-3">description</span></li>
+                                <li class="my-lh"><span class="ps-3">description</span></li>
+                                <li class="my-lh"><span class="ps-3">description</span></li>
+                                <li class="my-lh"><span class="ps-3">description</span></li>
+                                <li class="my-lh"><span class="ps-3">description</span></li>
 
-                    </aside>
+
+                            </ul>
+                        </section>
+
+                        <section class="pb-5">
+                            <h3>Map & Location</h3>
+                            <hr>
+                            <map name=""></map>
+                        </section>
+
+                        <a href="{{ route('admin.apartments.edit', $apartment->id) }}" class="btn-primary px-4 py-2">Modifica</a>
+
+                    </div>
                 </div>
-            
-@endsection
+
+            </div>
+            <div class="col-5">
+                <aside>
+
+                </aside>
+            </div>
+
+            @endsection
