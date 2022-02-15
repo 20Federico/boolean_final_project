@@ -4,15 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Address;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Apartment;
-use App\Http\Requests\StoreApartment;
-use App\Http\Requests\StoreApartmentRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
 use App\Service;
+use Illuminate\Http\Request;
 
 class ApartmentController extends Controller
 {
@@ -35,8 +33,28 @@ class ApartmentController extends Controller
         return view('admin.apartments.create', compact('services'));
     }
 
-    public function store(StoreApartmentRequest $request)
+    public function store(Request $request)
     {
+
+         $request->validate([
+            'title' => 'required|min:8',
+            'street_name' => 'required',
+            'street_number' => 'required',
+            'zip_code' => 'required|numeric',
+            'city' => 'required',
+            'country' => 'required|min:3',
+            'description' => 'required|min:20',
+            'price_day' => 'required|numeric',
+            'n_rooms' => 'required|numeric',
+            'n_baths' => 'required|numeric',
+            'n_beds' => 'required|numeric',
+            'square_meters' => 'required|numeric',
+            'shared' => 'required',
+            'visible' => 'required'
+         ]);
+
+
+
 
 
 
@@ -91,14 +109,28 @@ class ApartmentController extends Controller
         return redirect()->route('admin.apartments.index');
     }
 
-    public function update(StoreApartmentRequest $request, Apartment $apartment)
+    public function update(Request $request, Apartment $apartment)
     {
 
 
-
+        $request->validate([
+            'title' => 'required|min:8',
+            'street_name' => 'required',
+            'street_number' => 'required',
+            'zip_code' => 'required|numeric',
+            'city' => 'required',
+            'country' => 'required|min:3',
+            'description' => 'required|min:20',
+            'price_day' => 'required|numeric',
+            'n_rooms' => 'required|numeric',
+            'n_baths' => 'required|numeric',
+            'n_beds' => 'required|numeric',
+            'square_meters' => 'required|numeric',
+            'shared' => 'required',
+            'visible' => 'required',
+         ]);
 
         $oldImg = $apartment->cover_img;
-
         $apartment->title  = $request->title;
         $apartment->description  = $request->description;
         $apartment->price_day  = $request->price_day;
@@ -147,7 +179,7 @@ class ApartmentController extends Controller
         $apartment->push();
         $apartment->services()->sync($request->all()["services"]);
 
-        Session::flash('message', 'Apartment has been updated successfully.');
+        
         return redirect()->route("admin.apartments.show", $apartment->id);
     }
 
