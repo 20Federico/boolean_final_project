@@ -112,8 +112,9 @@ class ApartmentController extends Controller
     {
         $apartment = Apartment::findOrFail($id);
         $apartment->services()->detach();
+        $apartment->address()->delete();
         $apartment->delete();
         Session::flash('message', 'Apartment has been deleted');
-        return redirect('admin.apartments.home');
+        return redirect()->route('admin.apartments.index');
     }
 }

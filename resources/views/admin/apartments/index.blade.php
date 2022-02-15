@@ -19,6 +19,13 @@
     </div>
     <div class="card-body">
       <ul class="list-group">
+        @if (count($apartmentsList) == 0)
+        <div class="text-center">
+          <h3 class="fw-8">
+            Nessun appartamento disponibile
+          </h3>
+        </div>
+        @endif
         @foreach ($apartmentsList as $apartment)
             {{-- @dd($apartment); --}}
             <li class="list-group-item">
@@ -38,7 +45,7 @@
                   </div>
                     
                 
-                  <div class="col col-md-4" style="width: 115px;">
+                  <div class="col col-md-4" >
                     Stato: 
                     @if ($apartment->visible)
                     Pubblicato
@@ -46,7 +53,7 @@
                     Privato
                     @endif
                   </div>
-                  <div class="col col-md-3" style="width: 93px;">
+                  <div class="col col-md-3">
                     Prezzo: {{ $apartment->price_day }} €
                   </div>
                 </div>
