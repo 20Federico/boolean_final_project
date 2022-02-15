@@ -56,7 +56,6 @@ class ApartmentController extends Controller
         //Creo la riga con indirizzo
         $address = $request->street_name . " " .
             $request->street_number . " " .
-            $request->street_number . " " .
             $request->city . " " .
             $request->country . " " .
             $request->zip_code;

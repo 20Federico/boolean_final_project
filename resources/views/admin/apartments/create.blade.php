@@ -27,8 +27,6 @@
 
                         <div class="form-group row">
 
-
-
                             <label for="street_name" class="col-md-4 col-form-label text-md-right">Indirizzo</label>
                             <div class="col-md-5">
                                 <input type="text" class="form-control" name="street_name" id="street_name" placeholder="Via"> @if($errors->first('street_name'))
@@ -36,19 +34,11 @@
                                 @endif
                             </div>
 
-
-
-
-
                             <div class="col-md-1 pl-0">
-                                <input type="text" class="form-control" name="street_number" id="price_day" placeholder="Civico" required>@if($errors->first('street_number'))
+                                <input type="text" class="form-control" name="street_number" id="street_number" placeholder="Civico" required>@if($errors->first('street_number'))
                                 <div class="alert-danger">{{$errors->first('street_number')}}</div>
                                 @endif
                             </div>
-
-
-
-
 
                         </div>
 
@@ -90,10 +80,10 @@
 
 
                         <div class="form-group row">
-                            <label for="description" class="col-md-4 col-form-label text-md-right">Descrizione</label>
+                            <label for="" class="col-md-4 col-form-label text-md-right">Descrizione</label>
 
                             <div class="col-md-6">
-                                <textarea name="description" id="description" cols="30" rows="10" class="form-control" required></textarea>
+                                <textarea name="description" id="" cols="30" rows="10" class="form-control" required></textarea>
                             </div>
 
                         </div>
@@ -271,8 +261,8 @@
     </div>
 </div>
 @endsection
-<script src="//js.nicedit.com/nicEdit-latest.js" type="text/javascript">
+{{-- <script src="//js.nicedit.com/nicEdit-latest.js" type="text/javascript">
 </script>
 <script type="text/javascript">
   bkLib.onDomLoaded(nicEditors.allTextAreas);
-</script>
+</script> --}}

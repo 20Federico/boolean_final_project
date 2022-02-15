@@ -27,7 +27,7 @@
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             {{-- logout dropdown --}}
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav m-auto">
               <!-- Authentication Links -->
               @guest
                   <li class="nav-item">
@@ -108,6 +108,6 @@
             </div>
         </div>
       </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script> --}}
     </body>
 </html>
