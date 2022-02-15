@@ -14,10 +14,9 @@
         <title>@yield('title')</title>
 
         <!-- Styles -->
-        {{-- <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" /> --}}
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous" defer></script>
     </head>
     <body>
       <div id="app">
@@ -27,7 +26,7 @@
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             {{-- logout dropdown --}}
-            <ul class="navbar-nav m-auto">
+            <ul class="navbar-nav ms-auto pe-3">
               <!-- Authentication Links -->
               @guest
                   <li class="nav-item">
@@ -40,11 +39,11 @@
                   @endif
               @else
                   <li class="nav-item dropdown">
-                      <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                      <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                           <i class="fas fa-user fa-fw"></i>
                       </a>
 
-                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                           <a class="dropdown-item" href="{{ route('logout') }}"
                              onclick="event.preventDefault();
                                            document.getElementById('logout-form').submit();">
@@ -71,12 +70,16 @@
                             </a>
                             <div class="sb-sidenav-menu-heading">Personal Area</div>
                             <a class="nav-link" href="{{route('admin.apartments.index')}}">
-                              <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                              <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
                               My Apartments
+                            </a>
+                            <a class="nav-link" href="route('admin.messages.index')">
+                              <div class="sb-nav-link-icon"><i class="fas fa-comment"></i></div>
+                              Messages
                             </a>
                             <div class="sb-sidenav-menu-heading">Public</div>
                             <a class="nav-link" href="{{route('home')}}">
-                              <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                              <div class="sb-nav-link-icon"><i class="fas fa-window-restore"></i></div>
                               Public Page
                             </a>
                         </div>
@@ -108,6 +111,5 @@
             </div>
         </div>
       </div>
-        {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script> --}}
     </body>
 </html>
