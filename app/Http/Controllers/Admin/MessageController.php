@@ -19,16 +19,17 @@ class MessageController extends Controller
      */
     public function index()
     {
-        //$messageList = Message::all();
         
-        $messageList = Message::where("apartment_id", 8)->get();
-        //$messageList = DB::table('messages')->where('apartment_id', 8)->get();
-        //$messageList = DB::table('users')->get();
-        return view("admin.messages.index", [
-            "messageList" => $messageList,
-            
-    
-    ]);
+        $messageList = [];
+        $apartmentList = Apartment::where('user_id', Auth::user()->id)->get();
+        
+        foreach ($apartmentList as $apartment) {
+            $messages = Message::where("apartment_id", $apartment->id)->get();
+            foreach ($messages as $message) {
+                array_push($messageList, $message);
+            }
+        }
+        return view("admin.messages.index", ["messageList" => $messageList]);
     }
 
     /**
