@@ -109,6 +109,15 @@ class ApartmentController extends Controller
         return redirect()->route('admin.apartments.index');
     }
 
+    public function edit(Apartment $apartment)
+    {
+        $services = Service::all();
+        return view("admin.apartments.edit", [
+            "apartment" => $apartment,
+            "services" => $services
+        ]);
+    }
+
     public function update(Request $request, Apartment $apartment)
     {
 
@@ -187,9 +196,10 @@ class ApartmentController extends Controller
     {
         $apartment = Apartment::findOrFail($id);
         $apartment->services()->detach();
+        $apartment->address()->delete();
         $apartment->delete();
         Session::flash('message', 'Apartment has been deleted');
-        return redirect('admin.apartments.home');
+        return redirect()->route('admin.apartments.index');
     }
 
 
