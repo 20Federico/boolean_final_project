@@ -121,6 +121,7 @@
                                 <map name=""></map>
                             </section>
                             
+                            <a href="{{ route('admin.apartments.edit', $apartment->id) }}" class="btn-primary px-4 py-2">Modifica</a>
                             
                         </div>
                     </div>
