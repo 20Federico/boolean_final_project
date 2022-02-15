@@ -16,7 +16,7 @@
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous" defer></script>
     </head>
     <body>
       <div id="app">
@@ -70,12 +70,16 @@
                             </a>
                             <div class="sb-sidenav-menu-heading">Personal Area</div>
                             <a class="nav-link" href="{{route('admin.apartments.index')}}">
-                              <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                              <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
                               My Apartments
+                            </a>
+                            <a class="nav-link" href="route('admin.messages.index')">
+                              <div class="sb-nav-link-icon"><i class="fas fa-comment"></i></div>
+                              Messages
                             </a>
                             <div class="sb-sidenav-menu-heading">Public</div>
                             <a class="nav-link" href="{{route('home')}}">
-                              <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                              <div class="sb-nav-link-icon"><i class="fas fa-window-restore"></i></div>
                               Public Page
                             </a>
                         </div>
