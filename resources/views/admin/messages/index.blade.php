@@ -20,7 +20,14 @@
           
           <div class="row">
             <div class="col">Inviato da: {{ $message->email_sender }}</div>
-
+            <div>
+              Stato: 
+              @if ($message->read === 0)
+                  Da leggere
+              @else
+                Letto
+              @endif
+            </div>
                 
             <div class="col">Riferito al appartamento: <strong>{{ $message->apartment->title }}</strong></div>
             <div class="col">Messaggio: 

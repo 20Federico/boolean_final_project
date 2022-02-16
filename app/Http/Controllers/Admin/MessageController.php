@@ -24,8 +24,7 @@ class MessageController extends Controller
         
         foreach ($apartmentList as $apartment) {
             $messages = Message::orderBy('created_at', 'desc')->where("apartment_id", $apartment->id)->get();
-            
-            @dump($messages);
+
             foreach ($messages as $message) {
                 array_push($messageList, $message);
             }
