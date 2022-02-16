@@ -77,6 +77,10 @@
                               <div class="sb-nav-link-icon"><i class="fas fa-comment"></i></div>
                               Messages
                             </a>
+                            <a class="nav-link" href="#">
+                              <div class="sb-nav-link-icon"><i class="fas fa-chart-bar"></i></div>
+                              Statistics
+                            </a>
                             <div class="sb-sidenav-menu-heading">Public</div>
                             <a class="nav-link" href="{{route('home')}}">
                               <div class="sb-nav-link-icon"><i class="fas fa-window-restore"></i></div>

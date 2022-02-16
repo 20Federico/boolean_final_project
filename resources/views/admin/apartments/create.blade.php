@@ -100,7 +100,7 @@
                         <div class="form-group row mb-3">
                             <label for="price_day" class="col-md-4 col-form-label text-md-right">Prezzo per notte (€) *</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="price_day" id="price_day" placeholder="€" value="{{ old('price_day') }}" required>
+                                <input type="number" class="form-control" name="price_day" id="price_day" placeholder="€" value="{{ old('price_day') }}" required>
                                 @if($errors->first('price_day'))
                                     <div class="alert-danger text-center">{{$errors->first('price_day')}}</div>
                                 @endif
@@ -110,7 +110,7 @@
                         <div class="form-group row mb-3">
                             <label for="n_rooms" class="col-md-4 col-form-label text-md-right">Numero stanze *</label>
                             <div class="col-md-6">
-                                <input type="number" min="1" class="form-control" name="n_rooms" id="n_rooms" value="{{ old('n_rooms') }}" required>
+                                <input type="number" class="form-control" name="n_rooms" id="n_rooms" value="{{ old('n_rooms') }}" required>
                                 @if($errors->first('n_rooms'))
                                     <div class="alert-danger text-center">{{$errors->first('n_rooms')}}</div>
                                 @endif
@@ -120,7 +120,7 @@
                         <div class="form-group row mb-3">
                             <label for="n_baths" class="col-md-4 col-form-label text-md-right">Numero bagni *</label>
                             <div class="col-md-6">
-                                <input type="number" min="1" class="form-control" name="n_baths" id="n_baths" value="{{ old('n_baths') }}" required>
+                                <input type="number" class="form-control" name="n_baths" id="n_baths" value="{{ old('n_baths') }}" required>
                                 @if($errors->first('n_baths'))
                                     <div class="alert-danger text-center">{{$errors->first('n_baths')}}</div>
                                 @endif
@@ -131,7 +131,7 @@
                         <div class="form-group row mb-3">
                             <label for="n_beds" class="col-md-4 col-form-label text-md-right">Numero posti letto *</label>
                             <div class="col-md-6">
-                                <input type="number" min="1" class="form-control" name="n_beds" id="n_beds" value="{{ old('n_beds') }}" required>
+                                <input type="number" class="form-control" name="n_beds" id="n_beds" value="{{ old('n_beds') }}" required>
                                 @if($errors->first('n_beds'))
                                     <div class="alert-danger text-center">{{$errors->first('n_beds')}}</div>
                                 @endif
@@ -141,7 +141,7 @@
                         <div class="form-group row mb-3">
                             <label for="square_meters" class="col-md-4 col-form-label text-md-right">Dimensioni (m<sup>2</sup>) *</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="square_meters" id="square_meters" placeholder="Metri quadri" value="{{ old('square_meters') }}" required>
+                                <input type="number" class="form-control" name="square_meters" id="square_meters" placeholder="Metri quadri" value="{{ old('square_meters') }}" required>
                                 @if($errors->first('square_meters'))
                                     <div class="alert-danger text-center">{{$errors->first('square_meters')}}</div>
                                 @endif

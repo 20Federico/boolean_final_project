@@ -208,7 +208,6 @@
                 .addTo(map);
         }
         createMarker('accident.colors-white.svg', [lon, lat], '#5327c3', 'SVG icon');
-       
 
     </script>
 </body>
