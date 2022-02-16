@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.adminShow')
 
 {{-- use illuminate --}}
 
@@ -28,21 +28,22 @@
     </nav>
 
     <!-- colonna SX contenuto -->
-        <div class="container">
-            <div class="row ms-0">
-                <!-- inizio colonna sx -->
-                <div class="col-7 pe-5">
-                    <div class="tag">
-                        <a href="{{ route('admin.apartments.edit', $apartment->id) }}" class="btn btn-primary mb-5">Modifica</a>
-                    </div>
-                    {{-- @dd($apartment) --}}
-                    
-                {{-- Inizio casa --}}
-                    {{-- Titolo casa --}}
-                    <div class="lead display-5 pb-4">{{ $apartment->title }}</div>
+    <div class="container">
+        <div class="row ms-0">
+            <!-- inizio colonna sx -->
+            <div class="col-7 pe-5">
+                <div class="tag">
+                    <a href="{{ route('admin.apartments.edit', $apartment->id) }}" class="btn btn-primary mb-5">Modifica</a>
+                </div>
+                {{-- @dd($apartment) --}}
 
-                    <!-- sottocontainer -->
-                    <div class="ms-4">
+                {{-- Inizio casa --}}
+                {{-- Titolo casa --}}
+                <div class="lead display-5 pb-4">{{ $apartment->title }}</div>
+
+                <!-- sottocontainer -->
+                <div class="ms-4">
+
 
                       @if (isset($apartment->address))
                         <p class="fs-3">{{ $apartment->address->city }}, {{ $apartment->address->country }}</p>
@@ -52,48 +53,52 @@
                         <div class="posti-casa mt-2">
                             <ul class="d-flex ps-0 fs-6 list-unstyled">
 
-                                <li class="me-3">
-                                    <span>{{ $apartment->n_rooms }} Camere |</span>
-                                
-                                </li>
+                    <!-- posti casa -->
+                    <div class="posti-casa mt-2">
+                        <ul class="d-flex ps-0 fs-6 list-unstyled">
 
-                                <li class="me-3">
-                                    <span>{{ $apartment->n_beds }}</span>
-                                    Letti |
-                                </li>
+                            <li class="me-3">
+                                <span>{{ $apartment->n_rooms }} Camere |</span>
 
-                                
+                            </li>
 
-                                <li class="me-3">
-                                    <span>{{ $apartment->square_meters }} m.q.</span>
-                                </li>
+                            <li class="me-3">
+                                <span>{{ $apartment->n_beds }}</span>
+                                Letti |
+                            </li>
+
+
+
+                            <li class="me-3">
+                                <span>{{ $apartment->square_meters }} m.q.</span>
+                            </li>
+
+
+                        </ul>
+                        </section>
+
+
+                        <p class="pt-3 pb-5 fs-5">
+                            <strong>{{ $apartment->price_day }}$</strong>
+                            /notte
+                        </p>
+
+                        {{-- @dd($apartment) --}}
+                        <section class="pb-5">
+                            <h3>Features & Amenities</h3>
+                            <hr>
+                            <ul>
+                                <li class="my-lh"><span class="ps-3">{{ $apartment->title }}</span></li>
+                                <li class="my-lh"><span class="ps-3">description</span></li>
+                                <li class="my-lh"><span class="ps-3">description</span></li>
+                                <li class="my-lh"><span class="ps-3">description</span></li>
+                                <li class="my-lh"><span class="ps-3">description</span></li>
 
 
                             </ul>
                         </section>
 
-
-                            <p class="pt-3 pb-5 fs-5">
-                                <strong>{{ $apartment->price_day }}$</strong>
-                                /notte
-                            </p>
-
-                            {{-- @dd($apartment) --}}
-                            <section class="pb-5">
-                                <h3>Features & Amenities</h3>
-                                <hr>
-                                <ul>
-                                    <li class="my-lh"><span class="ps-3">{{ $apartment->title }}</span></li>
-                                    <li class="my-lh"><span class="ps-3">description</span></li>
-                                    <li class="my-lh"><span class="ps-3">description</span></li>
-                                    <li class="my-lh"><span class="ps-3">description</span></li>
-                                    <li class="my-lh"><span class="ps-3">description</span></li>
-                                    
-
-                                </ul>
-                            </section>
-
-                            {{-- <section class="pb-5">
+                        {{-- <section class="pb-5">
                                 <h3>Bedding</h3>
                                 <hr>
                                 <ul>
@@ -107,7 +112,7 @@
                                 </ul>
                             </section> --}}
 
-                            {{-- <section class="pb-5">
+                        {{-- <section class="pb-5">
                                 <h3>Things to Know & Policy</h3>
                                 <hr>
                                 <ul>
@@ -121,31 +126,6 @@
                                 </ul>
                             </section> --}}
 
-                            <section class="pb-5">
-                                <h3>Map & Location</h3>
-                                <hr>
-                                <map name=""></map>
-                            </section>
-                            
-                            <a href="{{ route('admin.apartments.edit', $apartment->id) }}" class="btn-primary px-4 py-2">Modifica</a>
-                            
-                        </div>
-                    </div>
-
-                        <section class="pb-5">
-                            <h3>Things to Know & Policy</h3>
-                            <hr>
-                            <ul>
-                                <li class="my-lh"><span class="ps-3">description</span></li>
-                                <li class="my-lh"><span class="ps-3">description</span></li>
-                                <li class="my-lh"><span class="ps-3">description</span></li>
-                                <li class="my-lh"><span class="ps-3">description</span></li>
-                                <li class="my-lh"><span class="ps-3">description</span></li>
-
-
-                            </ul>
-                        </section>
-
                         <section class="pb-5">
                             <h3>Map & Location</h3>
                             <hr>
@@ -157,11 +137,44 @@
                     </div>
                 </div>
 
-            </div>
-            <div class="col-5">
-                <aside>
+                <section class="pb-5">
+                    <h3>Things to Know & Policy</h3>
+                    <hr>
+                    <ul>
+                        <li class="my-lh"><span class="ps-3">description</span></li>
+                        <li class="my-lh"><span class="ps-3">description</span></li>
+                        <li class="my-lh"><span class="ps-3">description</span></li>
+                        <li class="my-lh"><span class="ps-3">description</span></li>
+                        <li class="my-lh"><span class="ps-3">description</span></li>
 
-                </aside>
-            </div>
 
-            @endsection
+                    </ul>
+                </section>
+
+                <section class="pb-5">
+                    <h3>Map & Location</h3>
+                    <hr>
+                    <map name=""></map>
+                </section>
+
+                <a href="{{ route('admin.apartments.edit', $apartment->id) }}" class="btn-primary px-4 py-2">Modifica</a>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="col-5">
+        <aside>
+
+        </aside>
+    </div>
+ <h1>Position</h1>
+ <p>{{$apartment->address->country}} {{$apartment->address->city}} {{$apartment->address->zip_code}} {{$apartment->address->street_name}} {{$apartment->address->street_number}} </p>
+    <div class="container">
+        <div class="map px-5 px-5" id="map"></div>
+    </div>
+
+
+
+
+    @endsection
