@@ -2,17 +2,13 @@
 
 @section('title', 'Apartments')
 
-
 @section('content')
+  
   @if(session('message'))
-  <div class="alert alert-success"> {{session('message')}}</div>
+    <div class="alert alert-success"> {{session('message')}}</div>
   @endif
-  <h2>I miei Appartamenti</h2>
-  <div class="text-center my-5">
-    <a href="{{route('admin.apartments.create')}}" class="btn btn-success">
-      Aggiungi nuovo
-    </a>
-  </div>
+
+  <h2 class="mb-5">I miei Appartamenti</h2>
   
   <div class="card">
     <div class="card-header d-flex align-items-center justify-content-between">Lista Appartamenti

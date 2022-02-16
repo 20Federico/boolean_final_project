@@ -44,7 +44,14 @@
                 <!-- sottocontainer -->
                 <div class="ms-4">
 
-                    <p class="fs-3">{{ $apartment->address->city }}, {{ $apartment->address->country }}</p>
+
+                      @if (isset($apartment->address))
+                        <p class="fs-3">{{ $apartment->address->city }}, {{ $apartment->address->country }}</p>
+                      @endif
+                        
+                        <!-- posti casa -->
+                        <div class="posti-casa mt-2">
+                            <ul class="d-flex ps-0 fs-6 list-unstyled">
 
                     <!-- posti casa -->
                     <div class="posti-casa mt-2">
