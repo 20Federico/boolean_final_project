@@ -69,7 +69,7 @@
                       @method('delete')
                       
                     
-                      <button class="btn btn-outline-danger" type="submit">Elimina</button>
+                      <button class="btn btn-outline-danger" type="submit" onclick="return confirm('Are you sure you want to delete this appartment? With this apartment all related messages will be deleted')">Elimina</button>
                     </form>
                   </div>
                 </div>
