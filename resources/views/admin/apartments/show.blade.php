@@ -86,12 +86,11 @@
                                 <h3>Features & Amenities</h3>
                                 <hr>
                                 <ul>
-                                    <li class="my-lh"><span class="ps-3">{{ $apartment->title }}</span></li>
-                                    <li class="my-lh"><span class="ps-3">description</span></li>
-                                    <li class="my-lh"><span class="ps-3">description</span></li>
-                                    <li class="my-lh"><span class="ps-3">description</span></li>
-                                    <li class="my-lh"><span class="ps-3">description</span></li>
-                                    
+                                    @foreach($apartment->services as $service)
+                                    <li class="my-lh"><span class="ps-3">{{ $service->name }}</span></li>
+                                        
+                                    @endforeach
+                                                                        
 
                                 </ul>
                             </section>
