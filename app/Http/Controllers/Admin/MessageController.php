@@ -23,12 +23,14 @@ class MessageController extends Controller
         $apartmentList = Apartment::where('user_id', Auth::user()->id)->get();
         
         foreach ($apartmentList as $apartment) {
-            $messages = Message::where("apartment_id", $apartment->id)->get();
+            $messages = Message::orderBy('created_at', 'desc')->where("apartment_id", $apartment->id)->get();
             
+            @dump($messages);
             foreach ($messages as $message) {
                 array_push($messageList, $message);
             }
         }
+        array_multisort($messageList, SORT_DESC);
         return view("admin.messages.index", ["messageList" => $messageList]);
     }
 
@@ -41,6 +43,11 @@ class MessageController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+
+        $data->validate([
+            'email_sender' => 'required'| 'string'| 'email',
+            'content' => 'required|min:20',
+        ]);
 
         $newMessage = new Message();
         $newMessage->email_sender = $data['email_sender'];

@@ -4,7 +4,7 @@
 
 @section('content')
   <div class="card">
-    <div class="card-header">titolo card</div>
+    <div class="card-header">Lista Messaggi</div>
     <div class="card-body">
       <ul class="list-group">
         {{-- @dd($messageList) --}}
@@ -20,28 +20,28 @@
           
           <div class="row">
             <div class="col">Inviato da: {{ $message->email_sender }}</div>
-            <div>
-              Stato: 
-              @if ($message->read === 0)
-                  Da leggere
-              @else
-                Letto
-              @endif
-            </div>
+
                 
             <div class="col">Riferito al appartamento: <strong>{{ $message->apartment->title }}</strong></div>
-            <div class="col">Messaggio: {{ $message->content }}</div>
-            <div class="col">Ricevuto il: {{ $message->created_at }}</div>
+            <div class="col">Messaggio: 
+              @php
+                  $stringCut = substr($message['content'], 0 ,10);
+                  echo "$stringCut";
+                 if ( strlen($stringCut) >= 10)
+                   echo '...'
+              @endphp
+              
+            </div>
             <div class="col">Ricevuto il: {{ $message->created_at }}</div>
 
-            <div class="col">
-
-              <a class="btn btn-primary" href="{{ route('admin.messages.show', $message->id) }}">Dettagli</a>
+            <div class="col d-flex">
+              <div>
+                <a class="btn btn-primary" href="{{ route('admin.messages.show', $message->id) }}">Dettagli</a>
+              </div>
 
               <form action="{{ route('admin.messages.destroy', $message->id) }}" method="post">
                 @csrf
                 @method('delete')
-                
               
                 <button class="btn btn-outline-danger" type="submit">Elimina</button>
               </form>

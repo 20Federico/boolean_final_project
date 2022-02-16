@@ -13,6 +13,6 @@
     </div>
     <br>
     <div>contenuto: <p>{{ $message->content }}</p></div>
-    <div>contenuto: <p>{{ $message->read }}</p></div>
+ 
     <a href="{{ route('admin.messages.index') }}">torna ai messaggi</a>
 @endsection
