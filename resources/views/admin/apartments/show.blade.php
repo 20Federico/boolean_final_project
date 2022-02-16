@@ -161,10 +161,10 @@
 
         </aside>
     </div>
-
+ <h1>Position</h1>
+ <p>{{$apartment->address->country}} {{$apartment->address->city}} {{$apartment->address->zip_code}} {{$apartment->address->street_name}} {{$apartment->address->street_number}} </p>
     <div class="container">
         <div class="map px-5 px-5" id="map"></div>
-
     </div>
 
 
