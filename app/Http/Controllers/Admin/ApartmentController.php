@@ -220,4 +220,6 @@ class ApartmentController extends Controller
         Session::flash('message', 'Apartment with title "' . $apartment->title  . '" has been deleted');
         return redirect()->route('admin.apartments.index');
     }
+
+    
 }
