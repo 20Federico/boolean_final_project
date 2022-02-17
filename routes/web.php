@@ -33,5 +33,4 @@ Route::namespace("Admin")
     Route::resource("sponsors", "SponsorController");
   });
 
-  });
 Auth::routes();
