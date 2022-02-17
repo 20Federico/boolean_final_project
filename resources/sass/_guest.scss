@@ -1,0 +1,69 @@
+// Import Custom Variables
+@import "variables.scss";
+
+// Import Custom SCSS
+@import "global.scss";
+
+header {
+    nav.main-nav {
+        background-color: #3d403c;
+        a.navbar-brand {
+            font-family: 'Pacifico', cursive;
+            color: #d48166;
+        }
+        a.nav-link {
+            color: #d48166;
+        }
+    }
+}
+
+main {
+    background-color: #f6f4f2;
+    .container {
+        background-color: #f6f4f2;
+
+        .title {
+            background-color: white;
+            color: #373a36;
+            font-family: 'Pacifico', cursive;
+            box-shadow: 10px 10px 5px #dfdbd7;
+        }
+    }
+}
+
+footer {
+    ul {
+        padding-left: 0;
+        li{
+            list-style-type: none;
+            margin-bottom: 10px;
+            a {
+                text-decoration: none;
+                color: black;
+            }
+            :hover {
+                color: #d48166;
+            }
+        }
+    }
+
+    .social {
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        :hover {
+            color: #d48166;
+        }
+    }
+
+    .privacy {
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        :hover {
+            color: #d48166;
+        }
+    }
+}
