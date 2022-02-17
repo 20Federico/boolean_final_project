@@ -57,7 +57,7 @@
   <script src='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.18.0/maps/maps-web.min.js' defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" defer></script>
 
-  <script defer>
+  <script async>
 
     var lat = document.getElementById('lat').getAttribute('value');
     var lon = document.getElementById('lon').getAttribute('value');
@@ -119,7 +119,7 @@
         <a href="{{ route('admin.apartments.edit', $apartment->id) }}" class="btn btn-primary btn-lg mb-4">Modifica</a>
         <a href="#" class="btn btn-warning btn-lg mb-4">Messaggi</a>
         <a href="{{route('admin.sponsors.index', $apartment->id)}}" class="btn btn-success btn-lg mb-4">Sponsorizza</a>
-        <a href="#" class="btn btn-info btn-lg mb-4">Statistiche</a>
+        <a href="{{ route('admin.visits.show', $apartment->id) }}" class="btn btn-info btn-lg mb-4">Statistiche</a>
         <form action="{{ route('admin.apartments.destroy', $apartment->id) }}" method="post">
           @csrf
           @method('delete')

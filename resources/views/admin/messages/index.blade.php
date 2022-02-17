@@ -7,7 +7,7 @@
     <div class="card-header">Lista Messaggi</div>
     <div class="card-body">
       <ul class="list-group">
-        {{-- @dd($messageList) --}}
+
         @if (count($messageList) == 0)
         <div class="text-center">
           <h3 class="fw-8">
@@ -34,8 +34,8 @@
               @php
                   $stringCut = substr($message['content'], 0 ,10);
                   echo "$stringCut";
-                 if ( strlen($stringCut) >= 10)
-                   echo '...'
+                  if ( strlen($stringCut) >= 10)
+                  echo '...'
               @endphp
               
             </div>
@@ -60,9 +60,5 @@
       </ul>
     </div>
   </div>
-  
-          
 
-
-    
 @endsection

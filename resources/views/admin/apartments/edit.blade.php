@@ -102,7 +102,7 @@
                             <label for="cover_img" class="col-md-4 col-form-label text-md-right">Immagine *</label>
                             <div class="col-md-6">
                                 <div class="custom-file">
-                                  <input type="file" class="form-control" id="cover_img" name="cover_img" value="{{ $apartment->coverImg }}" required>
+                                  <input type="file" class="form-control" id="cover_img" name="cover_img" value="{{ $apartment->coverImg }}">
                                 </div>
                             </div>
                         </div>

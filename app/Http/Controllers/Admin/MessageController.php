@@ -33,28 +33,28 @@ class MessageController extends Controller
         return view("admin.messages.index", ["messageList" => $messageList]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $data = $request->all();
+    // /**
+    //  * Store a newly created resource in storage.
+    //  *
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function store(Request $request)
+    // {
+    //     $data = $request->all();
 
-        $data->validate([
-            'email_sender' => 'required'| 'string'| 'email',
-            'content' => 'required|min:20',
-        ]);
+    //     // $data->validate([
+    //     //     'email_sender' => 'required'| 'string'| 'email',
+    //     //     'content' => 'required|min:20',
+    //     // ]);
 
-        $newMessage = new Message();
-        $newMessage->email_sender = $data['email_sender'];
-        $newMessage->content = $data['content'];
-        $newMessage->apartment_id = $data['apartment_id'];
+    //     $newMessage = new Message();
+    //     $newMessage->email_sender = $data['email_sender'];
+    //     $newMessage->content = $data['content'];
+    //     $newMessage->apartment_id = $data['apartment_id'];
 
-        return redirect()->route('admin.messages.index');
-    }
+    //     return redirect()->route('admin.messages.index');
+    // }
 
     /**
      * Display the specified resource.
