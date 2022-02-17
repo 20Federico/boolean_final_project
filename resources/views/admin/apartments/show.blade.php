@@ -126,7 +126,7 @@
         <form action="{{ route('admin.apartments.destroy', $apartment->id) }}" method="post">
           @csrf
           @method('delete')
-          <button class="btn btn-danger btn-lg" type="submit">Elimina</button>
+          <button class="btn btn-outline-danger btn-lg" type="submit" onclick="return confirm('Are you sure you want to delete this appartment? With this apartment all related messages will be deleted')">Elimina</button>
         </form>
       </div>
 
