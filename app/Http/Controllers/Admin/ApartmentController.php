@@ -217,13 +217,13 @@ class ApartmentController extends Controller
         }
 
 
-        if(!empty( $apartment->services())){
-            $apartment->services()->detach();
-        }
+        // if(!empty( $apartment->services())){
+        //     $apartment->services()->detach();
+        // }
 
-        if($apartment->messages()){
-            $apartment->messages()->delete();
-        }
+        // if($apartment->messages()){
+        //     $apartment->messages()->delete();
+        // }
 
 
         $apartment->address()->delete();
