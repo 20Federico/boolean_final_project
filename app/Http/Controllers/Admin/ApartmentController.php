@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
 use App\Service;
+use App\Sponsor;
 use Illuminate\Http\Request;
 
 class ApartmentController extends Controller

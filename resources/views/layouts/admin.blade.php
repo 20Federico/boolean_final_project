@@ -14,7 +14,11 @@
         <title>@yield('title')</title>
 
         <!-- Styles -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous" defer></script>
 
