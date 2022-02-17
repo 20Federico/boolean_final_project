@@ -187,6 +187,8 @@ class ApartmentController extends Controller
 
         if (!empty($request->all()['services'])) {
             $apartment->services()->sync($request->all()['services']);
+        } else {
+          $apartment->services()->detach();
         }
         Session::flash('message', 'Apartment has been updated');
         return redirect()->route("admin.apartments.show", $apartment->id);
@@ -200,8 +202,8 @@ class ApartmentController extends Controller
         }
 
 
-        if($apartment->services()){
-            $apartment->services()->delete();
+        if(!empty( $apartment->services())){
+            $apartment->services()->detach();
         }
 
         if($apartment->messages()){
