@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Apartment;
 use App\Http\Controllers\Controller;
 use App\Sponsor;
 use Illuminate\Http\Request;
@@ -13,10 +14,13 @@ class SponsorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Apartment $apartment)
     {
-        $sponsorsList = Sponsor::all();
-        return view('admin.sponsors.index', compact("sponsorsList"));
+        $sponsorList = Sponsor::all();
+        return view('admin.sponsor.index', [
+            "sponsorList" => $sponsorList,
+            "apartment" => $apartment
+        ]);
     }
 
     /**
@@ -48,7 +52,8 @@ class SponsorController extends Controller
      */
     public function show(Sponsor $sponsor)
     {
-        return view('admin.sponsors.show', compact("sponsor"));
+
+        return view('admin.sponsor.show', compact("sponsor"));
     }
 
     /**

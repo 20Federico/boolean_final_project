@@ -34,7 +34,10 @@
             <div class="col-7 pe-5">
                 <div class="tag">
                     <a href="{{ route('admin.apartments.edit', $apartment->id) }}" class="btn btn-primary mb-5">Modifica</a>
+
+                    <a href="{{route('admin.sponsors.index', $apartment->id)}}" onclick="Request::" ><button type="button" class="btn btn-success"> Sponsorizza </button> </a>
                 </div>
+
                 {{-- @dd($apartment) --}}
 
                 {{-- Inizio casa --}}
