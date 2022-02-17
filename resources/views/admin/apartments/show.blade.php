@@ -121,7 +121,7 @@
       <div class="d-flex justify-content-center gap-3">
         <a href="{{ route('admin.apartments.edit', $apartment->id) }}" class="btn btn-primary btn-lg mb-4">Modifica</a>
         <a href="#" class="btn btn-warning btn-lg mb-4">Messaggi</a>
-        <a href="#" class="btn btn-success btn-lg mb-4">Sponsorizza</a>
+        <a href="{{route('admin.sponsors.index', $apartment->id)}}" class="btn btn-success btn-lg mb-4">Sponsorizza</a>
         <a href="#" class="btn btn-info btn-lg mb-4">Statistiche</a>
         <form action="{{ route('admin.apartments.destroy', $apartment->id) }}" method="post">
           @csrf
