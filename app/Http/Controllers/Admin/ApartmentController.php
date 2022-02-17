@@ -24,7 +24,9 @@ class ApartmentController extends Controller
 
     public function show(Apartment $apartment)
     {
-        return view('admin.apartments.show', compact('apartment'));
+      $address = Address::where('apartment_id', $apartment->id)->get(['latitude', 'longitude']);
+
+      return view('admin.apartments.show', ['apartment'=> $apartment, 'address'=>$address]);
     }
 
     public function create()
@@ -54,7 +56,6 @@ class ApartmentController extends Controller
             'visible' => 'required'
         ]);
 
-        //Creo la riga con indirizzo
         $address = $request->street_name . " " .
             $request->street_number . " " .
             $request->city . " " .
@@ -195,9 +196,25 @@ class ApartmentController extends Controller
     public function destroy($id)
     {
         $apartment = Apartment::findOrFail($id);
-        $apartment->services()->detach();
+        if ($apartment->cover_img) {
+            Storage::delete($apartment->cover_img);
+        }
+
+
+        if($apartment->services()){
+            $apartment->services()->delete();
+        }
+
+        if($apartment->messages()){
+            $apartment->messages()->delete();
+        }
+
+
         $apartment->address()->delete();
         $apartment->delete();
+
+
+        
         Session::flash('message', 'Apartment with title "' . $apartment->title  . '" has been deleted');
         return redirect()->route('admin.apartments.index');
     }

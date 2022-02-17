@@ -1,183 +1,201 @@
-@extends('layouts.adminShow')
+@extends('layouts.admin')
 
 {{-- use illuminate --}}
 
 @section('title', 'Apartment - show')
 
+@section('more_scripts')
+    
+@endsection
+  <style>
+    #map {
+        width: 80%;
+        height: 500px;
+
+
+    }
+
+    .marker-icon {
+        background-position: center;
+        background-size: 22px 22px;
+        border-radius: 50%;
+        height: 22px;
+        left: 4px;
+        position: absolute;
+        text-align: center;
+        top: 3px;
+        transform: rotate(45deg);
+        width: 22px;
+    }
+
+    .marker {
+        height: 30px;
+        width: 30px;
+    }
+
+    .marker-content {
+        background: #c30b82;
+        border-radius: 50% 50% 50% 0;
+        height: 30px;
+        left: 50%;
+        margin: -15px 0 0 -15px;
+        position: absolute;
+        top: 50%;
+        transform: rotate(-45deg);
+        width: 30px;
+    }
+
+    .marker-content::before {
+        background: #ffffff;
+        border-radius: 50%;
+        content: "";
+        height: 24px;
+        margin: 3px 0 0 3px;
+        position: absolute;
+        width: 24px;
+    }
+
+  </style>
+  <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.18.0/maps/maps.css' />
+
+  <script src='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.18.0/maps/maps-web.min.js' defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" defer></script>
+
+  <script defer>
+
+    var lat = document.getElementById('lat').getAttribute('value');
+    var lon = document.getElementById('lon').getAttribute('value');
+    const map = tt.map({
+        key: 'hwUAMJjGlcfAD2Yd3w1owWJqbrrLpfoo'
+        , container: 'map'
+        , center: [lon, lat]
+        , zoom: 15
+    });
+
+    map.addControl(new tt.FullscreenControl());
+    map.addControl(new tt.NavigationControl());
+
+    function createMarker(icon, position, color, popupText) {
+        var markerElement = document.createElement('div');
+        markerElement.className = 'marker';
+        var markerContentElement = document.createElement('div');
+        markerContentElement.className = 'marker-content';
+        markerContentElement.style.backgroundColor = color;
+        markerElement.appendChild(markerContentElement);
+        var iconElement = document.createElement('div');
+        iconElement.className = 'marker-icon';
+        iconElement.style.backgroundImage =
+            'url(https://api.tomtom.com/maps-sdk-for-web/cdn/static/' + icon + ')';
+        markerContentElement.appendChild(iconElement);
+        var popup = new tt.Popup({
+            offset: 30
+        }).setText(popupText);
+        // add marker to map
+        new tt.Marker({
+                element: markerElement
+                , anchor: 'bottom'
+            })
+            .setLngLat(position)
+            .setPopup(popup)
+            .addTo(map);
+    }
+    createMarker('accident.colors-white.svg', [lon, lat], '#5327c3', 'SVG icon');
+
+  </script>
 @section('content')
 
 <div class="main-container m-auto h-50 w-100">
-    @if(session('message'))
-    <div class="alert alert-success"> {{session('message')}}</div>
-    @endif
     <!-- immagine casa -->
     <div class="housepic-container w-100 d-flex justify-content-center">
         <div class="img-container my-carousel position-relative">
-            <img src="{{ asset('storage/app/public/apartments/foto_casa_prova.jpg') }}" class="img-fluid" alt="">
+          @if (substr($apartment->cover_img, 0, 4 ) === 'http')
+            <img src="{{ url($apartment->cover_img) }}" class="img-fluid" alt="">
+          @else    
+            <img src="{{ asset('storage/' . $apartment->cover_img) }}" class="img-fluid" alt="">
+          @endif
         </div>
     </div>
-    <!-- nav secondaria -->
-    <nav class="border-bottom w-100 mb-4">
-        <div class="sub-nav container">
-            <ul class="d-flex list-unstyled">
-                <li class="d-flex"><a class="p-4">Overview</a></li>
-                <li class="d-flex"><a class="p-4">Overview</a></li>
-                <li class="d-flex"><a class="p-4">Overview</a></li>
+
+    <div class="container py-5">
+      
+      <div class="d-flex justify-content-center gap-3">
+        <a href="{{ route('admin.apartments.edit', $apartment->id) }}" class="btn btn-primary btn-lg mb-4">Modifica</a>
+        <a href="#" class="btn btn-warning btn-lg mb-4">Messaggi</a>
+        <a href="#" class="btn btn-success btn-lg mb-4">Sponsorizza</a>
+        <a href="#" class="btn btn-info btn-lg mb-4">Statistiche</a>
+        <form action="{{ route('admin.apartments.destroy', $apartment->id) }}" method="post">
+          @csrf
+          @method('delete')
+          <button class="btn btn-danger btn-lg" type="submit">Elimina</button>
+        </form>
+      </div>
+
+      {{-- Titolo casa --}}
+      <h2 class="display-5"><strong>{{ $apartment->title }}</strong></h2>
+
+      @if ($apartment->visible)
+      <p class="text-success">Visibile agli utenti</p>
+      @else
+      <p class="text-danger">NON visibile agli utenti</p>
+      @endif
+      <p class="mb-0 text-secondary">Creato il: {{$apartment->created_at}}</p>
+      <p class="pb-3 text-secondary">Ultima modifica: {{$apartment->updated_at}}</p>
+
+      <!-- sottocontainer -->
+      <div class="ms-4">
+
+        @if (isset($apartment->address->city))
+          <p class="fs-3">{{ $apartment->address->city }}, {{ $apartment->address->country }}</p>
+        @endif
+
+
+        <p class="pb-2 fs-4">
+            <strong>{{ $apartment->price_day }}€</strong>
+            /notte
+        </p>
+
+        <p class="w-50">
+          {{ $apartment->description }}
+        </p>
+
+        <section class="pb-3 w-25">
+            <h3>Dettagli</h3>
+            <hr>
+            <ul>
+              <li class="my-lh"><span class="ps-2 fs-5">Stanze: {{ $apartment->n_rooms }}</span></li>
+              <li class="my-lh"><span class="ps-2 fs-5">Bagni: {{ $apartment->n_baths }}</span></li>
+              <li class="my-lh"><span class="ps-2 fs-5">Posti letto: {{ $apartment->n_beds }}</span></li>
+              <li class="my-lh"><span class="ps-2 fs-5">Grandezza: {{ $apartment->square_meters }} m<sup>2</sup></span></li>
+              <li class="my-lh"><span class="ps-2 fs-5">Condiviso: {{ $apartment->shared ? 'Sì' : 'No' }}</span></li>
             </ul>
-        </div>
-    </nav>
+        </section>
+        <section class="pb-5 w-25">
+            <h3>Servizi aggiuntivi</h3>
+            <hr>
+            <ul>
+              @foreach ($apartment->services as $service)
+                <li class="my-lh"><span class="ps-2">{{ $service->name }}</span></li>  
+              @endforeach
+            </ul>
+        </section>
+      </div>
 
-    <!-- colonna SX contenuto -->
-    <div class="container">
-        <div class="row ms-0">
-            <!-- inizio colonna sx -->
-            <div class="col-7 pe-5">
-                <div class="tag">
-                    <a href="{{ route('admin.apartments.edit', $apartment->id) }}" class="btn btn-primary mb-5">Modifica</a>
+        
+        <h1>Position</h1>
+        @if (isset($apartment->address))
+          <p>{{$apartment->address->country}} {{$apartment->address->city}} {{$apartment->address->zip_code}} {{$apartment->address->street_name}} {{$apartment->address->street_number}} </p>
+        @endif
 
-                    <a href="{{route('admin.sponsors.index', $apartment->id)}}" onclick="Request::" ><button type="button" class="btn btn-success"> Sponsorizza </button> </a>
-                </div>
-
-                {{-- @dd($apartment) --}}
-
-                {{-- Inizio casa --}}
-                {{-- Titolo casa --}}
-                <div class="lead display-5 pb-4">{{ $apartment->title }}</div>
-
-                <!-- sottocontainer -->
-                <div class="ms-4">
-
-
-                      @if (isset($apartment->address))
-                        <p class="fs-3">{{ $apartment->address->city }}, {{ $apartment->address->country }}</p>
-                      @endif
-                        
-                        <!-- posti casa -->
-                        <div class="posti-casa mt-2">
-                            <ul class="d-flex ps-0 fs-6 list-unstyled">
-
-                    <!-- posti casa -->
-                    <div class="posti-casa mt-2">
-                        <ul class="d-flex ps-0 fs-6 list-unstyled">
-
-                            <li class="me-3">
-                                <span>{{ $apartment->n_rooms }} Camere |</span>
-
-                            </li>
-
-                            <li class="me-3">
-                                <span>{{ $apartment->n_beds }}</span>
-                                Letti |
-                            </li>
-
-
-
-                            <li class="me-3">
-                                <span>{{ $apartment->square_meters }} m.q.</span>
-                            </li>
-
-
-                        </ul>
-                        </section>
-
-
-                        <p class="pt-3 pb-5 fs-5">
-                            <strong>{{ $apartment->price_day }}$</strong>
-                            /notte
-                        </p>
-
-                        {{-- @dd($apartment) --}}
-                        <section class="pb-5">
-                            <h3>Features & Amenities</h3>
-                            <hr>
-                            <ul>
-                                <li class="my-lh"><span class="ps-3">{{ $apartment->title }}</span></li>
-                                <li class="my-lh"><span class="ps-3">description</span></li>
-                                <li class="my-lh"><span class="ps-3">description</span></li>
-                                <li class="my-lh"><span class="ps-3">description</span></li>
-                                <li class="my-lh"><span class="ps-3">description</span></li>
-
-
-                            </ul>
-                        </section>
-
-                        {{-- <section class="pb-5">
-                                <h3>Bedding</h3>
-                                <hr>
-                                <ul>
-                                    <li class="my-lh"><span class="ps-3">description</span></li>
-                                    <li class="my-lh"><span class="ps-3">description</span></li>
-                                    <li class="my-lh"><span class="ps-3">description</span></li>
-                                    <li class="my-lh"><span class="ps-3">description</span></li>
-                                    <li class="my-lh"><span class="ps-3">description</span></li>
-                                    
-
-                                </ul>
-                            </section> --}}
-
-                        {{-- <section class="pb-5">
-                                <h3>Things to Know & Policy</h3>
-                                <hr>
-                                <ul>
-                                    <li class="my-lh"><span class="ps-3">description</span></li>
-                                    <li class="my-lh"><span class="ps-3">description</span></li>
-                                    <li class="my-lh"><span class="ps-3">description</span></li>
-                                    <li class="my-lh"><span class="ps-3">description</span></li>
-                                    <li class="my-lh"><span class="ps-3">description</span></li>
-                                    
-
-                                </ul>
-                            </section> --}}
-
-                        <section class="pb-5">
-                            <h3>Map & Location</h3>
-                            <hr>
-                            <map name=""></map>
-                        </section>
-
-                        <a href="{{ route('admin.apartments.edit', $apartment->id) }}" class="btn-primary px-4 py-2">Modifica</a>
-
-                    </div>
-                </div>
-
-                <section class="pb-5">
-                    <h3>Things to Know & Policy</h3>
-                    <hr>
-                    <ul>
-                        <li class="my-lh"><span class="ps-3">description</span></li>
-                        <li class="my-lh"><span class="ps-3">description</span></li>
-                        <li class="my-lh"><span class="ps-3">description</span></li>
-                        <li class="my-lh"><span class="ps-3">description</span></li>
-                        <li class="my-lh"><span class="ps-3">description</span></li>
-
-
-                    </ul>
-                </section>
-
-                <section class="pb-5">
-                    <h3>Map & Location</h3>
-                    <hr>
-                    <map name=""></map>
-                </section>
-
-                <a href="{{ route('admin.apartments.edit', $apartment->id) }}" class="btn-primary px-4 py-2">Modifica</a>
-
-            </div>
+        <div class="container">
+          <div class="map px-5 px-5" id="map"></div>
         </div>
 
+        <div class="position d-none">
+          <div id="lat"  value="{{$apartment->address->latitude}}"></div>
+          <div id="lon" value="{{$apartment->address->longitude}}"></div>
+        </div>
+        
     </div>
-    <div class="col-5">
-        <aside>
-
-        </aside>
-    </div>
- <h1>Position</h1>
- <p>{{$apartment->address->country}} {{$apartment->address->city}} {{$apartment->address->zip_code}} {{$apartment->address->street_name}} {{$apartment->address->street_number}} </p>
-    <div class="container">
-        <div class="map px-5 px-5" id="map"></div>
-    </div>
-
-
 
 
     @endsection

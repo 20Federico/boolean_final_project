@@ -21,6 +21,8 @@
         
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous" defer></script>
+
+        @yield('head_extra')
     </head>
     <body>
       <div id="app">
@@ -77,14 +79,6 @@
                               <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
                               My Apartments
                             </a>
-                            <a class="nav-link" href="{{route('admin.messages.index')}}">
-                              <div class="sb-nav-link-icon"><i class="fas fa-comment"></i></div>
-                              Messages
-                            </a>
-                            <a class="nav-link" href="#">
-                              <div class="sb-nav-link-icon"><i class="fas fa-chart-bar"></i></div>
-                              Statistics
-                            </a>
                             <div class="sb-sidenav-menu-heading">Public</div>
                             <a class="nav-link" href="{{route('home')}}">
                               <div class="sb-nav-link-icon"><i class="fas fa-window-restore"></i></div>
@@ -94,7 +88,11 @@
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
+                        @if (Auth::user()->name)
                         {{ Auth::user()->name }}
+                        @else    
+                        {{substr(Auth::user()->email, 0, strpos(Auth::user()->email, '@' ))  }}
+                        @endif
                     </div>
                 </nav>
             </div>

@@ -8,7 +8,6 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use App\Message;
 use App\Apartment;
-use Illuminate\Support\Facades\DB;
 
 class MessageController extends Controller
 {
@@ -24,22 +23,14 @@ class MessageController extends Controller
         $apartmentList = Apartment::where('user_id', Auth::user()->id)->get();
         
         foreach ($apartmentList as $apartment) {
-            $messages = Message::where("apartment_id", $apartment->id)->get();
+            $messages = Message::orderBy('created_at', 'desc')->where("apartment_id", $apartment->id)->get();
+
             foreach ($messages as $message) {
                 array_push($messageList, $message);
             }
         }
+        array_multisort($messageList, SORT_DESC);
         return view("admin.messages.index", ["messageList" => $messageList]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -51,6 +42,11 @@ class MessageController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+
+        $data->validate([
+            'email_sender' => 'required'| 'string'| 'email',
+            'content' => 'required|min:20',
+        ]);
 
         $newMessage = new Message();
         $newMessage->email_sender = $data['email_sender'];
@@ -66,32 +62,12 @@ class MessageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Message $message)
+    public function show(Request $request, Message $message)
     {
+        $data = $request->all();
+        $message->read = 1;
+        $message->update();
         return view("admin.messages.show", compact("message"));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**
