@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
 use App\Service;
+use App\Sponsor;
 use Illuminate\Http\Request;
 
 class ApartmentController extends Controller
@@ -23,7 +24,9 @@ class ApartmentController extends Controller
 
     public function show(Apartment $apartment)
     {
-        return view('admin.apartments.show', compact('apartment'));
+      $address = Address::where('apartment_id', $apartment->id)->get(['latitude', 'longitude']);
+
+      return view('admin.apartments.show', ['apartment'=> $apartment, 'address'=>$address]);
     }
 
     public function create()
@@ -39,21 +42,20 @@ class ApartmentController extends Controller
         $request->validate([
             'title' => 'required|min:8',
             'street_name' => 'required',
-            'street_number' => 'required',
+            'street_number' => 'required|numeric',
             'zip_code' => 'required|numeric',
             'city' => 'required',
             'country' => 'required|min:3',
             'description' => 'required|min:20',
-            'price_day' => 'required|numeric',
-            'n_rooms' => 'required|numeric',
-            'n_baths' => 'required|numeric',
-            'n_beds' => 'required|numeric',
-            'square_meters' => 'required|numeric',
+            'price_day' => 'required|numeric|min:0',
+            'n_rooms' => 'required|numeric|min:0',
+            'n_baths' => 'required|numeric|min:0',
+            'n_beds' => 'required|numeric|min:0',
+            'square_meters' => 'required|numeric|min:0',
             'shared' => 'required',
             'visible' => 'required'
         ]);
 
-        //Creo la riga con indirizzo
         $address = $request->street_name . " " .
             $request->street_number . " " .
             $request->city . " " .
@@ -96,7 +98,12 @@ class ApartmentController extends Controller
         $address->longitude = $lon;
 
         $apartment->address()->save($address);
-        $apartment->services()->sync($request->all()['services']);
+
+
+        if (!empty($request->all()['services'])) {
+            $apartment->services()->sync($request->all()['services']);
+        }
+
 
         Session::flash('message', 'New Apartment has been added successfully.');
         return redirect()->route('admin.apartments.index');
@@ -122,11 +129,11 @@ class ApartmentController extends Controller
             'city' => 'required',
             'country' => 'required|min:3',
             'description' => 'required|min:20',
-            'price_day' => 'required|numeric',
-            'n_rooms' => 'required|numeric',
-            'n_baths' => 'required|numeric',
-            'n_beds' => 'required|numeric',
-            'square_meters' => 'required|numeric',
+            'price_day' => 'required|numeric|min:0',
+            'n_rooms' => 'required|numeric|min:0',
+            'n_baths' => 'required|numeric|min:0',
+            'n_beds' => 'required|numeric|min:0',
+            'square_meters' => 'required|numeric|min:0',
             'shared' => 'required',
             'visible' => 'required',
         ]);
@@ -178,19 +185,39 @@ class ApartmentController extends Controller
         $apartment->address->longitude = $lon;
 
         $apartment->push();
-        $apartment->services()->sync($request->all()["services"]);
 
-        
+        if (!empty($request->all()['services'])) {
+            $apartment->services()->sync($request->all()['services']);
+        } else {
+          $apartment->services()->detach();
+        }
+        Session::flash('message', 'Apartment has been updated');
         return redirect()->route("admin.apartments.show", $apartment->id);
     }
 
     public function destroy($id)
     {
         $apartment = Apartment::findOrFail($id);
-        $apartment->services()->detach();
+        if ($apartment->cover_img) {
+            Storage::delete($apartment->cover_img);
+        }
+
+
+        if(!empty( $apartment->services())){
+            $apartment->services()->detach();
+        }
+
+        if($apartment->messages()){
+            $apartment->messages()->delete();
+        }
+
+
         $apartment->address()->delete();
         $apartment->delete();
-        Session::flash('message', 'Apartment has been deleted');
+
+
+        
+        Session::flash('message', 'Apartment with title "' . $apartment->title  . '" has been deleted');
         return redirect()->route('admin.apartments.index');
     }
 

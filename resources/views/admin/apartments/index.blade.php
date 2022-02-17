@@ -2,14 +2,13 @@
 
 @section('title', 'Apartments')
 
-
 @section('content')
-  <h2>I miei Appartamenti</h2>
-  <div class="text-center my-5">
-    <a href="{{route('admin.apartments.create')}}" class="btn btn-success">
-      Aggiungi nuovo
-    </a>
-  </div>
+  
+  @if(session('message'))
+    <div class="alert alert-success"> {{session('message')}}</div>
+  @endif
+
+  <h2 class="mb-5">I miei Appartamenti</h2>
   
   <div class="card">
     <div class="card-header d-flex align-items-center justify-content-between">Lista Appartamenti
@@ -27,8 +26,7 @@
         </div>
         @endif
         @foreach ($apartmentsList as $apartment)
-            {{-- @dd($apartment); --}}
-            <li class="list-group-item">
+            <li class="list-group-item {{$apartment->visible == false ? 'list-group-item-secondary' : ''}}">
               <div class="row row-cols-md-6 row-cols-1 align-items-center">
                 <a href="{{ route('admin.visits.show', $apartment->id) }}">Vedi Statistica</a>
               
@@ -67,10 +65,9 @@
 
                     <form action="{{ route('admin.apartments.destroy', $apartment->id) }}" method="post">
                       @csrf
-                      @method('delete')
-                      
+                      @method('delete')                      
                     
-                      <button class="btn btn-outline-danger" type="submit">Elimina</button>
+                      <button class="btn btn-outline-danger" type="submit" onclick="return confirm('Are you sure you want to delete this appartment? With this apartment all related messages will be deleted')">Elimina</button>
                     </form>
                   </div>
                 </div>

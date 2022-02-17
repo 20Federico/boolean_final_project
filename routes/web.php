@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+  return view('welcome');
 })->name('home');
 
 Route::get('/home', 'HomeController@index')->name("admin.home");
@@ -29,6 +29,9 @@ Route::namespace("Admin")
 
     Route::resource("apartments", "ApartmentController");
     Route::resource("visits", "VisitController");
+    Route::resource("messages", "MessageController");
+    Route::resource("sponsors", "SponsorController");
+  });
 
   });
 Auth::routes();
