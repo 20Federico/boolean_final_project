@@ -23,7 +23,9 @@ class ApartmentController extends Controller
 
     public function show(Apartment $apartment)
     {
-        return view('admin.apartments.show', compact('apartment'));
+      $address = Address::where('apartment_id', $apartment->id)->get(['latitude', 'longitude']);
+
+      return view('admin.apartments.show', ['apartment'=> $apartment, 'address'=>$address]);
     }
 
     public function create()
@@ -44,16 +46,15 @@ class ApartmentController extends Controller
             'city' => 'required',
             'country' => 'required|min:3',
             'description' => 'required|min:20',
-            'price_day' => 'required|numeric',
-            'n_rooms' => 'required|numeric',
-            'n_baths' => 'required|numeric',
-            'n_beds' => 'required|numeric',
-            'square_meters' => 'required|numeric',
+            'price_day' => 'required|numeric|min:0',
+            'n_rooms' => 'required|numeric|min:0',
+            'n_baths' => 'required|numeric|min:0',
+            'n_beds' => 'required|numeric|min:0',
+            'square_meters' => 'required|numeric|min:0',
             'shared' => 'required',
             'visible' => 'required'
         ]);
 
-        //Creo la riga con indirizzo
         $address = $request->street_name . " " .
             $request->street_number . " " .
             $request->city . " " .
@@ -127,11 +128,11 @@ class ApartmentController extends Controller
             'city' => 'required',
             'country' => 'required|min:3',
             'description' => 'required|min:20',
-            'price_day' => 'required|numeric',
-            'n_rooms' => 'required|numeric',
-            'n_baths' => 'required|numeric',
-            'n_beds' => 'required|numeric',
-            'square_meters' => 'required|numeric',
+            'price_day' => 'required|numeric|min:0',
+            'n_rooms' => 'required|numeric|min:0',
+            'n_baths' => 'required|numeric|min:0',
+            'n_beds' => 'required|numeric|min:0',
+            'square_meters' => 'required|numeric|min:0',
             'shared' => 'required',
             'visible' => 'required',
         ]);

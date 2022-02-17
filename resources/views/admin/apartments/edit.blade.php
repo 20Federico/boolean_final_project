@@ -21,66 +21,80 @@
                         <div class="form-group row mb-3">
                             <label for="title" class="col-md-4 col-form-label text-md-right" >Titolo Appartamento *</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="title" id="title" value="{{$apartment->title}}">
-                                @if($errors->first('title'))
-                                    <div class="alert-danger text-center">{{$errors->first('title')}}</div>
-                                @endif
+                                <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title" value="{{old('title') ?? $apartment->title}}">
+                                @error('title')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="form-group row mb-3">
                             <label for="street_name" class="col-md-4 col-form-label text-md-right" >Indirizzo *</label>
                             <div class="col-md-5">
-                                <input type="text" class="form-control" name="street_name" id="street_name" value="{{$apartment->address ? $apartment->address->street_name : ''}}">
-                                @if($errors->first('street_name'))
-                                    <div class="alert-danger text-center">{{$errors->first('street_name')}}</div>
-                                @endif
+                                <input type="text" class="form-control @error('street_name') is-invalid @enderror" name="street_name" id="street_name" value="{{old('street_name') ?? $apartment->address->street_name}}">
+                                @error('street_name')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
+                                @enderror
                             </div>
                             <div class="col-md-1 pl-0">
-                                <input type="text" class="form-control" name="street_number" id="street_number" value="{{$apartment->address ? $apartment->address->street_number : ''}}">
-                                @if($errors->first('street_number'))
-                                    <div class="alert-danger text-center">{{$errors->first('street_number')}}</div>
-                                @endif
+                                <input type="text" class="form-control @error('street_number') is-invalid @enderror" name="street_number" id="street_number" value="{{ old('street_number') ?? $apartment->address->street_number}}">
+                                @error('street_number')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
+                                @enderror
                             </div>
                         </div>
                         
                         <div class="form-group row mb-3">
                             <label for="zip_code" class="col-md-4 col-form-label text-md-right">CAP *</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="zip_code" id="zip_code" value="{{$apartment->address ? $apartment->address->zip_code : ''}}">
-                                @if($errors->first('zip_code'))
-                                    <div class="alert-danger text-center">{{$errors->first('zip_code')}}</div>
-                                @endif
+                                <input type="text" class="form-control @error('zip_code') is-invalid @enderror" name="zip_code" id="zip_code" value="{{old('zip_code') ?? $apartment->address->zip_code}}">
+                                @error('zip_code')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="form-group row mb-3">
                             <label for="city" class="col-md-4 col-form-label text-md-right" >Città *</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="city" id="city" value="{{$apartment->address ? $apartment->address->city : ''}}">
-                                @if($errors->first('city'))
-                                    <div class="alert-danger text-center">{{$errors->first('city')}}</div>
-                                @endif
+                                <input type="text" class="form-control @error('city') is-invalid @enderror" name="city" id="city" value="{{old('city') ?? $apartment->address->city}}">
+                                @error('city')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="form-group row mb-3">
                             <label for="country" class="col-md-4 col-form-label text-md-right" >Nazione *</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="country" id="country" value="{{$apartment->address ? $apartment->address->country : ''}}">
-                                @if($errors->first('country'))
-                                    <div class="alert-danger text-center">{{$errors->first('country')}}</div>
-                                @endif
+                                <input type="text" class="form-control @error('country') is-invalid @enderror" name="country" id="country" value="{{old('country') ?? $apartment->address->country}}">
+                                @error('country')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="form-group row mb-3">
                             <label for="description" class="col-md-4 col-form-label text-md-right">Descrizione *</label>
                             <div class="col-md-6">
-                                <textarea name="description" id="description" cols="30" rows="7" class="form-control">{!! $apartment->description!!}</textarea>
-                                @if($errors->first('description'))
-                                    <div class="alert-danger text-center">{{$errors->first('description')}}</div>
-                                @endif
+                                <textarea name="description" id="description" cols="30" rows="7" class="form-control @error('description') is-invalid @enderror">{!! old('description') ?? $apartment->description !!}</textarea>
+                                @error('description')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
+                                @enderror
                             </div>
                         </div>
 
@@ -88,85 +102,93 @@
                             <label for="cover_img" class="col-md-4 col-form-label text-md-right">Immagine *</label>
                             <div class="col-md-6">
                                 <div class="custom-file">
-                                    <input type="file" class="form-control" id="cover_img" name="cover_img" value="{{ $apartment->coverImg }}">
-                                    @if($errors->first('cover_img'))
-                                        <div class="alert-danger text-center">{{$errors->first('cover_img')}}</div>
-                                    @endif
-                                  </div>
+                                  <input type="file" class="form-control" id="cover_img" name="cover_img" value="{{ $apartment->coverImg }}" required>
+                                </div>
                             </div>
-                            
                         </div>
 
                         <div class="form-group row mb-3">
                             <label for="price_day" class="col-md-4 col-form-label text-md-right" >Prezzo per notte (€) *</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="price_day" id="price_day" value="{{$apartment->price_day}}">
-                                @if($errors->first('price_day'))
-                                    <div class="alert-danger text-center">{{$errors->first('price_day')}}</div>
-                                @endif
+                                <input type="number" class="form-control @error('price_day') is-invalid @enderror" name="price_day" id="price_day" value="{{old('price_day') ?? $apartment->price_day}}">
+                                @error('price_day')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="form-group row mb-3">
                             <label for="n_rooms" class="col-md-4 col-form-label text-md-right" >Numero stanze *</label>
                             <div class="col-md-6">
-                                <input type="number" class="form-control" name="n_rooms" min="1" id="n_rooms" value="{{$apartment->n_rooms}}"> 
-                                @if($errors->first('n_rooms'))
-                                    <div class="alert-danger text-center">{{$errors->first('n_rooms')}}</div>
-                                @endif                               
+                                <input type="number" class="form-control @error('n_rooms') is-invalid @enderror" name="n_rooms" id="n_rooms" value="{{old('n_rooms') ?? $apartment->n_rooms}}"> 
+                                @error('n_rooms')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
+                                @enderror                             
                             </div>
                         </div>
 
                         <div class="form-group row mb-3">
                             <label for="n_baths" class="col-md-4 col-form-label text-md-right" >Numero bagni *</label>
                             <div class="col-md-6">
-                                <input type="number" class="form-control" name="n_baths" min="1" id="n_baths" value="{{$apartment->n_baths}}">
-                                @if($errors->first('n_baths'))
-                                    <div class="alert-danger text-center">{{$errors->first('n_baths')}}</div>
-                                @endif
+                                <input type="number" class="form-control @error('n_baths') is-invalid @enderror" name="n_baths" id="n_baths" value="{{old('n_baths') ??  $apartment->n_baths}}">
+                                @error('n_baths')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="form-group row mb-3">
                             <label for="n_beds" class="col-md-4 col-form-label text-md-right" >Numero posti letto *</label>
                             <div class="col-md-6">
-                                <input type="number" class="form-control" name="n_beds" min="1" id="n_beds" value="{{$apartment->n_beds}}">
-                                @if($errors->first('n_beds'))
-                                    <div class="alert-danger text-center">{{$errors->first('n_beds')}}</div>
-                                @endif
+                                <input type="number" class="form-control @error('n_beds') is-invalid @enderror" name="n_beds" id="n_beds" value="{{old('n_beds') ??  $apartment->n_beds}}">
+                                @error('n_beds')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="form-group row mb-3">
                             <label for="square_meters" class="col-md-4 col-form-label text-md-right" >Dimensioni (m<sup>2</sup>) *</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="square_meters" id="square_meters" value="{{$apartment->square_meters}}">
-                                @if($errors->first('square_meters'))
-                                    <div class="alert-danger text-center">{{$errors->first('square_meters')}}</div>
-                                @endif
+                                <input type="number" class="form-control @error('square_meters') is-invalid @enderror" name="square_meters" id="square_meters" value="{{old('square_meters') ??  $apartment->square_meters}}">
+                                @error('square_meters')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="form-group row mb-3">
-                            <label for="" class="col-md-4 col-form-label text-md-right" >L'abitazione è condivisa? *</label>
+                            <label class="col-md-4 col-form-label text-md-right" >L'abitazione è condivisa? *</label>
                             <div class="col-md-6 d-flex align-items-center">
                                 
                                 <div class="form-check me-3">
-                                    <input class="form-check-input" type="radio" name="shared" id="flexRadioDefault1" value="1" @if($apartment->shared ===1) checked @endif>
+                                    <input class="form-check-input @error('shared') is-invalid @enderror" type="radio" name="shared" id="flexRadioDefault1" value="1" @if($apartment->shared ===1) checked @endif>
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         Condivisa
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="shared" id="flexRadioDefault2" value="0" @if($apartment->shared ===0) checked @endif>
+                                    <input class="form-check-input @error('shared') is-invalid @enderror" type="radio" name="shared" id="flexRadioDefault2" value="0" @if($apartment->shared ===0) checked @endif>
                                     <label class="form-check-label" for="flexRadioDefault2">
                                         Non condivisa
                                     </label>
                                 </div>
                             </div>
-                            @if($errors->first('shared'))
-                                <div class="alert-danger text-center">{{$errors->first('shared')}}</div>
-                            @endif
+                            @error('shared')
+                              <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                              </span>
+                            @enderror
                         </div>
                         <div class="form-group row mb-3">
                             <label for="" class="col-md-4 col-form-label text-md-right" >Visibilità *</label>

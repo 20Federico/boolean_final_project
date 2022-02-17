@@ -26,8 +26,7 @@
         </div>
         @endif
         @foreach ($apartmentsList as $apartment)
-            {{-- @dd($apartment); --}}
-            <li class="list-group-item">
+            <li class="list-group-item {{$apartment->visible == false ? 'list-group-item-secondary' : ''}}">
               <div class="row row-cols-md-6 row-cols-1 align-items-center">
 
               
@@ -66,8 +65,7 @@
 
                     <form action="{{ route('admin.apartments.destroy', $apartment->id) }}" method="post">
                       @csrf
-                      @method('delete')
-                      
+                      @method('delete')                      
                     
                       <button class="btn btn-outline-danger" type="submit" onclick="return confirm('Are you sure you want to delete this appartment? With this apartment all related messages will be deleted')">Elimina</button>
                     </form>
