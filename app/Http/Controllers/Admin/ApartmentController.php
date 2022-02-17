@@ -193,4 +193,6 @@ class ApartmentController extends Controller
         Session::flash('message', 'Apartment has been deleted');
         return redirect()->route('admin.apartments.index');
     }
+
+    
 }

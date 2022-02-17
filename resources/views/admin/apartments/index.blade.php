@@ -30,7 +30,7 @@
             {{-- @dd($apartment); --}}
             <li class="list-group-item">
               <div class="row row-cols-md-6 row-cols-1 align-items-center">
-
+                <a href="{{ route('admin.visits.show', $apartment->id) }}">Vedi Statistica</a>
               
               <div class="col col-md-4" style="text-transform: capitalize;">
                 {{ $apartment->title }}
