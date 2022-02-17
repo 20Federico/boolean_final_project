@@ -1,3 +1,5 @@
+@extends('errors.errorlayout')
+
 @section('title', '500')
 
 @section('error', 'Internal Server Error')

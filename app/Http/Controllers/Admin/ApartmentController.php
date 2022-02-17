@@ -24,6 +24,11 @@ class ApartmentController extends Controller
 
     public function show(Apartment $apartment)
     {
+
+      if($apartment->user_id != Auth::id()){
+          return abort(401);
+      }
+
       $address = Address::where('apartment_id', $apartment->id)->get(['latitude', 'longitude']);
 
       return view('admin.apartments.show', ['apartment'=> $apartment, 'address'=>$address]);
@@ -38,6 +43,8 @@ class ApartmentController extends Controller
 
     public function store(Request $request)
     {
+
+
 
         $request->validate([
             'title' => 'required|min:8',
@@ -110,7 +117,14 @@ class ApartmentController extends Controller
     }
 
     public function edit(Apartment $apartment)
+
     {
+
+        if($apartment->user_id != Auth::id()){
+            return abort(401);
+        }
+
+
         $services = Service::all();
         return view("admin.apartments.edit", [
             "apartment" => $apartment,

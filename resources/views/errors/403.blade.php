@@ -1,3 +1,4 @@
+@extends('errors.errorlayout')
 @section('title', '404')
 
 @section('error', 'Error 403 - Forbidden')
