@@ -175,13 +175,13 @@
                             <div class="col-md-6 d-flex align-items-center">
                                 
                                 <div class="form-check me-3">
-                                    <input class="form-check-input @error('shared') is-invalid @enderror" type="radio" name="shared" id="flexRadioDefault1" value="1" @if($apartment->shared ===1) checked @endif>
+                                    <input class="form-check-input @error('shared') is-invalid @enderror" type="radio" name="shared" id="flexRadioDefault1" value="1"   @if($apartment->shared == 1) checked @endif>
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         Condivisa
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input @error('shared') is-invalid @enderror" type="radio" name="shared" id="flexRadioDefault2" value="0" @if($apartment->shared ===0) checked @endif>
+                                    <input class="form-check-input @error('shared') is-invalid @enderror" type="radio" name="shared" id="flexRadioDefault2" value="0"   @if($apartment->shared == 0) checked @endif>
                                     <label class="form-check-label" for="flexRadioDefault2">
                                         Non condivisa
                                     </label>
@@ -198,13 +198,13 @@
                             <div class="col-md-6 d-flex align-items-center">
                                 
                                 <div class="form-check me-3">
-                                    <input class="form-check-input" type="radio" name="visible" id="flexRadioDefault1" value="1" @if($apartment->visible ===1) checked @endif>
+                                    <input class="form-check-input" type="radio" name="visible" id="flexRadioDefault1" value="1" @if($apartment->visible == 1) checked @endif>
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         Visibile
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="visible" id="flexRadioDefault2" value="0"  @if($apartment->visible ===0) checked @endif>
+                                    <input class="form-check-input" type="radio" name="visible" id="flexRadioDefault2" value="0"  @if($apartment->visible == 0) checked @endif>
                                     <label class="form-check-label" for="flexRadioDefault2">
                                         Nascosto
                                     </label>
