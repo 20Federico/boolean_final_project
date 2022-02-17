@@ -104,6 +104,9 @@
                                 <div class="custom-file">
                                   <input type="file" class="form-control" id="cover_img" name="cover_img" value="{{ $apartment->coverImg }}">
                                 </div>
+                                <div >
+                                   <img class="img-thumbnail" src="{{ asset('storage/' . $apartment->cover_img ) }}">
+                                </div>
                             </div>
                         </div>
 
