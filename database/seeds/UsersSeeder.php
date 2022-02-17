@@ -22,7 +22,7 @@ class UsersSeeder extends Seeder
         'rossi', 'Verdi', 'Bianchi', 'Canepa', 'Leica', 'Murru', 'Nora', 'Yoda', 'Loda', 'Soda', 'Coda', 'Toga', 'Franzetti', 'Casetta', 'Zei', 'Casadei', 'Biga', 'Diga', 'Riga', 'Giacometti'
       ];
 
-      for ($i=0; $i < 1 ; $i++) { 
+      for ($i=0; $i < 10 ; $i++) { 
 
         $newUser = new User();
 

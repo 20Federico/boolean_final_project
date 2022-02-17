@@ -23,7 +23,9 @@ class ApartmentController extends Controller
 
     public function show(Apartment $apartment)
     {
-        return view('admin.apartments.show', compact('apartment'));
+      $address = Address::where('apartment_id', $apartment->id)->get(['latitude', 'longitude']);
+
+      return view('admin.apartments.show', ['apartment'=> $apartment, 'address'=>$address]);
     }
 
     public function create()
@@ -53,7 +55,6 @@ class ApartmentController extends Controller
             'visible' => 'required'
         ]);
 
-        //Creo la riga con indirizzo
         $address = $request->street_name . " " .
             $request->street_number . " " .
             $request->city . " " .
