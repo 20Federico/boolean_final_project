@@ -1,5 +1,7 @@
 <?php
 
+use App\Service;
+use App\Address;
 use App\Apartment;
 use App\User;
 use Illuminate\Database\Seeder;
@@ -14,7 +16,7 @@ class ApartmentsSeeder extends Seeder
     public function run()
     {
 
-      $users = User::orderBy('created_at', 'DESC')->limit(5)->get('id');
+      $users = User::orderBy('created_at', 'DESC')->limit(10)->get('id');
 
       $TitleTypes = ['appartamento', 'casa', 'villa', 'casa vacanze', 'abitazione', 'alloggio', 'palazzo', 'attico', 'monolocale', 'bilocale'];
       $TitleAdjs = ['', ' splendido', ' tranquillo', ' ampio', ' luminoso', ' confortevole', ' moderno', ' classico'];
@@ -84,10 +86,19 @@ class ApartmentsSeeder extends Seeder
           $newApartment->user_id = $user->id;
 
           $newApartment->save();
+
+          $services = Service::all();
+          $newApartment->services()->sync($services);
+
+          $address = new Address();
+          $address->latitude = rand(41815098, 41962825) / 1000000;;
+          $address->longitude = rand(12383517, 12600497) / 1000000;
+          $address->apartment_id = $newApartment->id;
+
+          $address->save();
         }
 
       }
-
 
     }
 }
