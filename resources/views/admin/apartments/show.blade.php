@@ -1,12 +1,8 @@
 @extends('layouts.admin')
 
-{{-- use illuminate --}}
-
 @section('title', 'Apartment - show')
 
 @section('more_scripts')
-    
-@endsection
   <style>
     #map {
         width: 80%;
@@ -102,6 +98,7 @@
     createMarker('accident.colors-white.svg', [lon, lat], '#5327c3', 'SVG icon');
 
   </script>
+@endsection
 @section('content')
 
 <div class="main-container m-auto h-50 w-100">
@@ -196,3 +193,4 @@
         </div>
         
     </div>
+@endsection
