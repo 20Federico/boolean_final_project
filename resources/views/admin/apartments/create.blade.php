@@ -12,13 +12,13 @@
 
                 <div class="card-body">
                     <div class="mb-4">
-                        <em>I campi contrassegnati da * sono obbligatori</em>
+                        <em>I campi contrassegnati da <span style="color: rgb(207, 29, 29)">*</span> sono obbligatori</em>
                     </div>
                     <form action=" {{ route('admin.apartments.store') }} " method="post" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row mb-3">
-                            <label for="title" class="col-md-4 col-form-label text-md-right">Titolo Appartamento *</label>
+                            <label for="title" class="col-md-4 col-form-label text-md-right">Titolo Appartamento <span style="color: rgb(207, 29, 29)">*</span></label>
 
                             <div class="col-md-6">
                                 <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title" value="{{ old('title') }}" placeholder="Titolo del tuo annuncio">
@@ -31,7 +31,7 @@
                         </div>
 
                         <div class="form-group row mb-3">
-                            <label for="street_name" class="col-md-4 col-form-label text-md-right">Indirizzo *</label>
+                            <label for="street_name" class="col-md-4 col-form-label text-md-right">Indirizzo <span style="color: rgb(207, 29, 29)">*</span></label>
                             <div class="col-md-5">
                                 <input type="text" class="form-control @error('street_name') is-invalid @enderror" name="street_name" id="street_name" placeholder="Via" value="{{ old('street_name') }}"> 
                                 @error('street_name')
@@ -52,7 +52,7 @@
                         </div>
 
                         <div class="form-group row mb-3">
-                            <label for="zip_code" class="col-md-4 col-form-label text-md-right">CAP *</label>
+                            <label for="zip_code" class="col-md-4 col-form-label text-md-right">CAP <span style="color: rgb(207, 29, 29)">*</span></label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control @error('zip_code') is-invalid @enderror" name="zip_code" id="zip_code" placeholder="CAP" value="{{ old('zip_code') }}" >
                                 @error('zip_code')
@@ -64,7 +64,7 @@
                         </div>
                         
                         <div class="form-group row mb-3">
-                            <label for="city" class="col-md-4 col-form-label text-md-right">Città *</label>
+                            <label for="city" class="col-md-4 col-form-label text-md-right">Città <span style="color: rgb(207, 29, 29)">*</span></label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control @error('city') is-invalid @enderror" name="city" id="city" placeholder="Città" value="{{ old('city') }}" >
                                 @error('city')
@@ -76,7 +76,7 @@
                         </div>
                       
                         <div class="form-group row mb-3">
-                            <label for="country" class="col-md-4 col-form-label text-md-right">Nazione *</label>
+                            <label for="country" class="col-md-4 col-form-label text-md-right">Nazione <span style="color: rgb(207, 29, 29)">*</span></label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control @error('country') is-invalid @enderror" name="country" id="country" placeholder="Nazione" value="{{ old('country') }}">
                                 @error('country')
@@ -88,7 +88,7 @@
                         </div>
 
                         <div class="form-group row mb-3">
-                            <label for="description" class="col-md-4 col-form-label text-md-right">Descrizione *</label>
+                            <label for="description" class="col-md-4 col-form-label text-md-right">Descrizione <span style="color: rgb(207, 29, 29)">*</span></label>
                             <div class="col-md-6">
                                 <textarea name="description" id="description" cols="30" rows="7" class="form-control @error('description') is-invalid @enderror">{{ old('description') }}</textarea>
                                 @error('description')
@@ -100,7 +100,7 @@
                         </div>
 
                         <div class="form-group row mb-3">
-                            <label for="cover_img" class="col-md-4 col-form-label text-md-right">Immagine *</label>
+                            <label for="cover_img" class="col-md-4 col-form-label text-md-right">Immagine <span style="color: rgb(207, 29, 29)">*</span></label>
                             <div class="col-md-6">
                                 <div class="custom-file">
                                     <input type="file" class="form-control" id="cover_img" name="cover_img" required>
@@ -109,7 +109,7 @@
                         </div>
                         
                         <div class="form-group row mb-3">
-                            <label for="price_day" class="col-md-4 col-form-label text-md-right">Prezzo per notte (€) *</label>
+                            <label for="price_day" class="col-md-4 col-form-label text-md-right">Prezzo per notte (€) <span style="color: rgb(207, 29, 29)">*</span></label>
                             <div class="col-md-6">
                                 <input type="number" class="form-control @error('price_day') is-invalid @enderror" name="price_day" id="price_day" placeholder="€" value="{{ old('price_day') }}" >
                                 @error('price_day')
@@ -121,7 +121,7 @@
                         </div>
                         
                         <div class="form-group row mb-3">
-                            <label for="n_rooms" class="col-md-4 col-form-label text-md-right">Numero stanze *</label>
+                            <label for="n_rooms" class="col-md-4 col-form-label text-md-right">Numero stanze <span style="color: rgb(207, 29, 29)">*</span></label>
                             <div class="col-md-6">
                                 <input type="number" class="form-control @error('n_rooms') is-invalid @enderror" name="n_rooms" id="n_rooms" value="{{ old('n_rooms') }}" >
                                 @error('n_rooms')
@@ -133,7 +133,7 @@
                         </div>
                       
                         <div class="form-group row mb-3">
-                            <label for="n_baths" class="col-md-4 col-form-label text-md-right">Numero bagni *</label>
+                            <label for="n_baths" class="col-md-4 col-form-label text-md-right">Numero bagni <span style="color: rgb(207, 29, 29)">*</span></label>
                             <div class="col-md-6">
                                 <input type="number" class="form-control @error('n_baths') is-invalid @enderror" name="n_baths" id="n_baths" value="{{ old('n_baths') }}" >
                                 @error('n_baths')
@@ -146,7 +146,7 @@
 
 
                         <div class="form-group row mb-3">
-                            <label for="n_beds" class="col-md-4 col-form-label text-md-right">Numero posti letto *</label>
+                            <label for="n_beds" class="col-md-4 col-form-label text-md-right">Numero posti letto <span style="color: rgb(207, 29, 29)">*</span></label>
                             <div class="col-md-6">
                                 <input type="number" class="form-control @error('n_beds') is-invalid @enderror" name="n_beds" id="n_beds" value="{{ old('n_beds') }}">
                                 @error('n_beds')
@@ -158,7 +158,7 @@
                         </div>
 
                         <div class="form-group row mb-3">
-                            <label for="square_meters" class="col-md-4 col-form-label text-md-right">Dimensioni (m<sup>2</sup>) *</label>
+                            <label for="square_meters" class="col-md-4 col-form-label text-md-right">Dimensioni (m<sup>2</sup>) <span style="color: rgb(207, 29, 29)">*</span></label>
                             <div class="col-md-6">
                                 <input type="number" class="form-control @error('square_meters') is-invalid @enderror" name="square_meters" id="square_meters" placeholder="Metri quadri" value="{{ old('square_meters') }}">
                                 @error('square_meters')
@@ -170,7 +170,7 @@
                         </div>
 
                         <div class="form-group row mb-3">
-                            <label for="" class="col-md-4 col-form-label text-md-right">L'abitazione è condivisa? *</label>
+                            <label for="" class="col-md-4 col-form-label text-md-right">L'abitazione è condivisa? <span style="color: rgb(207, 29, 29)">*</span></label>
                             <div class="col-md-6 d-flex align-items-center">
                                 <div class="form-check me-3">
                                     <input class="form-check-input @error('shared') is-invalid @enderror" type="radio" name="shared" id="flexRadioDefault1" value="1" checked  >
@@ -196,7 +196,7 @@
                         </div>
 
                         <div class="form-group row mb-3">
-                            <label for="" class="col-md-4 col-form-label text-md-right">Visibilità *</label>
+                            <label for="" class="col-md-4 col-form-label text-md-right">Visibilità <span style="color: rgb(207, 29, 29)">*</span></label>
                             <div class="col-md-6 d-flex align-items-center">
 
                                 <div class="form-check me-3">
