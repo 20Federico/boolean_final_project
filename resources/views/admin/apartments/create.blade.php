@@ -173,14 +173,14 @@
                             <label for="" class="col-md-4 col-form-label text-md-right">L'abitazione è condivisa? *</label>
                             <div class="col-md-6 d-flex align-items-center">
                                 <div class="form-check me-3">
-                                    <input class="form-check-input @error('shared') is-invalid @enderror" type="radio" name="shared" id="flexRadioDefault1" value="1">
+                                    <input class="form-check-input @error('shared') is-invalid @enderror" type="radio" name="shared" id="flexRadioDefault1" value="1" checked  >
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         Condivisa
                                     </label>
                                 </div>
 
                                 <div class="form-check">
-                                    <input class="form-check-input @error('shared') is-invalid @enderror" type="radio" name="shared" id="flexRadioDefault2" value="0">
+                                    <input class="form-check-input @error('shared') is-invalid @enderror" type="radio" name="shared" id="flexRadioDefault2" value="0"  >
                                     <label class="form-check-label" for="flexRadioDefault2">
                                         Non condivisa
                                     </label>
@@ -200,13 +200,13 @@
                             <div class="col-md-6 d-flex align-items-center">
 
                                 <div class="form-check me-3">
-                                    <input class="form-check-input" type="radio" name="visible" id="flexRadioDefault1" value="1" checked>
+                                    <input class="form-check-input" type="radio" name="visible" id="flexRadioDefault1" value="1" checked  >
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         Visible
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="visible" id="flexRadioDefault2" value="0">
+                                    <input class="form-check-input" type="radio" name="visible" id="flexRadioDefault2" value="0" >
                                     <label class="form-check-label" for="flexRadioDefault2">
                                         Nascosto
                                     </label>

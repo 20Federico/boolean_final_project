@@ -14,6 +14,7 @@
     <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.18.0/maps/maps.css' />
     <script src='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.18.0/maps/maps-web.min.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
 
     <title>@yield('title')</title>
 
@@ -23,55 +24,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
 
-    <style>
-        #map {
-            width: 80%;
-            height: 500px;
-
-
-        }
-
-        .marker-icon {
-            background-position: center;
-            background-size: 22px 22px;
-            border-radius: 50%;
-            height: 22px;
-            left: 4px;
-            position: absolute;
-            text-align: center;
-            top: 3px;
-            transform: rotate(45deg);
-            width: 22px;
-        }
-
-        .marker {
-            height: 30px;
-            width: 30px;
-        }
-
-        .marker-content {
-            background: #c30b82;
-            border-radius: 50% 50% 50% 0;
-            height: 30px;
-            left: 50%;
-            margin: -15px 0 0 -15px;
-            position: absolute;
-            top: 50%;
-            transform: rotate(-45deg);
-            width: 30px;
-        }
-
-        .marker-content::before {
-            background: #ffffff;
-            border-radius: 50%;
-            content: "";
-            height: 24px;
-            margin: 3px 0 0 3px;
-            position: absolute;
-            width: 24px;
-        }
-
-    </style>
+    
 </head>
 <body>
     <div id="app">
@@ -166,8 +119,6 @@
             <div id="lon" value="{{$apartment->address->longitude}}"></div>
         </div>
     </div>
-
-    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script> --}}
     <script src="{{ asset('js/app.js') }}"></script>
     <script>
 
@@ -208,7 +159,6 @@
                 .addTo(map);
         }
         createMarker('accident.colors-white.svg', [lon, lat], '#5327c3', 'SVG icon');
-
     </script>
 </body>
 </html>

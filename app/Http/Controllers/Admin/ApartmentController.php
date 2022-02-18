@@ -25,6 +25,11 @@ class ApartmentController extends Controller
 
     public function show(Apartment $apartment)
     {
+
+      if($apartment->user_id != Auth::id()){
+          return abort(401);
+      }
+
       $address = Address::where('apartment_id', $apartment->id)->get(['latitude', 'longitude']);
       $messages = Message::where('apartment_id', $apartment->id)->get();
       return view('admin.apartments.show', ['apartment'=> $apartment, 'address'=>$address, 'messages'=>$messages]);
@@ -39,6 +44,8 @@ class ApartmentController extends Controller
 
     public function store(Request $request)
     {
+
+
 
         $request->validate([
             'title' => 'required|min:8',
@@ -111,7 +118,14 @@ class ApartmentController extends Controller
     }
 
     public function edit(Apartment $apartment)
+
     {
+
+        if($apartment->user_id != Auth::id()){
+            return abort(401);
+        }
+
+
         $services = Service::all();
         return view("admin.apartments.edit", [
             "apartment" => $apartment,
@@ -204,13 +218,13 @@ class ApartmentController extends Controller
         }
 
 
-        if(!empty( $apartment->services())){
-            $apartment->services()->detach();
-        }
+        // if(!empty( $apartment->services())){
+        //     $apartment->services()->detach();
+        // }
 
-        if($apartment->messages()){
-            $apartment->messages()->delete();
-        }
+        // if($apartment->messages()){
+        //     $apartment->messages()->delete();
+        // }
 
 
         $apartment->address()->delete();
