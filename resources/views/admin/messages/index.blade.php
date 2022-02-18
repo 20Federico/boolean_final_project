@@ -6,8 +6,8 @@
   <div class="card">
     <div class="card-header">
       Lista Messaggi
-      <span class="ps-2">tot messaggi: {{ $totMessages }}</span>
-      <span class="ps-2">tot messaggi da leggere: {{ $totMessagesToRead }}</span>
+      <span class="ps-2">Tot Messaggi: {{ $totMessages }}</span>
+      <span class="ps-2">Tot Messaggi da leggere: {{ $totMessagesToRead }}</span>
     </div>
     <div class="card-body">
       <ul class="list-group">
@@ -21,9 +21,6 @@
         @endif
         @if (count($messageToReadList) > 0)
         <ul class="list-group">
-              
-          
-          Messaggi Da Leggere
           @foreach ($messageToReadList as $message)
             <li class="list-group-item {{$message->read == false ? 'list-group-item-secondary' : ''}}">
               <div class="row align-items-center">
@@ -44,24 +41,48 @@
                   {{ $message->created_at }}
                 </div>
                 <div class="col d-flex">
-                  <div>
+                  <div class="pe-3">
                     <a class="btn btn-primary" href="{{ route('admin.messages.show', $message->id) }}">Dettagli</a>
                   </div>
-                  <form action="{{ route('admin.messages.destroy', $message->id) }}" method="post">
-                    @csrf
-                    @method('delete')
-                    <button class="btn btn-outline-danger" type="submit" onclick="return confirm('Are you sure you want to delete this appartment? With this apartment all related messages will be deleted')">Elimina</button>
-                  </form>
+                  
+                  {{ $message->id }}
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Elimina{{ $message->id }}
+                  </button>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          ...{{ $message->id }}
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary">Save changes</button>
+                          <form action="{{ route('admin.messages.destroy', $message->id) }}" method="post">
+                            @csrf
+                            @method('delete')
+                            <button class="btn btn-outline-danger" type="submit">Elimina {{ $message->id }}</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>         
             </li>
           @endforeach
           <hr>
         </ul>
-        Lista Messaggi
         @endif
         
-        @foreach ($messageList as $message)
+        @foreach ($messageReadList as $message)
           <li class="list-group-item {{$message->read == false ? 'list-group-item-secondary' : ''}}">
             <div class="row align-items-center">
               <div class="col">
@@ -81,16 +102,17 @@
                 {{ $message->created_at }}
               </div>
               <div class="col d-flex">
-                <div>
+                <div class="pe-3">
                   <a class="btn btn-primary" href="{{ route('admin.messages.show', $message->id) }}">Dettagli</a>
                 </div>
                 <form action="{{ route('admin.messages.destroy', $message->id) }}" method="post">
                   @csrf
                   @method('delete')
-                  <button class="btn btn-outline-danger" type="submit" onclick="return confirm('Are you sure you want to delete this appartment? With this apartment all related messages will be deleted')">Elimina</button>
+                  <button class="btn btn-outline-danger" type="submit" onclick="return confirm('Sei sicuro di eliminare il messaggio')">Elimina</button>
                 </form>
               </div>
-            </div>         
+            </div>   
+                  
           </li>
         @endforeach
       </ul>
