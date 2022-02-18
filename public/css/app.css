@@ -12388,13 +12388,78 @@ body {
   /* border-bottom: 1px solid black; */
 }
 
-.posti-casa ul li {
-  padding-right: 35px;
-}
-
 /*UTILITIES*/
 
 .my-lh {
   line-height: 40px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+header {
+  background-color: #3d403c;
+}
+
+header nav.main-nav a.navbar-brand {
+  font-family: "Pacifico", cursive;
+  color: #d48166;
+}
+
+header nav.main-nav a.nav-link {
+  color: #d48166;
+}
+
+main {
+  background-color: #f6f4f2;
+}
+
+main .container {
+  background-color: #f6f4f2;
+}
+
+main .container .title {
+  background-color: white;
+  color: #373a36;
+  font-family: "Pacifico", cursive;
+  box-shadow: 10px 10px 5px #dfdbd7;
+}
+
+footer ul {
+  padding-left: 0;
+}
+
+footer ul li {
+  list-style-type: none;
+  margin-bottom: 10px;
+}
+
+footer ul li a {
+  text-decoration: none;
+  color: black;
+}
+
+footer ul li :hover {
+  color: #d48166;
+}
+
+footer .social a {
+  text-decoration: none;
+  color: black;
+}
+
+footer .social :hover {
+  color: #d48166;
+}
+
+footer .privacy a {
+  text-decoration: none;
+  color: black;
+}
+
+footer .privacy :hover {
+  color: #d48166;
 }
 
