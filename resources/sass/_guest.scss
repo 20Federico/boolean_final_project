@@ -66,3 +66,13 @@ footer {
         }
     }
 }
+
+@media screen and (min-width: 576px) {
+    footer {
+        .col {
+            .border-bottom {
+                border-bottom: 0px !important;
+            }
+        }
+    }
+}

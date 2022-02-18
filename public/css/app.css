@@ -12541,3 +12541,9 @@ footer .privacy :hover {
   color: #d48166;
 }
 
+@media screen and (min-width: 576px) {
+  footer .col .border-bottom {
+    border-bottom: 0px !important;
+  }
+}
+
