@@ -21,16 +21,33 @@ class MessageController extends Controller
         
         $messageList = [];
         $apartmentList = Apartment::where('user_id', Auth::user()->id)->get();
-        
+        $messageToReadList = [];
+        $messageReadList = [];
         foreach ($apartmentList as $apartment) {
             $messages = Message::orderBy('created_at', 'desc')->where("apartment_id", $apartment->id)->get();
-
+            $messagesToRead = Message::where("apartment_id", $apartment->id)->where("read", 0)->get();
+            $messagesRead = Message::where("apartment_id", $apartment->id)->where("read", 1)->get();
+            
             foreach ($messages as $message) {
                 array_push($messageList, $message);
             }
+            foreach ($messagesToRead as $message) {
+                array_push($messageToReadList, $message);
+            }
+            foreach ($messagesRead as $message) {
+                array_push($messageReadList, $message);
+            }
         }
+        $totMessages = count($messageList);
+        $totMessagesToRead = count($messageToReadList);
         array_multisort($messageList, SORT_DESC);
-        return view("admin.messages.index", ["messageList" => $messageList]);
+        return view("admin.messages.index", [
+            "messageList" => $messageList, 
+            "totMessages"=>$totMessages,
+            "totMessagesToRead"=>$totMessagesToRead,
+            "messageToReadList"=>$messageToReadList,
+            "messageReadList"=>$messageReadList
+        ]);
     }
 
     // /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Address;
 use App\Http\Controllers\Controller;
 use App\Apartment;
+use App\Message;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -25,8 +26,8 @@ class ApartmentController extends Controller
     public function show(Apartment $apartment)
     {
       $address = Address::where('apartment_id', $apartment->id)->get(['latitude', 'longitude']);
-
-      return view('admin.apartments.show', ['apartment'=> $apartment, 'address'=>$address]);
+      $messages = Message::where('apartment_id', $apartment->id)->get();
+      return view('admin.apartments.show', ['apartment'=> $apartment, 'address'=>$address, 'messages'=>$messages]);
     }
 
     public function create()
