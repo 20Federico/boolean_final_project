@@ -18,3 +18,14 @@
 @import "navigation/sidenav/sidenav.scss";
 @import "navigation/sidenav/sidenav-dark.scss";
 
+
+nav.main-nav {
+    background-color: #3d403c;
+    a.navbar-brand {
+        font-family: 'Pacifico', cursive;
+        color: #d48166;
+    }
+    a.nav-link {
+        color: #d48166;
+    }
+}

@@ -12431,6 +12431,19 @@ body {
   background-color: #343a40;
 }
 
+nav.main-nav {
+  background-color: #3d403c;
+}
+
+nav.main-nav a.navbar-brand {
+  font-family: "Pacifico", cursive;
+  color: #d48166;
+}
+
+nav.main-nav a.nav-link {
+  color: #d48166;
+}
+
 * {
   margin: 0;
   padding: 0;

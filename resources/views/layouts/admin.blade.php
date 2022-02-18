@@ -12,13 +12,17 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
 
         <title>@yield('title')</title>
+        <link rel="icon" type="image/x-icon" href="{{ asset('img/favicon.ico') }}">
 
         <!-- Styles -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous" defer></script>
 
@@ -26,7 +30,7 @@
     </head>
     <body>
       <div id="app">
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <nav class="sb-topnav navbar navbar-expand main-nav">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="{{route('admin.home')}}">BoolBnB</a>
             <!-- Sidebar Toggle-->
@@ -106,7 +110,73 @@
                       @yield('content')
                     </div>
                 </main>
-                <footer class="py-4 bg-light mt-auto">
+                <footer class="py-4 bg-light mt-auto border-top">
+                    <div class="container">
+                        <div>
+                            <div class="row row-cols-1 row-cols-sm-4 d-flex flex-column flex-sm-row">
+                                <div class="col ps-4"><strong>Assistenza</strong>
+                                    <div class="mt-3 border-bottom w-100">
+                                        <ul class="assistenza w-100">
+                                            <li><a href="#">Centro Assistenza</a></li>
+                                            <li><a href="#">Informazioni di sicurezza</a></li>
+                                            <li><a href="#">Opzioni di cancellazione</a></li>
+                                            <li><a href="#">Accessibilità per tutti</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col ps-4 mt-3 mt-sm-0"><strong>Community</strong>
+                                    <div class="mt-3 border-bottom border-bottom w-100">
+                                        <ul class="community w-100">
+                                            <li><a href="#">Airbnb.org: un rifugio sicuro</a></li>
+                                            <li><a href="#">Tutte le info sulla nostra community</a></li>
+                                            <li><a href="#">Entra nella community</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col ps-4 mt-3 mt-sm-0"><strong>Ospitare</strong>
+                                    <div class="mt-3 border-bottom w-100">
+                                        <ul class="ospitare w-100">
+                                            <li><a href="#">Prova a ospitare</a></li>
+                                            <li><a href="#">AirCover: host protetti</a></li>
+                                            <li><a href="#">Esplora le risorse per host</a></li>
+                                            <li><a href="#">Vai al nostro forum</a></li>
+                                            <li><a href="#">Come ospitare</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col ps-4 mt-3 mt-sm-0"><strong>Informazioni</strong>
+                                    <div class="mt-3 w-100">
+                                        <ul class="informazioni w-100">
+                                            <li><a href="#">Newsroom</a></li>
+                                            <li><a href="#">Scopri le nuove funzionalità</a></li>
+                                            <li><a href="#">Lettera dai nostri fondatori</a></li>
+                                            <li><a href="#">Opportunità di lavoro</a></li>
+                                            <li><a href="#">Investitori</a></li>
+                                            <li><a href="#">Airbnb Luxe</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <hr>
+                        </div>
+                        <div class="d-flex flex-column flex-md-row align-items-center justify-content-between small">
+                            <div class="privacy">
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+        
+                            <div class="social my-4">
+                                <a href="https://it-it.facebook.com/"><i class="fab fa-facebook fa-lg me-2"></i></a>
+                                <a href="https://www.instagram.com/boolbnb/"><i class="fab fa-instagram fa-lg me-2"></i></a>
+                                <a href="https://twitter.com/bn_bool"><i class="fab fa-twitter fa-lg"></i></a>
+                            </div>
+                            <div class="text-muted">Copyright &copy; Your BoolBnB 2022</div>
+                        </div>
+                    </div>
+                </footer>
+{{--                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
                             <div class="text-muted">Copyright &copy; Your BoolBnB 2022</div>
@@ -117,7 +187,7 @@
                             </div>
                         </div>
                     </div>
-                </footer>
+                </footer> --}}
             </div>
         </div>
       </div>
