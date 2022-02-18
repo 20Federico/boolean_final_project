@@ -28,10 +28,10 @@
     </head>
     <body>
         <header>
-            <div id="app">
+            <div id="app" class="container">
                 <nav class="sb-topnav navbar navbar-expand main-nav">
                     <!-- Navbar Brand-->
-                    <a class="navbar-brand ps-3" href="{{route('admin.home')}}">BoolBnB</a>
+                    <a class="navbar-brand ps-3" href="{{route('guests.home')}}">BoolBnB</a>
 
                     <!-- Sidebar Toggle-->
                     {{-- <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button> --}}
@@ -76,7 +76,7 @@
         </main>
 
         <footer class="py-4 bg-light mt-auto">
-            <div class="container-fluid px-4">
+            <div class="container">
                 <div>
                     <div class="row row-cols-4">
                         <div class="col"><strong>Assistenza</strong>
@@ -130,8 +130,8 @@
 
                     <div class="social">
                         <a href="https://it-it.facebook.com/"><i class="fab fa-facebook fa-lg me-2"></i></a>
-                        <a href="https://www.instagram.com/"><i class="fab fa-instagram fa-lg me-2"></i></a>
-                        <a href="https://twitter.com/"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="https://www.instagram.com/boolbnb/"><i class="fab fa-instagram fa-lg me-2"></i></a>
+                        <a href="https://twitter.com/bn_bool"><i class="fab fa-twitter fa-lg"></i></a>
                     </div>
 
                     <div class="privacy">
