@@ -84,7 +84,7 @@
                               Messages
                             </a>
                             <div class="sb-sidenav-menu-heading">Public</div>
-                            <a class="nav-link" href="{{route('home')}}">
+                            <a class="nav-link" href="{{route('guests.home')}}">
                               <div class="sb-nav-link-icon"><i class="fas fa-window-restore"></i></div>
                               Public Page
                             </a>

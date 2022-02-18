@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/* Route::get('/', function () {
   return view('welcome');
-})->name('home');
+})->name('home'); */
 
 Route::get('/home', 'HomeController@index')->name("admin.home");
 
@@ -34,3 +34,12 @@ Route::namespace("Admin")
   });
 
 Auth::routes();
+
+/* Route::get("{any?}", function () {
+  return view("guests.home");
+})->where("any", ".*");  */
+
+
+Route::get('/', function () {
+  return view('guests.home');
+})->name('guests.home');
