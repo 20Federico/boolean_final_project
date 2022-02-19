@@ -37,29 +37,51 @@ class MessagesSeeder extends Seeder
         'è molto distante dal centro della citta? con che mezzi ci posso arrivare?', 
         'a che ora è il checkout?',
         'posso portare il mio cane? è di taglia media ed è molto tranquillo',
-        'ho preotato per domani, arriverò la sera tardi, per sarebbe un problema fare il check-in alle 21:30 circa?'
+        'ho preotato per domani, arriverò la sera tardi, per sarebbe un problema fare il check-in alle 21:30 circa?',
+        'la casa è dotata di un terrazzo?',
+        'l\'appartamento a che piano si trova?',
+        'è consentito fumare nell\'appartamento?',
+        'la colazione è inclusa?',
+        'avrei intenzione di prenotare per 2 mesi consecutivi, è possibile avere uno sconto?',
+        'ci sono negozi nei dintorni?'
       ];
 
       $msgThanks = [
-        'grazie in anticipo', '', 'grazie', 'attendo notizie', ''
+        'grazie in anticipo', '', 'grazie', 'attendo notizie', 'resto in attesa di un riscontro',
       ];
 
-      $msgFinalGreeting = [];
+      $msgFinalGreeting = [
+        'arrivederci', 'cordiali saluti', 'a presto', 'distinti saluti', 'saluti' 
+      ];
+      // aggiungi messaggi per un appartamento specifico
+      // $apartments = Apartment::where('id', 279)->get('id'); 
 
-      $apartments = Apartment::where('id', 279)->get('id');
+      //aggiungi messaggi per tutti gli appartamenti di un utente specifico
+      // $apartments = Apartment::where('user_id', 1)->get('id');
+
+      //aggiungi messaggi per tutti gli appartamenti 
+      $apartments = Apartment::get('id');
+
 
       foreach ($apartments as $apartment) {
         
-        for ($i=0; $i < 1; $i++) { 
+        for ($i=0; $i < 2; $i++) { 
           
           $newMessage = new Message();
 
           $randName = $names[rand(0, count($names) - 1)];
           $randSurame = $surnames[rand(0, count($surnames) - 1)];
           $randEmail = strtolower($randName) . strtolower($randSurame) . '@gmail.com';    
-
+          
+          $randContent = $msgGreeting[rand(0, count($msgGreeting) - 1)] . ', ' . 
+                          $msgWhy[rand(0, count($msgWhy) - 1)] . ', ' . 
+                          $msgQuestion[rand(0, count($msgQuestion) - 1)] . ' ' .
+                          $msgThanks[rand(0, count($msgThanks) - 1)] . ', ' .
+                          $msgFinalGreeting[rand(0, count($msgFinalGreeting) - 1)] . '. ' .
+                          $randName . ' ' . $randSurame . '.';
+          
           $newMessage->email_sender = $randEmail;
-          $newMessage->content = 'serfgawefnoiwe';
+          $newMessage->content = $randContent; 
           $newMessage->apartment_id = $apartment->id;
 
           $newMessage->save();
