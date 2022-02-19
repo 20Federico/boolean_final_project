@@ -53,6 +53,8 @@ class MessagesSeeder extends Seeder
       $msgFinalGreeting = [
         'arrivederci', 'cordiali saluti', 'a presto', 'distinti saluti', 'saluti' 
       ];
+
+      
       // aggiungi messaggi per un appartamento specifico
       // $apartments = Apartment::where('id', 279)->get('id'); 
 
