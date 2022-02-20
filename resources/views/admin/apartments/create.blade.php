@@ -103,7 +103,12 @@
                             <label for="cover_img" class="col-md-4 col-form-label text-md-right">Immagine *</label>
                             <div class="col-md-6">
                                 <div class="custom-file">
-                                    <input type="file" class="form-control" id="cover_img" name="cover_img" required>
+                                    <input type="file" class="form-control" id="cover_img" name="cover_img"  required>
+                                     @error('cover_img')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                 </div>
                             </div>
                         </div>

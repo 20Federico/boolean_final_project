@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 class VisitController extends Controller
 {
-    public function show(Apartment $apartment)
+    public function show(Apartment $apartment, $id)
     {
         //CREO LA VISITA (DA SPOSTARE NEL VISITCONTROLLER PUBBLICO)
         function createVisit($ip, $appId)
@@ -23,7 +23,9 @@ class VisitController extends Controller
             $visit->apartment_id = $appId;
             $visit->save();
         }
-        $appartamento_id = $apartment->all()[0]->attributesToArray()['id'];
+
+        $appartamento_id = $id;
+        
         $ipClient = Request::ip();
         $nowDate = Carbon::now('Europe/Rome');
         $lastVisitClient = Visit::where('apartment_id', $appartamento_id)->where('ip_address', $ipClient)->orderBy('created_at', 'desc')->first();
@@ -38,8 +40,7 @@ class VisitController extends Controller
         }
 
         //PASSO I DATI DI VISITE E MESSAGGI
-        $allMessages = Message::where('apartment_id', $appartamento_id);
-        $allVisits = Message::where('apartment_id', $appartamento_id);
+       
         $visits = DB::select('SELECT count(id), MONTHNAME(created_at) from `visits` WHERE apartment_id = :id AND YEAR(CURRENT_DATE()) = YEAR(created_at) group by MONTHNAME(created_at)', ['id' => $appartamento_id]);
         $messages = DB::select('SELECT count(id), MONTHNAME(created_at) from `messages` WHERE apartment_id = :id AND YEAR(CURRENT_DATE()) = YEAR(created_at) group by MONTHNAME(created_at)', ['id' => $appartamento_id]);
       
