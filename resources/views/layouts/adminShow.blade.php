@@ -134,7 +134,7 @@
         map.addControl(new tt.FullscreenControl());
         map.addControl(new tt.NavigationControl());
 
-        function createMarker(icon, position, color, popupText) {
+        function createMarker(icon, position, color) {
             var markerElement = document.createElement('div');
             markerElement.className = 'marker';
             var markerContentElement = document.createElement('div');
@@ -144,21 +144,19 @@
             var iconElement = document.createElement('div');
             iconElement.className = 'marker-icon';
             iconElement.style.backgroundImage =
-                'url(https://api.tomtom.com/maps-sdk-for-web/cdn/static/' + icon + ')';
+                'src(/resources/assets/img/' + icon + ')';
             markerContentElement.appendChild(iconElement);
-            var popup = new tt.Popup({
-                offset: 30
-            }).setText(popupText);
+            
             // add marker to map
             new tt.Marker({
                     element: markerElement
                     , anchor: 'bottom'
                 })
                 .setLngLat(position)
-                .setPopup(popup)
+               
                 .addTo(map);
         }
-        createMarker('accident.colors-white.svg', [lon, lat], '#5327c3', 'SVG icon');
+        createMarker('icons8-home.svg', [lon, lat], '#d48166');
     </script>
 </body>
 </html>
