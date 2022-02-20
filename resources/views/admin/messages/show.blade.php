@@ -37,7 +37,7 @@
                     <p>{{ $message->content }}</p>
                 </div>
              
-                <a class="btn btn-primary" href="#" onclick="GoBackWithRefresh();return false;">torna ai messaggi</a>
+                <a class="btn btn-primary" href="#" onclick="GoBackWithRefresh();return false;">Torna indietro</a>
                 
               </li>
             </ul>

@@ -121,52 +121,6 @@
     </div>
 
     {{-- area messaggi --}}
-    {{-- <div class="row">
-      <div class="col-7 m-auto">
-        @foreach ($messages as $message)
-        <div class="accordion accordion-flush" id="accordionFlushExample">
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-headingOne">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#message_{{ $message->id }}" aria-expanded="false" aria-controls="message_{{ $message->id }}">
-                @if ($message['read'])
-                  <i class="fa fa-envelope-open" aria-hidden="true"></i>
-                @else
-                  <i class="fa fa-envelope" aria-hidden="true"></i>
-                @endif
-                <span class="ps-3">
-                  Messaggio 
-                </span>
-                <span class="ps-5">
-                  Ricevuto il: 
-                  {{ $message->created_at }}
-                </span>
-              </button>
-            </h2>
-            <div id="message_{{ $message->id }}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-              <div class="accordion-body">
-                 
-                <div class="row">
-                  <div class="col-3">
-                    <h6>Info mittente:</h6> {{ $message->email_sender }} <br>
-                  </div>
-                  <div class="col position-relative">
-                    <h6>Messaggio:</h6>
-                    {{ $message->content }} <br>
-                  </div>
-                  <div class="col-2">
-                    <span>
-                      elimina
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <hr>
-        @endforeach
-      </div>
-    </div> --}}
     
     <div class="card">
       <div class="card-header">
@@ -177,64 +131,19 @@
     <div id="messaggi" class="card-body">
       <ul class="list-group">
         @if (count($messages) == 0)
+        nesson messaggio
         @endif
         @if (count($messages) > 0)
         <ul class="list-group">
           @foreach ($messages as $message)
             @if ( $message->read == 0)
-              <li class="list-group-item {{$message->read == false ? 'list-group-item-secondary' : ''}}">
-                <div class="row row-cols-1 row-cols-md-3 align-items-center">
-                  <div class="col">
-                    <i class="fa fa-envelope" aria-hidden="true"></i>
-                    Messaggio
-                  </div>
-                  <div class="col">
-                    <span>Ricevuto: 
-                      @php
-                        echo date_format($message->created_at, 'd/m/Y');
-                      @endphp
-                    </span>
-                  </div>
-                  <div class="col d-flex justify-content-center">
-                    <div class="pe-3">
-                      <a class="btn btn-primary" href="{{ route('admin.messages.show', $message->id) }}">Dettagli</a>
-                    </div>
-                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $message->id }}">
-                      Elimina
-                    </button>
-                    @include('admin.partials.modal.delete_modal')
-                  </div>
-                </div>
-              </li>
+            @include('admin.partials.messageList')
             @endif
           @endforeach
           
           @foreach ($messages as $message)
               @if ($message->read == 1)
-              <li class="list-group-item {{$message->read == false ? 'list-group-item-secondary' : ''}}">
-                <div class="row row row-cols-1 row-cols-md-3 align-items-center">
-                  <div class="col">
-                    <i class="fa fa-envelope" aria-hidden="true"></i>
-                    Messaggio
-                  </div>
-                  <div class="col mb-md-0 mb-1">
-                    <span>Ricevuto: 
-                      @php
-                        echo date_format($message->created_at, 'd/m/Y');
-                      @endphp
-                    </span>
-                  </div>
-                  <div class="col d-flex justify-content-center">
-                    <div class="pe-3">
-                      <a class="btn btn-primary" href="{{ route('admin.messages.show', $message->id) }}">Dettagli</a>
-                    </div>
-                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $message->id }}">
-                      Elimina
-                    </button>
-                    @include('admin.partials.modal.delete_modal')
-                  </div>
-                </div>
-              </li>
+              @include('admin.partials.messageList')
               @endif
           @endforeach
         </ul>
@@ -247,7 +156,7 @@
       
       
       
-      </div>
+    </div>
   </div>
 </div>
 @endsection

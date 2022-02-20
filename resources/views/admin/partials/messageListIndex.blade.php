@@ -12,10 +12,15 @@
                 </span>
               </div>
               <div class="col">
-                {{ $message->email_sender }}
+                <span class="d-inline d-sm-none">
+                  Ricevuto: 
+                </span> 
+                @php
+                 echo date_format($message->created_at, 'd/m/Y');
+                @endphp
               </div>
-              <div class="col mb-1 mb-md-0">
-                {{ $message->created_at }}
+              <div class="col mb-1 mb">
+                {{ $message->email_sender }}
               </div>
               <div class="col d-flex justify-content-center">
                 <div class="pe-3">
@@ -27,4 +32,5 @@
                 @include('admin.partials.modal.delete_modal')
               </div>
             </div>   
+        </li>
                   
