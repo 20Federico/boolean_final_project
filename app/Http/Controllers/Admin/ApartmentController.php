@@ -62,7 +62,7 @@ class ApartmentController extends Controller
             'square_meters' => 'required|numeric|min:0',
             'shared' => 'required',
             'visible' => 'required',
-            'cover_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'cover_img' => 'image|mimes:jpeg,png,jpg,gif,svg',
         ]);
 
         $address = $request->street_name . " " .
@@ -152,7 +152,7 @@ class ApartmentController extends Controller
             'square_meters' => 'required|numeric|min:0',
             'shared' => 'required',
             'visible' => 'required',
-            'cover_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'cover_img' => 'image|mimes:jpeg,png,jpg,gif,svg',
         ]);
 
         $oldImg = $apartment->cover_img;
