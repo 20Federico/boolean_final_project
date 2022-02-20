@@ -34,7 +34,7 @@
 
         <div class="container d-flex justify-content-center gap-3 d-flex-wrap">
             <a href="{{ route('admin.apartments.edit', $apartment->id) }}" class="btn btn-primary btn-lg mb-4">Modifica</a>
-            <a href="#" class="btn btn-warning btn-lg mb-4">Messaggi</a>
+            <a href="#messaggi" class="btn btn-warning btn-lg mb-4">Messaggi</a>
             <a href="{{route('admin.sponsors.index', $apartment->id)}}" class="btn btn-success btn-lg mb-4">Sponsorizza</a>
             <a href="{{ route('admin.visits.show', $apartment->id) }}" class="btn btn-info btn-lg mb-4">Statistiche</a>
             <form action="{{ route('admin.apartments.destroy', $apartment->id) }}" method="post">
@@ -121,7 +121,7 @@
     </div>
 
     {{-- area messaggi --}}
-    <div class="row">
+    {{-- <div class="row">
       <div class="col-7 m-auto">
         @foreach ($messages as $message)
         <div class="accordion accordion-flush" id="accordionFlushExample">
@@ -166,5 +166,88 @@
         <hr>
         @endforeach
       </div>
-    </div>
+    </div> --}}
+    
+    <div class="card">
+      <div class="card-header">
+        <h5 class=" my-2 my-md-0">
+          Messaggi
+        </h5> 
+      </div>
+    <div id="messaggi" class="card-body">
+      <ul class="list-group">
+        @if (count($messages) == 0)
+        @endif
+        @if (count($messages) > 0)
+        <ul class="list-group">
+          @foreach ($messages as $message)
+            @if ( $message->read == 0)
+              <li class="list-group-item {{$message->read == false ? 'list-group-item-secondary' : ''}}">
+                <div class="row row-cols-1 row-cols-md-3 align-items-center">
+                  <div class="col">
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                    Messaggio
+                  </div>
+                  <div class="col">
+                    <span>Ricevuto: 
+                      @php
+                        echo date_format($message->created_at, 'd/m/Y');
+                      @endphp
+                    </span>
+                  </div>
+                  <div class="col d-flex justify-content-center">
+                    <div class="pe-3">
+                      <a class="btn btn-primary" href="{{ route('admin.messages.show', $message->id) }}">Dettagli</a>
+                    </div>
+                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $message->id }}">
+                      Elimina
+                    </button>
+                    @include('admin.partials.modal.delete_modal')
+                  </div>
+                </div>
+              </li>
+            @endif
+          @endforeach
+          
+          @foreach ($messages as $message)
+              @if ($message->read == 1)
+              <li class="list-group-item {{$message->read == false ? 'list-group-item-secondary' : ''}}">
+                <div class="row row row-cols-1 row-cols-md-3 align-items-center">
+                  <div class="col">
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                    Messaggio
+                  </div>
+                  <div class="col mb-md-0 mb-1">
+                    <span>Ricevuto: 
+                      @php
+                        echo date_format($message->created_at, 'd/m/Y');
+                      @endphp
+                    </span>
+                  </div>
+                  <div class="col d-flex justify-content-center">
+                    <div class="pe-3">
+                      <a class="btn btn-primary" href="{{ route('admin.messages.show', $message->id) }}">Dettagli</a>
+                    </div>
+                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $message->id }}">
+                      Elimina
+                    </button>
+                    @include('admin.partials.modal.delete_modal')
+                  </div>
+                </div>
+              </li>
+              @endif
+          @endforeach
+        </ul>
+        @endif
+        
+        
+       
+      </ul>
+      
+      
+      
+      
+      </div>
+  </div>
+</div>
 @endsection

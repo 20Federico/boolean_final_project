@@ -3,7 +3,7 @@
       <div class="accordion-item bg-transparent">
         <h2 class="accordion-header" id="flush-headingOne">
             
-          <button class="accordion-button collapsed px-0 bg-transparent" type="button" data-bs-toggle="collapse" data-bs-target="#message_{{ $message->id }}" aria-expanded="false" aria-controls="message_{{ $message->id }}">
+          <button href="{{ route("admin.messages.show", $message->id) }}" class="accordion-button collapsed px-0 bg-transparent" type="button" data-bs-toggle="collapse" data-bs-target="#message_{{ $message->id }}" aria-expanded="false" aria-controls="message_{{ $message->id }}">
             <div class="container bg-transparent">
               <div class="row ">
                 <div class="col-md-3 ps-0">
@@ -40,9 +40,9 @@
                 <h6 class="mb-0">Messaggio:</h6>
                 {{ $message->content }} <br>
               </div>
-              <div class="col-md-2 text-center">
+              <div class="col-md-2 text-end">
                 <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $message->id }}">
-                  Elimina {{ $message->id }}
+                  Elimina
                 </button>
                 @include('admin.partials.modal.delete_modal')
               </div>
