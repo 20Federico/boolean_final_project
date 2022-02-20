@@ -29,7 +29,8 @@
     </head>
     <body>
         <header>
-            <div id="app" class="container">
+            <div id="app">
+            {{-- <div id="app" class="container"> --}}
                 <nav class="sb-topnav navbar navbar-expand main-nav">
                     <!-- Navbar Brand-->
                     <a class="navbar-brand ps-3" href="{{route('guests.home')}}">BoolBnB</a>
@@ -50,6 +51,17 @@
                             </li>
                         @endif
                     @else
+                        <div class="sb-sidenav-footer text-light me-2 d-flex align-items-center">
+                            {{-- <div class="small">Logged in as:</div> --}}
+                            <a href="{{route('admin.home')}}" style="text-decoration: none; color: white;">
+                                @if (Auth::user()->name)
+                                {{ Auth::user()->name }} {{ Auth::user()->surname }}
+                                @else    
+                                {{substr(Auth::user()->email, 0, strpos(Auth::user()->email, '@' ))  }}
+                                @endif
+                            </a>
+                        </div>
+                        
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 <i class="fas fa-user fa-fw"></i>

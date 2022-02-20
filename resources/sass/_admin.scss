@@ -29,3 +29,26 @@ nav.main-nav {
         color: #d48166;
     }
 }
+
+#sidenavAccordion {
+    position: relative;
+    .sb-sidenav-menu {
+        background-color: #d48166;
+    
+        .nav {
+            .sb-sidenav-menu-heading {
+                color: white;
+            }
+            .nav-link {
+                color: white;
+            }
+        }
+    }
+
+    .sb-sidenav-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+    }
+}

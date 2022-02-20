@@ -18,9 +18,9 @@ header {
 }
 
 main {
-    background-color: #f6f4f2;
+    /* background-color: #f6f4f2; */
     .container {
-        background-color: #f6f4f2;
+        /* background-color: #f6f4f2; */
         .title {
             background-color: white;
             color: #373a36;
@@ -65,6 +65,14 @@ footer {
             color: #d48166;
         }
     }
+}
+
+.registration, .login {
+
+    input:focus {
+        border-color: #d48166 !important;
+        box-shadow: 0 0 0 0.25rem rgb(212 129 102 / 25%);
+    } 
 }
 
 @media screen and (min-width: 576px) {

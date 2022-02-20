@@ -33,11 +33,19 @@
         <nav class="sb-topnav navbar navbar-expand main-nav">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="{{route('admin.home')}}">BoolBnB</a>
-            <!-- Sidebar Toggle-->
-            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+
             {{-- logout dropdown --}}
-            <ul class="navbar-nav ms-auto pe-3">
+            <ul class="navbar-nav ms-auto pe-3 d-flex align-items-center">
               <!-- Authentication Links -->
+                          
+            <div class="sb-sidenav-footer text-light me-2">
+                {{-- <div class="small">Logged in as:</div> --}}
+                @if (Auth::user()->name)
+                {{ Auth::user()->name }} {{ Auth::user()->surname }}
+                @else    
+                {{substr(Auth::user()->email, 0, strpos(Auth::user()->email, '@' ))  }}
+                @endif
+            </div>
               @guest
                   <li class="nav-item">
                       <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -66,6 +74,8 @@
                       </div>
                   </li>
               @endguest
+              <!-- Sidebar Toggle-->
+                <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!" style="color: #d48166"><i class="fas fa-bars"></i></button>
             </ul>
         </nav>
         <div id="layoutSidenav">
@@ -94,14 +104,14 @@
                             </a>
                         </div>
                     </div>
-                    <div class="sb-sidenav-footer">
+{{--                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
                         @if (Auth::user()->name)
                         {{ Auth::user()->name }}
                         @else    
                         {{substr(Auth::user()->email, 0, strpos(Auth::user()->email, '@' ))  }}
                         @endif
-                    </div>
+                    </div> --}}
                 </nav>
             </div>
             <div id="layoutSidenav_content">

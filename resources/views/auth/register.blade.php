@@ -3,7 +3,7 @@
 @section('title', 'BoolBnB - Registrati!')
 
 @section('content')
-<div class="container py-5">
+<div class="container py-5 registration">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
