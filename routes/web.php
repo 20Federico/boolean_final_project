@@ -43,7 +43,7 @@ Auth::routes();
 
 Route::get('/', function () {
 
-  $apartments = Apartment::limit(10)->with('services')->get();
+  $apartments = Apartment::limit(10)->with('services', 'address')->get();
 
   return view('guests.home', compact('apartments'));
 })->name('guests.home');
