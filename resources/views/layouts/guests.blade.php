@@ -55,7 +55,7 @@
                             {{-- <div class="small">Logged in as:</div> --}}
                             <a href="{{route('admin.home')}}" style="text-decoration: none; color: white;">
                                 @if (Auth::user()->name)
-                                {{ Auth::user()->name }} {{ Auth::user()->surname }}
+                                {{ Auth::user()->name }} {{-- {{ Auth::user()->surname }} --}}
                                 @else    
                                 {{substr(Auth::user()->email, 0, strpos(Auth::user()->email, '@' ))  }}
                                 @endif
@@ -146,9 +146,9 @@
                     </div>
 
                     <div class="social my-4">
-                        <a href="https://it-it.facebook.com/"><i class="fab fa-facebook fa-lg me-2"></i></a>
-                        <a href="https://www.instagram.com/boolbnb/"><i class="fab fa-instagram fa-lg me-2"></i></a>
-                        <a href="https://twitter.com/bn_bool"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="https://it-it.facebook.com/" target="_blank"><i class="fab fa-facebook fa-lg me-2"></i></a>
+                        <a href="https://www.instagram.com/boolbnb/" target="_blank"><i class="fab fa-instagram fa-lg me-2"></i></a>
+                        <a href="https://twitter.com/bn_bool" target="_blank"><i class="fab fa-twitter fa-lg"></i></a>
                     </div>
                     <div class="text-muted">Copyright &copy; Your BoolBnB 2022</div>
                 </div>

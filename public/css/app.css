@@ -12548,6 +12548,7 @@ footer ul {
 footer ul li {
   list-style-type: none;
   margin-bottom: 10px;
+  font-size: smaller;
 }
 
 footer ul li a {
@@ -12586,6 +12587,10 @@ footer .privacy :hover {
 @media screen and (min-width: 576px) {
   footer .col .border-bottom {
     border-bottom: 0px !important;
+  }
+
+  footer .col ul li {
+    font-size: medium;
   }
 }
 

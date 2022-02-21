@@ -36,6 +36,7 @@ footer {
         li{
             list-style-type: none;
             margin-bottom: 10px;
+            font-size: smaller;
             a {
                 text-decoration: none;
                 color: black;
@@ -79,8 +80,13 @@ footer {
     footer {
         .col {
             .border-bottom {
-                border-bottom: 0px !important;
+                border-bottom: 0px !important;    
             }
+            ul {
+                li {
+                   font-size: medium;
+               }
+           }
         }
     }
 }
