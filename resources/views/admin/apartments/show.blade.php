@@ -3,7 +3,7 @@
 
 @section('title', 'Apartment - show')
 
-@section('content')
+{{-- @section('content')
 
 <div class=" container main-container m-auto h-50 w-100">
 
@@ -14,7 +14,7 @@
             <img src="{{ url($apartment->cover_img) }}" class="img-fluid w-100" alt="">
             @else
             <img src="{{ asset('storage/' . $apartment->cover_img) }}" class="img-fluid w-100" alt="">
-            @endif
+            @endif --}}
 
 @section('content')
 
@@ -149,15 +149,51 @@
           @endforeach
         </ul>
         @endif
-        
-        
-       
       </ul>
-      
-      
-      
-      
     </div>
   </div>
 </div>
+@endsection
+
+@section('extra_scripts')
+<script>
+
+  var lat = document.getElementById('lat').getAttribute('value');
+  var lon = document.getElementById('lon').getAttribute('value');
+  const map = tt.map({
+      key: 'hwUAMJjGlcfAD2Yd3w1owWJqbrrLpfoo'
+      , container: 'map'
+      , center: [lon, lat]
+      , zoom: 15
+  });
+
+  map.addControl(new tt.FullscreenControl());
+  map.addControl(new tt.NavigationControl());
+
+  function createMarker(icon, position, color, popupText) {
+      var markerElement = document.createElement('div');
+      markerElement.className = 'marker';
+      var markerContentElement = document.createElement('div');
+      markerContentElement.className = 'marker-content';
+      markerContentElement.style.backgroundColor = color;
+      markerElement.appendChild(markerContentElement);
+      var iconElement = document.createElement('div');
+      iconElement.className = 'marker-icon';
+      iconElement.style.backgroundImage =
+          'url(https://api.tomtom.com/maps-sdk-for-web/cdn/static/' + icon + ')';
+      markerContentElement.appendChild(iconElement);
+      var popup = new tt.Popup({
+          offset: 30
+      }).setText(popupText);
+      // add marker to map
+      new tt.Marker({
+              element: markerElement
+              , anchor: 'bottom'
+          })
+          .setLngLat(position)
+          .setPopup(popup)
+          .addTo(map);
+  }
+  createMarker('accident.colors-white.svg', [lon, lat], '#5327c3', 'SVG icon');
+</script>
 @endsection
