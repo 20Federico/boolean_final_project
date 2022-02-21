@@ -31,7 +31,7 @@
         {{-- @yield('head_extra') --}}
     </head>
     <body>
-      <div id="app">
+      <div id="app" class="layout_container">
         <header>
 
           <div>
