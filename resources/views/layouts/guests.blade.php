@@ -34,7 +34,7 @@
       <div id="app">
         <header>
 
-          <div class="container">
+          <div>
             <nav class="sb-topnav navbar navbar-expand main-nav">
                 <!-- Navbar Brand-->
                 <a class="navbar-brand ps-3" href="{{route('guests.home')}}">BoolBnB</a>
@@ -45,38 +45,28 @@
                 {{-- logout dropdown --}}
                 <ul class="navbar-nav ms-auto pe-3">
                 <!-- Authentication Links -->
+
                 @guest
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                    </li>
-                    @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
-
-                        @if (Route::has('register'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                            </li>
-                        @endif
-                    @else
-                        <div class="sb-sidenav-footer text-light me-2 d-flex align-items-center">
-                            {{-- <div class="small">Logged in as:</div> --}}
-                            <a href="{{route('admin.home')}}" style="text-decoration: none; color: white;">
-                                @if (Auth::user()->name)
-                                {{ Auth::user()->name }} {{-- {{ Auth::user()->surname }} --}}
-                                @else    
-                                {{substr(Auth::user()->email, 0, strpos(Auth::user()->email, '@' ))  }}
-                                @endif
-                            </a>
-                        </div>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                  </li>
+                  @if (Route::has('register'))
+                      <li class="nav-item">
+                          <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                      </li>
+                  @endif
+                  @else
+                    <div class="sb-sidenav-footer text-light me-2 d-flex align-items-center">
+                        {{-- <div class="small">Logged in as:</div> --}}
+                        <a href="{{route('admin.home')}}" style="text-decoration: none; color: white;">
+                            @if (Auth::user()->name)
+                            {{ Auth::user()->name }} {{-- {{ Auth::user()->surname }} --}}
+                            @else    
+                            {{substr(Auth::user()->email, 0, strpos(Auth::user()->email, '@' ))  }}
+                            @endif
+                        </a>
+                    </div>
                         
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                <i class="fas fa-user fa-fw"></i>
-
-                    @endif
-                @else
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             <i class="fas fa-user fa-fw"></i>
@@ -87,7 +77,6 @@
                                 onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
-
                             </a>
     
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -95,7 +84,11 @@
                             </form>
                         </div>
                     </li>
-                @endguest
+                @endguest 
+
+
+
+
                 </ul>
             </nav>
           </div>  
