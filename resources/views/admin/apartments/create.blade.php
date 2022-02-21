@@ -103,7 +103,12 @@
                             <label for="cover_img" class="col-md-4 col-form-label text-md-right">Immagine *</label>
                             <div class="col-md-6">
                                 <div class="custom-file">
-                                    <input type="file" class="form-control" id="cover_img" name="cover_img" required>
+                                    <input type="file" class="form-control" id="cover_img" name="cover_img"  required>
+                                     @error('cover_img')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                 </div>
                             </div>
                         </div>
@@ -173,14 +178,14 @@
                             <label for="" class="col-md-4 col-form-label text-md-right">L'abitazione è condivisa? *</label>
                             <div class="col-md-6 d-flex align-items-center">
                                 <div class="form-check me-3">
-                                    <input class="form-check-input @error('shared') is-invalid @enderror" type="radio" name="shared" id="flexRadioDefault1" value="1" checked  >
-                                    <label class="form-check-label" for="flexRadioDefault1">
+                                    <input class="form-check-input @error('shared') is-invalid @enderror" type="radio" name="shared" id="flexRadioDefault1" value="1" checked>
+                                    <label class="form-check-label" for="flexcheckedRadioDefault1">
                                         Condivisa
                                     </label>
                                 </div>
 
                                 <div class="form-check">
-                                    <input class="form-check-input @error('shared') is-invalid @enderror" type="radio" name="shared" id="flexRadioDefault2" value="0"  >
+                                    <input class="form-check-input @error('shared') is-invalid @enderror" type="radio" name="shared" id="flexRadioDefault2" value="0"   @if(old('shared') == "0") checked @endif>
                                     <label class="form-check-label" for="flexRadioDefault2">
                                         Non condivisa
                                     </label>
@@ -200,13 +205,13 @@
                             <div class="col-md-6 d-flex align-items-center">
 
                                 <div class="form-check me-3">
-                                    <input class="form-check-input" type="radio" name="visible" id="flexRadioDefault1" value="1" checked  >
+                                    <input class="form-check-input" type="radio" name="visible" id="flexRadioDefault1" value="1"  checked>
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         Visible
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="visible" id="flexRadioDefault2" value="0" >
+                                    <input class="form-check-input" type="radio" name="visible" id="flexRadioDefault2" value="0" @if(old('visible') == "0") checked @endif>
                                     <label class="form-check-label" for="flexRadioDefault2">
                                         Nascosto
                                     </label>
