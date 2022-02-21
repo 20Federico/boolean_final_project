@@ -9,8 +9,8 @@
             <div class="row d-flex justify-content-center align-items-center">
               <div class="col-md-4 mb-5">
                 <div class="search"> 
-                  <input type="text" class="form-control" placeholder="type city or address..."> 
-                  <button @click="$emit('search')" class="btn btn-primary"><i class="fa fa-search"></i></button> 
+                  <input v-on:keyup.enter="search()" id="query" type="text" class="form-control" placeholder="type city or address..."> 
+                  <button @click="search()" class="btn btn-primary"><i class="fa fa-search"></i></button> 
                 </div>
               </div>
               <search-filters v-if="searching"></search-filters>
@@ -27,6 +27,32 @@ export default {
   name: 'HeroSection',
   props: {
     searching: Boolean
+  },
+  data() {
+    return {
+      searchQuery: {}
+    }
+  },
+  methods: {
+    
+    handleresults(result) {
+      if (result) {
+        this.searchQuery = result
+        this.$emit('query', this.searchQuery)
+      }
+    },
+    
+    search() {
+      if (document.getElementById('query').value != '') {
+
+        this.$emit('search');
+
+        tt.services.fuzzySearch({
+          key: 'hwUAMJjGlcfAD2Yd3w1owWJqbrrLpfoo',
+          query: document.getElementById('query').value,
+        }).then(this.handleresults)
+      }
+    }
   }
 }
 </script>
