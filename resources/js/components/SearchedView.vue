@@ -4,7 +4,6 @@
       <div class="col-5">
         <div class="p-4">
           <button @click="$emit('back')" type="button" class="btn btn-outline-dark mb-4"><i class="fas fa-arrow-left"></i> Homepage</button>
-
           <!-- {{apartments}} -->
 
           <div class="card mb-1 p-3" v-for="apartment, i in apartments" :key="i">
@@ -45,7 +44,7 @@
       </div>
       <div class="col-7">
         <div class="map_container">
-          <div class="mymap" id="mymap"></div>
+          <div class="mymap" id="map"></div>
         </div>
       </div>
     </div>
@@ -55,28 +54,69 @@
 <script>
 export default {
   name: 'SearchedView',
+  data() {
+    return {
+      map: {},
+      markers: []
+    }
+  },
   props: {
-    apartments: Object
+    apartments: Array,
+    search: Object
+  },
+  methods: {
+    moveMap(result) {
+      this.map.flyTo({
+        center: result,
+        zoom: 14
+      })
+    }
+  },
+  computed: {
+    handleresults() {
+      if (this.search.results) {
+
+        if (this.markers.length > 0) {
+          this.markers.forEach(element => {
+            element.remove();
+            this.markers.splice(element)
+          });
+        }
+
+        this.moveMap(this.search.results[0].position)
+        
+
+        this.apartments.forEach(element => {
+          var marker = new tt.Marker()
+            .setLngLat([element.address.longitude, element.address.latitude])
+            .addTo(this.map)
+  
+          this.markers.push(marker)
+        });
+        
+      }
+    }
   },
   mounted() {
 
-    var map = tt.map({
+    this.map = tt.map({
       key: 'hwUAMJjGlcfAD2Yd3w1owWJqbrrLpfoo', 
-      container: 'mymap', 
+      container: 'map', 
       center: [12.494689,41.899783,], 
       zoom: 10
     });
     
-    map.addControl(new tt.FullscreenControl());
-    map.addControl(new tt.NavigationControl());
-
+    this.map.addControl(new tt.FullscreenControl());
+    this.map.addControl(new tt.NavigationControl());
   }
+
 }
 </script>
 
 <style lang="scss" scoped>
+  
   .mymap {
-    height: 100%;
+    height: 100% !important;
   }
   .map_container {
     height: 100vh;
