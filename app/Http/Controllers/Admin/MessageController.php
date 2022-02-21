@@ -24,7 +24,7 @@ class MessageController extends Controller
         $messageToReadList = [];
         $messageReadList = [];
         foreach ($apartmentList as $apartment) {
-            $messages = Message::orderBy('created_at', 'desc')->where("apartment_id", $apartment->id)->get();
+            $messages = Message::where("apartment_id", $apartment->id)->get();
             $messagesToRead = Message::where("apartment_id", $apartment->id)->where("read", 0)->get();
             $messagesRead = Message::where("apartment_id", $apartment->id)->where("read", 1)->get();
             
@@ -40,7 +40,8 @@ class MessageController extends Controller
         }
         $totMessages = count($messageList);
         $totMessagesToRead = count($messageToReadList);
-        array_multisort($messageList, SORT_DESC);
+        array_multisort($messageToReadList, SORT_DESC);
+        array_multisort($messageReadList, SORT_DESC);
         return view("admin.messages.index", [
             "messageList" => $messageList, 
             "totMessages"=>$totMessages,
