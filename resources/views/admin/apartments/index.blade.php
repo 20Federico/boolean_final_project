@@ -128,6 +128,7 @@
                 {{-- completare con dati DB --}}
       
                 <a href="{{ route('admin.apartments.edit', $apartment->id) }}" class="btn btn-orange mb-3">Modifica casa</a>
+                <a href="{{ route('admin.apartments.show', $apartment->id) }}" class="btn btn-orange mb-3">Vedi casa</a>
                 <a href="{{ route('admin.apartments.destroy', $apartment->id) }}" class="btn theme-btn-white">Elimina casa</a>
               </div>
             </div>
