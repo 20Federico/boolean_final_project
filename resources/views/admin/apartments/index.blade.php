@@ -26,7 +26,7 @@
         </div>
         @endif
         @foreach ($apartmentsList as $apartment)
-            <li class="list-group-item {{$apartment->visible == false ? 'list-group-item-secondary' : ''}}">
+            {{-- <li class="list-group-item {{$apartment->visible == false ? 'list-group-item-secondary' : ''}}">
               <div class="row row-cols-md-6 row-cols-1 align-items-center">
                 <a href="{{ route('admin.visits.show', $apartment->id) }}">Vedi Statistica</a>
               
@@ -74,9 +74,66 @@
 
               </div>
             </div>
-          </li>
-            @endforeach
-          </ul>
+          </li> --}}
+          <div class="apartment-card d-flex mb-3 border border-2">
+            {{-- data --}}
+            <div class="date-apartment d-flex align-items-center pe-3 me-3 border-end border-2">
+              <p class="fw-lighter fs-6 text-center">23/23/2022 <br>
+              ore <br>
+              15:22:22
+              </p>
+            </div>
+            {{--thumbnail  --}}
+            <div class="img-container position-relative">
+              @if (substr($apartment->cover_img, 0, 4 ) === 'http')
+                  <img src="{{ url($apartment->cover_img) }}" class="img-fluid" alt="">
+                @else    
+                  <img src="{{ asset('storage/' . $apartment->cover_img) }}" class="img-fluid" alt="">
+                @endif
+            </div>
+            {{-- testi principali --}}
+            <div class="apartment-data d-flex flex-column justify-content-center flex-grow-1 ms-3 ps-3 border-2">
+              <div class="title pb-2 fw-light fs-5">{{ $apartment->title }}</div>
+              {{-- <div class="new-messages d-flex align-items-center">
+                <p class="pe-4"> Hai 2 nuovi messaggi</p>
+                
+                <a href="#" class="btn btn-orange ">Leggi</a>
+              </div>   --}}
+            </div>
+            
+            <div class="apartment-data ps-3 border-start border-2 pe-0">
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+              <p>New messages</p>
+      
+              {{-- estrapolare dati DB --}}
+              <p>3</p>
+            </div>
+      
+      
+            <div class="apartment-data ps-3 border-start border-end border-2">
+              <i class="fa fa-eye" aria-hidden="true"></i>
+              <p>Views</p>
+              {{-- estrapolare dati DB --}}
+              <p>3</p>
+            </div>
+      
+            <div class="apartment-data border-end border-2">
+              <i class="fa fa-rocket" aria-hidden="true"></i>
+              {{-- Estrapolare dati DB --}}
+              <p>Advanced Plan</p>
+              <p class="fw-lighter fs-7">ends 23/12/21 ore 15:30</p>
+            </div>
+            <div class="end-card justify-content-end align-items-center d-flex">
+              <div class="modifier-buttons d-flex flex-column">
+                {{-- completare con dati DB --}}
+      
+                <a href="{{ route('admin.apartments.edit', $apartment->id) }}" class="btn btn-orange mb-3">Modifica casa</a>
+                <a href="{{ route('admin.apartments.destroy', $apartment->id) }}" class="btn theme-btn-white">Elimina casa</a>
+              </div>
+            </div>
+          </div>
+        @endforeach
+      </ul>
     </div>
   </div>
 @endsection
