@@ -12494,15 +12494,54 @@ main {
   background-color: #f6f4f2;
 }
 
-main .container {
-  background-color: #f6f4f2;
+main .container .title {
+  background-color: #373a361f;
+  color: #373a36;
+  box-shadow: 10px 10px 5px #373a3648;
 }
 
-main .container .title {
-  background-color: white;
-  color: #373a36;
+main .container .title h1,
+main .container .title .h1,
+main .container .title h3,
+main .container .title .h3 {
   font-family: "Pacifico", cursive;
-  box-shadow: 10px 10px 5px #dfdbd7;
+}
+
+main .container .title .search {
+  position: relative;
+  box-shadow: 0 0 40px rgba(51, 51, 51, 0.1);
+}
+
+main .container .title .search input {
+  text-indent: 10px;
+  padding: 10px;
+  border: 2px solid #d6d4d4;
+}
+
+main .container .title .search input:focus {
+  box-shadow: none;
+  border: 2px solid #373a36;
+}
+
+main .container .title .search .fa-search {
+  color: #d48166;
+  font-size: 20px;
+}
+
+main .container .title .search .fa-search:active {
+  transform: scale(0.8);
+}
+
+main .container .title .search button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 5px;
+  background: #373a36e7;
+}
+
+main .container .title .search button:focus {
+  box-shadow: none;
 }
 
 footer ul {

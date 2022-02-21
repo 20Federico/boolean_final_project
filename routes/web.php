@@ -1,5 +1,6 @@
 <?php
 
+use App\Apartment;
 use App\Http\Controllers\Admin\ApartmentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -41,5 +42,8 @@ Auth::routes();
 
 
 Route::get('/', function () {
-  return view('guests.home');
+
+  $apartments = Apartment::limit(10)->with('services', 'address')->get();
+
+  return view('guests.home', compact('apartments'));
 })->name('guests.home');
