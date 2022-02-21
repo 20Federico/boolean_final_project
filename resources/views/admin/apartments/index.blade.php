@@ -56,7 +56,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col col col-md-2 mt-1 mt-md-0">
+              <div class="col col-md-2 mt-1 mt-md-0">
                 <div class="row">
                   <div class="col p-md-0">
                     <a class="btn btn-primary" href="{{ route('admin.apartments.show', $apartment->id) }}">Dettagli</a>

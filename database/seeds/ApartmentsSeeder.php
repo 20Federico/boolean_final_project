@@ -64,7 +64,7 @@ class ApartmentsSeeder extends Seeder
           $alreadyExists = Apartment::where('title', $randTitle)->first();
 
           while ($alreadyExists) {
-            $newTitle = $TitleTypes[rand(0, count($TitleTypes) - 1)] . $TitleAdjs[rand(0, count($TitleAdjs) - 1)] . $TitlePlus[rand(0, count($TitlePlus) - 1)] ;;
+            $newTitle = $TitleTypes[rand(0, count($TitleTypes) - 1)] . $TitleAdjs[rand(0, count($TitleAdjs) - 1)] . $TitlePlus[rand(0, count($TitlePlus) - 1)] ;
 
             $alreadyExists = Apartment::where('title', $newTitle)->first();
 
