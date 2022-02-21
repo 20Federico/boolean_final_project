@@ -39,7 +39,8 @@ const app = new Vue({
     data() {
       return {
         searching: false,
-        search: {}
+        search: {},
+        editImgVisible: true
       }
     },
     methods: {
