@@ -22,6 +22,10 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('chart-component', require('./components/Chart.vue').default);
+Vue.component('hero-section', require('./components/HeroSection.vue').default);
+Vue.component('home-page', require('./components/HomePage.vue').default);
+Vue.component('searched-view', require('./components/SearchedView.vue').default);
+Vue.component('search-filters', require('./components/SearchFilters.vue').default);
 
 
 /**
@@ -32,4 +36,15 @@ Vue.component('chart-component', require('./components/Chart.vue').default);
 
 const app = new Vue({
     el: '#app',
+    data() {
+      return {
+        searching: false,
+        search: {}
+      }
+    },
+    methods: {
+      getQuery(value) {
+        this.search = value;
+      }
+    }
 });

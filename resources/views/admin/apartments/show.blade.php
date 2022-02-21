@@ -1,8 +1,9 @@
-@extends('layouts.adminShow')
+{{-- @extends('layouts.adminShow') --}}
+@extends('layouts.admin')
 
 @section('title', 'Apartment - show')
 
-@section('content')
+{{-- @section('content')
 
 <div class=" container main-container m-auto h-50 w-100">
 
@@ -13,7 +14,7 @@
             <img src="{{ url($apartment->cover_img) }}" class="img-fluid w-100" alt="">
             @else
             <img src="{{ asset('storage/' . $apartment->cover_img) }}" class="img-fluid w-100" alt="">
-            @endif
+            @endif --}}
 
 @section('content')
 
@@ -34,7 +35,7 @@
 
         <div class="container d-flex justify-content-center gap-3 d-flex-wrap">
             <a href="{{ route('admin.apartments.edit', $apartment->id) }}" class="btn btn-primary btn-lg mb-4">Modifica</a>
-            <a href="#" class="btn btn-warning btn-lg mb-4">Messaggi</a>
+            <a href="#messaggi" class="btn btn-warning btn-lg mb-4">Messaggi</a>
             <a href="{{route('admin.sponsors.index', $apartment->id)}}" class="btn btn-success btn-lg mb-4">Sponsorizza</a>
             <a href="{{ route('admin.visits.show', $apartment->id) }}" class="btn btn-info btn-lg mb-4">Statistiche</a>
             <form action="{{ route('admin.apartments.destroy', $apartment->id) }}" method="post">
@@ -121,50 +122,78 @@
     </div>
 
     {{-- area messaggi --}}
-    <div class="row">
-      <div class="col-7 m-auto">
-        @foreach ($messages as $message)
-        <div class="accordion accordion-flush" id="accordionFlushExample">
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-headingOne">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#message_{{ $message->id }}" aria-expanded="false" aria-controls="message_{{ $message->id }}">
-                @if ($message['read'])
-                  <i class="fa fa-envelope-open" aria-hidden="true"></i>
-                @else
-                  <i class="fa fa-envelope" aria-hidden="true"></i>
-                @endif
-                <span class="ps-3">
-                  Messaggio 
-                </span>
-                <span class="ps-5">
-                  Ricevuto il: 
-                  {{ $message->created_at }}
-                </span>
-              </button>
-            </h2>
-            <div id="message_{{ $message->id }}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-              <div class="accordion-body">
-                 
-                <div class="row">
-                  <div class="col-3">
-                    <h6>Info mittente:</h6> {{ $message->email_sender }} <br>
-                  </div>
-                  <div class="col position-relative">
-                    <h6>Messaggio:</h6>
-                    {{ $message->content }} <br>
-                  </div>
-                  <div class="col-2">
-                    <span>
-                      elimina
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <hr>
-        @endforeach
+    
+    <div class="card">
+      <div class="card-header">
+        <h5 class=" my-2 my-md-0">
+          Messaggi
+        </h5> 
       </div>
+    <div id="messaggi" class="card-body">
+      <ul class="list-group">
+        @if (count($messages) == 0)
+        nesson messaggio
+        @endif
+        @if (count($messages) > 0)
+        <ul class="list-group">
+          @foreach ($messages as $message)
+            @if ( $message->read == 0)
+            @include('admin.partials.messageList')
+            @endif
+          @endforeach
+          
+          @foreach ($messages as $message)
+              @if ($message->read == 1)
+              @include('admin.partials.messageList')
+              @endif
+          @endforeach
+        </ul>
+        @endif
+      </ul>
     </div>
+  </div>
+</div>
+@endsection
+
+@section('extra_scripts')
+<script>
+
+  var lat = document.getElementById('lat').getAttribute('value');
+  var lon = document.getElementById('lon').getAttribute('value');
+  const map = tt.map({
+      key: 'hwUAMJjGlcfAD2Yd3w1owWJqbrrLpfoo'
+      , container: 'map'
+      , center: [lon, lat]
+      , zoom: 15
+  });
+
+  map.addControl(new tt.FullscreenControl());
+  map.addControl(new tt.NavigationControl());
+
+  function createMarker(icon, position, color, popupText) {
+      var markerElement = document.createElement('div');
+      markerElement.className = 'marker';
+      var markerContentElement = document.createElement('div');
+      markerContentElement.className = 'marker-content';
+      markerContentElement.style.backgroundColor = color;
+      markerElement.appendChild(markerContentElement);
+      var iconElement = document.createElement('div');
+      iconElement.className = 'marker-icon';
+      iconElement.style.backgroundImage =
+          'url(https://api.tomtom.com/maps-sdk-for-web/cdn/static/' + icon + ')';
+      markerContentElement.appendChild(iconElement);
+      var popup = new tt.Popup({
+          offset: 30
+      }).setText(popupText);
+      // add marker to map
+      new tt.Marker({
+              element: markerElement
+              , anchor: 'bottom'
+          })
+          .setLngLat(position)
+          .setPopup(popup)
+          .addTo(map);
+  }
+  createMarker('accident.colors-white.svg', [lon, lat], '#5327c3', 'SVG icon');
+</script>
 @endsection
