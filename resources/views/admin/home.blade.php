@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Admin - Home')
+@section('title', Auth::user()->name . " " . Auth::user()->surname . ' - Home')
 
 
 @section('content')

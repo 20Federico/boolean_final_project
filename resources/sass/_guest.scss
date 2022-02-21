@@ -18,9 +18,8 @@ header {
 }
 
 main {
-    background-color: #f6f4f2;
+    /* background-color: #f6f4f2; */
     .container {
-        // background-color: #f6f4f2;
         .title {
           background-color: #373a361f;
           color: #373a36;
@@ -74,6 +73,7 @@ footer {
         li{
             list-style-type: none;
             margin-bottom: 10px;
+            font-size: smaller;
             a {
                 text-decoration: none;
                 color: black;
@@ -101,6 +101,29 @@ footer {
         }
         :hover {
             color: #d48166;
+        }
+    }
+}
+
+.registration, .login {
+
+    input:focus {
+        border-color: #d48166 !important;
+        box-shadow: 0 0 0 0.25rem rgb(212 129 102 / 25%);
+    } 
+}
+
+@media screen and (min-width: 576px) {
+    footer {
+        .col {
+            .border-bottom {
+                border-bottom: 0px !important;    
+            }
+            ul {
+                li {
+                   font-size: medium;
+               }
+           }
         }
     }
 }

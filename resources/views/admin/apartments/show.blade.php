@@ -1,4 +1,5 @@
-@extends('layouts.adminShow')
+{{-- @extends('layouts.adminShow') --}}
+@extends('layouts.admin')
 
 @section('title', 'Apartment - show')
 
