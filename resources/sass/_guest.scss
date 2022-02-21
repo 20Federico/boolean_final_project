@@ -64,6 +64,12 @@ main {
               }
           }
         }
+        .card{
+            img{
+                height: 160px ;
+                background-size: cover;
+            }
+        }
     }
 }
 
