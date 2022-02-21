@@ -36,7 +36,13 @@ const app = new Vue({
     el: '#app',
     data() {
       return {
-        searching: false
+        searching: false,
+        search: {}
       }
     },
+    methods: {
+      getQuery(value) {
+        this.search = value;
+      }
+    }
 });
