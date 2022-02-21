@@ -6,6 +6,8 @@
     padding-left: 0;
     height: $topnav-base-height;
     z-index: $zindex-topnav;
+    position: sticky; 
+    top:0;
 
     .navbar-brand {
         width: $sidenav-base-width;

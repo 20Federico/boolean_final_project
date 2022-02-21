@@ -1,8 +1,15 @@
 // Import Custom Variables
-@import "variables.scss";
+// @import "variables.scss";
 
 // Import Custom SCSS
-@import "global.scss";
+// @import "global.scss";
+
+
+.layout_container {
+  min-height: 100vh; 
+  display:flex; 
+  flex-direction:column;
+}
 
 header {
     background-color: #3d403c;

@@ -99,15 +99,19 @@
                         </div>
 
                         <div class="form-group row mb-3">
-                            <label for="cover_img" class="col-md-4 col-form-label text-md-right">Immagine <span style="color: rgb(207, 29, 29)">*</span></label>
-                            <div class="col-md-6">
-                                <div class="custom-file">
-                                  <input type="file" class="form-control" id="cover_img" name="cover_img" value="{{ $apartment->coverImg }}">
+                          <label @click="editImgVisible = false" for="cover_img" class="col-md-4 col-form-label text-md-right">Immagine <span style="color: rgb(207, 29, 29)">*</span></label>
+                          <div class="col-md-6">
+                              <div class="custom-file">
+                                <input @click="editImgVisible = false" type="file" class="form-control" id="cover_img" name="cover_img" value="{{ $apartment->coverImg }}">
+                              </div>
+                                <div v-if="editImgVisible">
+                                  @if (substr($apartment->cover_img, 0, 4 ) === 'http')
+                                  <img src="{{ url($apartment->cover_img) }}" class="img-thumbnail w-25" alt="">
+                                  @else    
+                                  <img src="{{ asset('storage/' . $apartment->cover_img) }}" class="class="img-thumbnail"" alt="">
+                                  @endif
                                 </div>
-                                <div >
-                                   <img class="img-thumbnail" src="{{ asset('storage/' . $apartment->cover_img ) }}">
-                                </div>
-                            </div>
+                          </div>
                         </div>
 
                         <div class="form-group row mb-3">
