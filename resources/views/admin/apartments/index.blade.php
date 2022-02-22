@@ -157,7 +157,12 @@
 
             <div class="col-md-6 col-lg-4 text-start d-flex flex-column flex-md-row align-items-center p-0">
               <div class="img-container flex-shrink-0 mb-3 me-md-3 ">
-                <img src="{{ asset('storage/' . $apartment->cover_img) }}" class="cover-img w-100 h-100" alt="">
+                {{-- <img src="{{ asset('storage/' . $apartment->cover_img) }}" class="cover-img w-100 h-100" alt=""> --}}
+                @if (substr($apartment->cover_img, 0, 4 ) === 'http')
+                  <img src="{{ url($apartment->cover_img) }}" class="cover-img w-100 h-100" alt="">
+                @else    
+                  <img src="{{ asset('storage/' . $apartment->cover_img) }}" class="cover-img w-100 h-100" alt="">
+                @endif
               </div>
               <div>{{ $apartment->title }}</div>
 
