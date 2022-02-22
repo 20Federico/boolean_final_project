@@ -6,7 +6,7 @@
 <div class="container">
 
     <div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="col-md-12  py-3 py-md-0">
             <div class="card">
                 <div class="card-header">Modifica la tua abitazione - <strong>{{$apartment->title}}</strong></div>
 
@@ -220,7 +220,7 @@
                         </div>
                         <div class="form-group row mb-4">
                             <label for="" class="col-md-4 col-form-label text-md-right" >Servizi aggiuntivi</label>
-                            <div class="col-md-6 d-flex align-items-center gap-3">
+                            <div class="col-md-6 d-flex flex-wrap align-items-center gap-3">
                                 
                                 @foreach ($services as $service)
                                     
