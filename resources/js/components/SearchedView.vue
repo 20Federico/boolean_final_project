@@ -124,7 +124,10 @@ export default {
 
             if (services.length > 0) {
                 services.forEach((serviceId) => {
-                    this.sortedApartments = this.sortedApartments.filter(item => item.services.some(serv => serv.id === serviceId));
+                    this.sortedApartments = this.sortedApartments.filter(
+                        (item) =>
+                            item.services.some((serv) => serv.id === serviceId)
+                    );
                 });
             }
         },
@@ -147,6 +150,15 @@ export default {
     },
     mounted() {
         this.GET_APARTMENTS_FROM_API();
+        this.map = tt.map({
+            key: "hwUAMJjGlcfAD2Yd3w1owWJqbrrLpfoo",
+            container: "map",
+            center: [12.494689, 41.899783],
+            zoom: 10,
+        });
+
+        this.map.addControl(new tt.FullscreenControl());
+        this.map.addControl(new tt.NavigationControl());
     },
     watch: {
         SEARCHNUMROOMS() {
