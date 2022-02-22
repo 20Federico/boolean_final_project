@@ -4,9 +4,10 @@
     box-sizing: border-box;
 }
 
-.my-carousel{
-    height: 550px;
-    width: 65%;
+
+.img_container{
+    width: 50%;
+    margin: auto;
 }
 .housepic-container{
     background-color: rgba(177, 177, 177, 0.158);
@@ -20,8 +21,22 @@
     /* border-bottom: 1px solid black; */
 }
 
+.btn-responsive{
+    width: auto;
+    margin: 0 15px;
+}
 /*UTILITIES*/
 
 .my-lh{
     line-height: 40px;
 }
+
+@media only screen and (max-width: 600px) {
+    .nav-responsive {
+      
+      .btn-responsive{
+        margin: 0;
+        width: 100%;
+      }
+    }
+  }
