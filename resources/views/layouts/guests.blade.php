@@ -31,7 +31,7 @@
         {{-- @yield('head_extra') --}}
     </head>
     <body>
-      <div id="app">
+      <div id="app" class="layout_container">
         <header>
 
           <div>
@@ -58,7 +58,7 @@
                   @else
                     <div class="sb-sidenav-footer text-light me-2 d-flex align-items-center">
                         {{-- <div class="small">Logged in as:</div> --}}
-                        <a href="{{route('admin.home')}}" style="text-decoration: none; color: white;">
+                        <a href="{{route('admin.apartments.index')}}" style="text-decoration: none; color: white;">
                             @if (Auth::user()->name)
                             {{ Auth::user()->name }} {{-- {{ Auth::user()->surname }} --}}
                             @else    

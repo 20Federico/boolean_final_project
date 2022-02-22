@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
   return view('welcome');
 })->name('home'); */
 
-Route::get('/home', 'HomeController@index')->name("admin.home");
+// Route::get('/home', 'HomeController@index')->name("admin.home");
 
 Route::namespace("Admin")
   ->prefix("admin")
@@ -31,7 +31,8 @@ Route::namespace("Admin")
     Route::resource("apartments", "ApartmentController");
     Route::resource("visits", "VisitController");
     Route::resource("messages", "MessageController");
-    Route::resource("sponsors", "SponsorController");
+    Route::get('{apartment}/sponsors', 'SponsorController@index')->name('sponsors.index');
+    Route::post('{apartment}/sponsors', 'SponsorController@store')->name('sponsors.store');
   });
 
 Auth::routes();

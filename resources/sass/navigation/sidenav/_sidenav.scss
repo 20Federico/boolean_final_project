@@ -16,6 +16,8 @@
         .nav {
             flex-direction: column;
             flex-wrap: nowrap;
+            position: sticky; 
+            top:70px;
 
             .sb-sidenav-menu-heading {
                 padding: 1.75rem 1rem 0.75rem;

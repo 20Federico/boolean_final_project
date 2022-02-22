@@ -183,7 +183,6 @@
                 <p class="m-0">Advanced</p>
                 <p class="d-none d-lg-inline-block fw-lighter fs-7 m-0">ends 23/12/21 ore 15:30</p>
             </div>
-            
             {{-- Pulsanti --}}
             <div class="col-lg-2 mt-4 mt-md-0 f-shrink-0">
               <a href="{{ route('admin.apartments.edit', $apartment->id) }}" class="btn btn-orange w-100"> 
@@ -200,7 +199,6 @@
                 <div class="p d-md-none d-lg-block">Vedi</div> 
                 <i class="fa fa-eye d-lg-none" aria-hidden="true"></i>
               </a>
-
             </div>
           </div>
 

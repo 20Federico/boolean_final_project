@@ -34,7 +34,7 @@
       <div id="app">
         <nav class="sb-topnav navbar navbar-expand main-nav">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="{{route('admin.home')}}">BoolBnB</a>
+            <a class="navbar-brand ps-3" href="{{route('admin.apartments.index')}}">BoolBnB</a>
 
             {{-- logout dropdown --}}
             <ul class="navbar-nav ms-auto pe-3 d-flex align-items-center">
@@ -85,11 +85,11 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <div class="sb-sidenav-menu-heading">Core</div>
+                            {{-- <div class="sb-sidenav-menu-heading">Core</div>
                             <a class="nav-link" href="{{route('admin.home')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
-                            </a>
+                            </a> --}}
                             <div class="sb-sidenav-menu-heading">Personal Area</div>
                             <a class="nav-link" href="{{route('admin.apartments.index')}}">
                               <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
@@ -106,14 +106,6 @@
                             </a>
                         </div>
                     </div>
-{{--                     <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                        @if (Auth::user()->name)
-                        {{ Auth::user()->name }}
-                        @else    
-                        {{substr(Auth::user()->email, 0, strpos(Auth::user()->email, '@' ))  }}
-                        @endif
-                    </div> --}}
                 </nav>
             </div>
             <div id="layoutSidenav_content">
@@ -188,18 +180,6 @@
                         </div>
                     </div>
                 </footer>
-{{--                 <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your BoolBnB 2022</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer> --}}
             </div>
         </div>
       </div>
