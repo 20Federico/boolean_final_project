@@ -1,67 +1,101 @@
 <template>
   <div class="container py-5">
-    <div class="row justify-content-center gap-3 text-center">
+    <div class="text-center">
       <h2 class="py-3">Appartamenti in primo piano</h2>
-      <div
-        class="card px-0 shadow-lg mb-5 bg-body rounded"
-        style="width: 18rem"
-      >
-        <img
-          src="https://e8rbh6por3n.exactdn.com/sites/uploads/2020/05/villa-la-gi-thumbnail.jpg?strip=all&lossy=1&ssl=1"
-          class="card-img-top"
-          alt="..."
-        />
-        <div class="card-body text-center">
-          <h5 style="color: #d48166">Nome Appartamento</h5>
+    </div>
+    <div
+      class="
+        row row-cols-1 row-cols-md-2 row-cols-lg-4
+        justify-content-center
+        text-center
+      "
+    >
+      <div class="col d-flex justify-content-center">
+        <div
+          class="card px-0 shadow-lg mb-5 bg-body rounded"
+          style="width: 18rem"
+        >
+          <img
+            src="https://e8rbh6por3n.exactdn.com/sites/uploads/2020/05/villa-la-gi-thumbnail.jpg?strip=all&lossy=1&ssl=1"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body text-center">
+            <h5 style="color: #d48166">Nome Appartamento</h5>
 
-          <hr class="mt-3 mb-3" style="width: 25%; margin: auto" />
+            <hr class="mt-3 mb-3" style="width: 25%; margin: auto" />
 
-          <p class="card-text text-center">
-            <i class="fas fa-map-marker-alt fs-5" style="color: #d48166"></i>
-            Via roma 83
-          </p>
+            <p class="card-text text-center">
+              <i class="fas fa-map-marker-alt fs-5" style="color: #d48166"></i>
+              Via roma 83
+            </p>
+          </div>
         </div>
       </div>
+      <div class="col d-flex justify-content-center">
+        <div
+          class="card px-0 shadow-lg mb-5 bg-body rounded"
+          style="width: 18rem"
+        >
+          <img
+            src="https://cdn.villa-bali.com/cache/fullSize/villas/villa-umara/villa-umara-57-umara-pool-daylight-a2-5d64dfce678ae.jpg"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body text-center">
+            <h5 style="color: #d48166">Nome Appartamento</h5>
 
-      <div
-        class="card px-0 shadow-lg mb-5 bg-body rounded"
-        style="width: 18rem"
-      >
-        <img
-          src="https://cdn.villa-bali.com/cache/fullSize/villas/villa-umara/villa-umara-57-umara-pool-daylight-a2-5d64dfce678ae.jpg"
-          class="card-img-top"
-          alt="..."
-        />
-        <div class="card-body text-center">
-          <h5 style="color: #d48166">Nome Appartamento</h5>
+            <hr class="mt-3 mb-3" style="width: 25%; margin: auto" />
 
-          <hr class="mt-3 mb-3" style="width: 25%; margin: auto" />
-
-          <p class="card-text text-center">
-            <i class="fas fa-map-marker-alt fs-5" style="color: #d48166"></i>
-            Via roma 83
-          </p>
+            <p class="card-text text-center">
+              <i class="fas fa-map-marker-alt fs-5" style="color: #d48166"></i>
+              Via roma 83
+            </p>
+          </div>
         </div>
       </div>
+      <div class="col d-flex justify-content-center">
+        <div
+          class="card px-0 shadow-lg mb-5 bg-body rounded"
+          style="width: 18rem"
+        >
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCqp4kOV4rN0HAmR4kfa12rpdILdl3qmAVRA&usqp=CAU"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body text-center">
+            <h5 style="color: #d48166">Nome Appartamento</h5>
 
-      <div
-        class="card px-0 shadow-lg mb-5 bg-body rounded"
-        style="width: 18rem"
-      >
-        <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCqp4kOV4rN0HAmR4kfa12rpdILdl3qmAVRA&usqp=CAU"
-          class="card-img-top"
-          alt="..."
-        />
-        <div class="card-body text-center">
-          <h5 style="color: #d48166">Nome Appartamento</h5>
+            <hr class="mt-3 mb-3" style="width: 25%; margin: auto" />
 
-          <hr class="mt-3 mb-3" style="width: 25%; margin: auto" />
+            <p class="card-text text-center">
+              <i class="fas fa-map-marker-alt fs-5" style="color: #d48166"></i>
+              Via roma 83
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col d-flex justify-content-center">
+        <div
+          class="card px-0 shadow-lg mb-5 bg-body rounded"
+          style="width: 18rem"
+        >
+          <img
+            src="https://www.affittovacanze.com/images/photos/houses/0464-XL.jpg"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body text-center">
+            <h5 style="color: #d48166">Nome Appartamento</h5>
 
-          <p class="card-text text-center">
-            <i class="fas fa-map-marker-alt fs-5" style="color: #d48166"></i>
-            Via roma 83
-          </p>
+            <hr class="mt-3 mb-3" style="width: 25%; margin: auto" />
+
+            <p class="card-text text-center">
+              <i class="fas fa-map-marker-alt fs-5" style="color: #d48166"></i>
+              Via roma 83
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -111,114 +145,128 @@
     </div>
 
     <!-- card opzioni -->
-    <div class="row justify-content-center vacation-option">
-      <div
-        class="card px-0 shadow-lg mb-5 bg-body rounded"
-        style="width: 18rem"
-      >
-        <img
-          src="https://images-1.casa.it/800x600/listing/65e595d7896fdd0e15db3e6e1c814485"
-          class="card-img-top"
-          alt="..."
-        />
-        <div class="card-body">
-          <h5 style="color: #3d403c">Spazi unici</h5>
+    <div
+      class="row row-cols-1 row-cols-md-2 row-cols-lg-3 justify-content-center"
+    >
+      <div class="col d-flex justify-content-center">
+        <div
+          class="card px-0 shadow-lg mb-5 bg-body rounded"
+          style="width: 18rem"
+        >
+          <img
+            src="https://images-1.casa.it/800x600/listing/65e595d7896fdd0e15db3e6e1c814485"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <h5 style="color: #3d403c">Spazi unici</h5>
 
-          <p class="card-text promo-desc">
-            Molto più che semplici spazi dove trascorrere la notte
-          </p>
+            <p class="card-text promo-desc">
+              Molto più che semplici spazi dove trascorrere la notte
+            </p>
+          </div>
         </div>
       </div>
 
-      <div
-        class="card px-0 shadow-lg mb-5 bg-body rounded"
-        style="width: 18rem"
-      >
-        <img
-          src="https://wips.plug.it/cips/paginegialle.it/magazine/cms/2020/04/pranzo_di_pasqua.jpg?w=744&h=418&a=c"
-          class="card-img-top"
-          alt="..."
-        />
-        <div class="card-body">
-          <h5 style="color: #3d403c">Esperienza online</h5>
+      <div class="col d-flex justify-content-center">
+        <div
+          class="card px-0 shadow-lg mb-5 bg-body rounded"
+          style="width: 18rem"
+        >
+          <img
+            src="https://wips.plug.it/cips/paginegialle.it/magazine/cms/2020/04/pranzo_di_pasqua.jpg?w=744&h=418&a=c"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <h5 style="color: #3d403c">Esperienza online</h5>
 
-          <p class="card-text promo-desc">
-            Attività uniche che possiamo fare insieme. organizzate dal host di
-            tutto il mondo
-          </p>
+            <p class="card-text promo-desc">
+              Attività uniche che possiamo fare insieme. organizzate dal host di
+              tutto il mondo
+            </p>
+          </div>
         </div>
       </div>
 
-      <div
-        class="card px-0 shadow-lg mb-5 bg-body rounded"
-        style="width: 18rem"
-      >
-        <img
-          src="https://st3.idealista.it/news/archivie/styles/news_detail/public/2013-06/Burlingame-Residence-03-800x532.jpg?sv=khPb1_5N&itok=GcSfHazH"
-          class="card-img-top"
-          alt="..."
-        />
-        <div class="card-body">
-          <h5 style="color: #3d403c">Case intere</h5>
+      <div class="col d-flex justify-content-center">
+        <div
+          class="card px-0 shadow-lg mb-5 bg-body rounded"
+          style="width: 18rem"
+        >
+          <img
+            src="https://st3.idealista.it/news/archivie/styles/news_detail/public/2013-06/Burlingame-Residence-03-800x532.jpg?sv=khPb1_5N&itok=GcSfHazH"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <h5 style="color: #3d403c">Case intere</h5>
 
-          <p class="card-text promo-desc">
-            Alloggi privati e confortevoli, con ampi spazi all’interno e
-            all’esterno
-          </p>
+            <p class="card-text promo-desc">
+              Alloggi privati e confortevoli, con ampi spazi all’interno e
+              all’esterno
+            </p>
+          </div>
         </div>
       </div>
-      <div
-        class="card px-0 shadow-lg mb-5 bg-body rounded"
-        style="width: 18rem"
-      >
-        <img
-          src="https://media-cdn.tripadvisor.com/media/vr-splice-j/0b/19/5b/59.jpg"
-          class="card-img-top"
-          alt="..."
-        />
-        <div class="card-body">
-          <h5 class="mb-2" style="color: #3d403c">Nella natura</h5>
+      <div class="col d-flex justify-content-center">
+        <div
+          class="card px-0 shadow-lg mb-5 bg-body rounded"
+          style="width: 18rem"
+        >
+          <img
+            src="https://media-cdn.tripadvisor.com/media/vr-splice-j/0b/19/5b/59.jpg"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <h5 class="mb-2" style="color: #3d403c">Nella natura</h5>
 
-          <p class="card-text promo-desc">
-            Dai libero sfogo alla tua voglia di esplorare e rilassati nel
-            confort di una maison su misura per te
-          </p>
+            <p class="card-text promo-desc">
+              Dai libero sfogo alla tua voglia di esplorare e rilassati nel
+              confort di una maison su misura per te
+            </p>
+          </div>
         </div>
       </div>
-      <div
-        class="card px-0 shadow-lg mb-5 bg-body rounded"
-        style="width: 18rem"
-      >
-        <img
-          src="https://www.globestyles.com/wp-content/uploads/2021/06/Le-10-mini-case-piu-belle-del-mondo-1.jpg"
-          class="card-img-top"
-          alt="..."
-        />
-        <div class="card-body">
-          <h5 style="color: #3d403c">Vacanze da sogno</h5>
+      <div class="col d-flex justify-content-center">
+        <div
+          class="card px-0 shadow-lg mb-5 bg-body rounded"
+          style="width: 18rem"
+        >
+          <img
+            src="https://www.globestyles.com/wp-content/uploads/2021/06/Le-10-mini-case-piu-belle-del-mondo-1.jpg"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <h5 style="color: #3d403c">Vacanze da sogno</h5>
 
-          <p class="card-text promo-desc">
-            Prenota le tue vacanze e parti per una nuova avventura
-          </p>
+            <p class="card-text promo-desc">
+              Prenota le tue vacanze e parti per una nuova avventura
+            </p>
+          </div>
         </div>
       </div>
 
-      <div
-        class="card px-0 shadow-lg mb-5 bg-body rounded"
-        style="width: 18rem"
-      >
-        <img
-          src="https://static.fanpage.it/wp-content/uploads/sites/10/2020/10/05_Airbnb_MiniCase_FiuliVeneziaGiulia.jpg"
-          class="card-img-top"
-          alt="..."
-        />
-        <div class="card-body">
-          <h5 style="color: #3d403c">Relax e armonia</h5>
+      <div class="col d-flex justify-content-center">
+        <div
+          class="card px-0 shadow-lg mb-5 bg-body rounded"
+          style="width: 18rem"
+        >
+          <img
+            src="https://static.fanpage.it/wp-content/uploads/sites/10/2020/10/05_Airbnb_MiniCase_FiuliVeneziaGiulia.jpg"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <h5 style="color: #3d403c">Relax e armonia</h5>
 
-          <p class="card-text promo-desc">
-            Regalati una piccola fuga di benessere per staccare dalla routeine
-            quotidiana
-          </p>
+            <p class="card-text promo-desc">
+              Regalati una piccola fuga di benessere per staccare dalla routeine
+              quotidiana
+            </p>
+          </div>
         </div>
       </div>
     </div>
