@@ -7,7 +7,7 @@
 
   <home-page v-if="!searching"></home-page>
 
-  <searched-view v-if="searching" @back="searching = false" :apartments="{{json_encode($apartments)}}" :search='search' ></searched-view>
+  <searched-view v-if="searching" @back="searching = false" :search='search' ></searched-view>
 
 
 @endsection
