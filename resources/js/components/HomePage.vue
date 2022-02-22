@@ -1,7 +1,7 @@
 <template>
   <div class="container py-5">
     <div class="text-center">
-      <h2 class="py-3">Appartamenti in primo piano</h2>
+      <h2 class="pb-5">Appartamenti in primo piano</h2>
     </div>
     <div
       class="
@@ -145,127 +145,132 @@
     </div>
 
     <!-- card opzioni -->
-    <div
-      class="row row-cols-1 row-cols-md-2 row-cols-lg-3 justify-content-center"
-    >
-      <div class="col d-flex justify-content-center">
-        <div
-          class="card px-0 shadow-lg mb-5 bg-body rounded"
-          style="width: 18rem"
-        >
-          <img
-            src="https://images-1.casa.it/800x600/listing/65e595d7896fdd0e15db3e6e1c814485"
-            class="card-img-top"
-            alt="..."
-          />
-          <div class="card-body">
-            <h5 style="color: #3d403c">Spazi unici</h5>
+    <div class="card-option">
+      <div
+        class="
+          row row-cols-1 row-cols-md-2 row-cols-lg-3
+          justify-content-center
+        "
+      >
+        <div class="col d-flex justify-content-center">
+          <div
+            class="card px-0 shadow-lg mb-5 bg-body rounded"
+            style="width: 18rem"
+          >
+            <img
+              src="https://images-1.casa.it/800x600/listing/65e595d7896fdd0e15db3e6e1c814485"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 style="color: #3d403c">Spazi unici</h5>
 
-            <p class="card-text promo-desc">
-              Molto più che semplici spazi dove trascorrere la notte
-            </p>
+              <p class="card-text promo-desc">
+                Molto più che semplici spazi dove trascorrere la notte
+              </p>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="col d-flex justify-content-center">
-        <div
-          class="card px-0 shadow-lg mb-5 bg-body rounded"
-          style="width: 18rem"
-        >
-          <img
-            src="https://wips.plug.it/cips/paginegialle.it/magazine/cms/2020/04/pranzo_di_pasqua.jpg?w=744&h=418&a=c"
-            class="card-img-top"
-            alt="..."
-          />
-          <div class="card-body">
-            <h5 style="color: #3d403c">Esperienza online</h5>
+        <div class="col d-flex justify-content-center">
+          <div
+            class="card px-0 shadow-lg mb-5 bg-body rounded"
+            style="width: 18rem"
+          >
+            <img
+              src="https://wips.plug.it/cips/paginegialle.it/magazine/cms/2020/04/pranzo_di_pasqua.jpg?w=744&h=418&a=c"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 style="color: #3d403c">Esperienza online</h5>
 
-            <p class="card-text promo-desc">
-              Attività uniche che possiamo fare insieme. organizzate dal host di
-              tutto il mondo
-            </p>
+              <p class="card-text promo-desc">
+                Attività uniche che possiamo fare insieme. organizzate dal host
+                di tutto il mondo
+              </p>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="col d-flex justify-content-center">
-        <div
-          class="card px-0 shadow-lg mb-5 bg-body rounded"
-          style="width: 18rem"
-        >
-          <img
-            src="https://st3.idealista.it/news/archivie/styles/news_detail/public/2013-06/Burlingame-Residence-03-800x532.jpg?sv=khPb1_5N&itok=GcSfHazH"
-            class="card-img-top"
-            alt="..."
-          />
-          <div class="card-body">
-            <h5 style="color: #3d403c">Case intere</h5>
+        <div class="col d-flex justify-content-center">
+          <div
+            class="card px-0 shadow-lg mb-5 bg-body rounded"
+            style="width: 18rem"
+          >
+            <img
+              src="https://st3.idealista.it/news/archivie/styles/news_detail/public/2013-06/Burlingame-Residence-03-800x532.jpg?sv=khPb1_5N&itok=GcSfHazH"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 style="color: #3d403c">Case intere</h5>
 
-            <p class="card-text promo-desc">
-              Alloggi privati e confortevoli, con ampi spazi all’interno e
-              all’esterno
-            </p>
+              <p class="card-text promo-desc">
+                Alloggi privati e confortevoli, con ampi spazi all’interno e
+                all’esterno
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col d-flex justify-content-center">
-        <div
-          class="card px-0 shadow-lg mb-5 bg-body rounded"
-          style="width: 18rem"
-        >
-          <img
-            src="https://media-cdn.tripadvisor.com/media/vr-splice-j/0b/19/5b/59.jpg"
-            class="card-img-top"
-            alt="..."
-          />
-          <div class="card-body">
-            <h5 class="mb-2" style="color: #3d403c">Nella natura</h5>
+        <div class="col d-flex justify-content-center">
+          <div
+            class="card px-0 shadow-lg mb-5 bg-body rounded"
+            style="width: 18rem"
+          >
+            <img
+              src="https://media-cdn.tripadvisor.com/media/vr-splice-j/0b/19/5b/59.jpg"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="mb-2" style="color: #3d403c">Nella natura</h5>
 
-            <p class="card-text promo-desc">
-              Dai libero sfogo alla tua voglia di esplorare e rilassati nel
-              confort di una maison su misura per te
-            </p>
+              <p class="card-text promo-desc">
+                Dai libero sfogo alla tua voglia di esplorare e rilassati nel
+                confort di una maison su misura per te
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col d-flex justify-content-center">
-        <div
-          class="card px-0 shadow-lg mb-5 bg-body rounded"
-          style="width: 18rem"
-        >
-          <img
-            src="https://www.globestyles.com/wp-content/uploads/2021/06/Le-10-mini-case-piu-belle-del-mondo-1.jpg"
-            class="card-img-top"
-            alt="..."
-          />
-          <div class="card-body">
-            <h5 style="color: #3d403c">Vacanze da sogno</h5>
+        <div class="col d-flex justify-content-center">
+          <div
+            class="card px-0 shadow-lg mb-5 bg-body rounded"
+            style="width: 18rem"
+          >
+            <img
+              src="https://www.globestyles.com/wp-content/uploads/2021/06/Le-10-mini-case-piu-belle-del-mondo-1.jpg"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 style="color: #3d403c">Vacanze da sogno</h5>
 
-            <p class="card-text promo-desc">
-              Prenota le tue vacanze e parti per una nuova avventura
-            </p>
+              <p class="card-text promo-desc">
+                Prenota le tue vacanze e parti per una nuova avventura
+              </p>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="col d-flex justify-content-center">
-        <div
-          class="card px-0 shadow-lg mb-5 bg-body rounded"
-          style="width: 18rem"
-        >
-          <img
-            src="https://static.fanpage.it/wp-content/uploads/sites/10/2020/10/05_Airbnb_MiniCase_FiuliVeneziaGiulia.jpg"
-            class="card-img-top"
-            alt="..."
-          />
-          <div class="card-body">
-            <h5 style="color: #3d403c">Relax e armonia</h5>
+        <div class="col d-flex justify-content-center">
+          <div
+            class="card px-0 shadow-lg mb-5 bg-body rounded"
+            style="width: 18rem"
+          >
+            <img
+              src="https://static.fanpage.it/wp-content/uploads/sites/10/2020/10/05_Airbnb_MiniCase_FiuliVeneziaGiulia.jpg"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 style="color: #3d403c">Relax e armonia</h5>
 
-            <p class="card-text promo-desc">
-              Regalati una piccola fuga di benessere per staccare dalla routeine
-              quotidiana
-            </p>
+              <p class="card-text promo-desc">
+                Regalati una piccola fuga di benessere per staccare dalla
+                routeine quotidiana
+              </p>
+            </div>
           </div>
         </div>
       </div>
