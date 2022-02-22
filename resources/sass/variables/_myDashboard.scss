@@ -1,6 +1,6 @@
 
 
-.apartment-card .img-container{
+.img-container{
   width: 150px;
   height: 150px;
 }
@@ -9,19 +9,16 @@
   background-color: #F6F4F2;
   padding: 15px 20px;
   border-radius: 15px;
+}
 
-  .img-container{
-      
-      img{
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          object-fit: cover;
-          overflow: hidden;
-          border-radius: 10px;
-      }
-  }
+.cover-img{
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: 10px;
 }
 
 .apartment-data p{
@@ -62,3 +59,8 @@
   
 }
 
+@media screen and (min-width: 992px){
+    .list-group .col-lg-5{
+        border-left: 2px solid lightgrey;
+    }
+}
