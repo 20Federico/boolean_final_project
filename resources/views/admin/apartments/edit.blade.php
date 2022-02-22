@@ -32,7 +32,7 @@
 
                         <div class="form-group row mb-3">
                             <label for="street_name" class="col-md-4 col-form-label text-md-right" >Indirizzo <span style="color: rgb(207, 29, 29)">*</span></label>
-                            <div class="col-md-5">
+                            <div class="col-md-5 mb-2 mb-md-0">
                                 <input type="text" class="form-control @error('street_name') is-invalid @enderror" name="street_name" id="street_name" value="{{old('street_name') ?? $apartment->address->street_name}}">
                                 @error('street_name')
                                   <span class="invalid-feedback" role="alert">
@@ -40,7 +40,7 @@
                                   </span>
                                 @enderror
                             </div>
-                            <div class="col-md-1 pl-0">
+                            <div class="col-md-1 ps-md-0">
                                 <input type="text" class="form-control @error('street_number') is-invalid @enderror" name="street_number" id="street_number" value="{{ old('street_number') ?? $apartment->address->street_number}}">
                                 @error('street_number')
                                   <span class="invalid-feedback" role="alert">
