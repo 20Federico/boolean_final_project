@@ -166,5 +166,7 @@
       </div>
       <script src="{{ asset('js/app.js') }}"></script>
       <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/services/services-web.min.js"></script>
+      @yield('extra_scripts')
+
     </body>
 </html>

@@ -41,6 +41,8 @@ Auth::routes();
   return view("guests.home");
 })->where("any", ".*");  */
 
+Route::resource("apartments", "Guest\ApartmentController")->except(["store"]);
+Route::post("{apartment}/apartments", "Guest\ApartmentController@store")->name("apartments.store");
 
 Route::get('/', function () {
 
