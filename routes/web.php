@@ -31,7 +31,8 @@ Route::namespace("Admin")
     Route::resource("apartments", "ApartmentController");
     Route::resource("visits", "VisitController");
     Route::resource("messages", "MessageController");
-    Route::resource("sponsors", "SponsorController");
+    Route::get('{apartment}/sponsors', 'SponsorController@index')->name('sponsors.index');
+    Route::post('{apartment}/sponsors', 'SponsorController@store')->name('sponsors.store');
   });
 
 Auth::routes();
