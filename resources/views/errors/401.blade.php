@@ -2,6 +2,6 @@
 
 @section('title', '401')
 
-@section('error', 'Unauthorized')
+@section('error', 'Error 401 - Unauthorized')
 
 @section('Try to login')

@@ -3,7 +3,7 @@
 @section('title', 'Apartment - create')
 
 @section('content')
-<div class="container">
+<div class="container py-3">
 
     <div class="row justify-content-center">
         <div class="col-md-12">

@@ -12,8 +12,8 @@
             @yield('error')
         </h1>
         <h3 class="py-2">@yield('errordescription')</h3>
-        <a href="{{route('admin.home')}}">
-        <button class="btn mb-2 mb-md-0  btn-block btn-round btn-custom">Return to Homepage</button></a>
+        <a>
+        <button class="btn mb-2 mb-md-0  btn-block btn-round btn-custom" onclick="javascript:history.back()">Return to Homepage</button></a>
     </div>
 </body>
 
