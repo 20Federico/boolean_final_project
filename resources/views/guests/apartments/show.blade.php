@@ -19,16 +19,16 @@
 
 <div class="main-container m-auto h-50 w-100">
     <!-- immagine casa -->
-    <div class="housepic-container w-100 d-flex justify-content-center">
-        <div class="img-container my-carousel position-relative">
-          @if (substr($apartment->cover_img, 0, 4 ) === 'http')
-            <img src="{{ url($apartment->cover_img) }}" class="img-fluid" alt="">
-          @else    
-            <img src="{{ asset('storage/' . $apartment->cover_img) }}" class="img-fluid" alt="">
-          @endif
-        </div>
+    <div class="housepic-container">
+      <div class="img_container">
+        @if (substr($apartment->cover_img, 0, 4 ) === 'http')
+          <img src="{{ url($apartment->cover_img) }}" class="w-100" alt="">
+        @else    
+          <img src="{{ asset('storage/' . $apartment->cover_img) }}" class="w-100" alt="">
+        @endif
+      </div>
 
-    </div>
+  </div>
 
     <div class="container py-5">
 
