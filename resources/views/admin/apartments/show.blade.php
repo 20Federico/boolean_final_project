@@ -132,7 +132,7 @@
     <div id="messaggi" class="card-body">
       <ul class="list-group">
         @if (count($messages) == 0)
-        nesson messaggio
+        nessun messaggio
         @endif
         @if (count($messages) > 0)
         <ul class="list-group">
