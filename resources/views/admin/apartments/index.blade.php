@@ -143,45 +143,63 @@
           </div>
           -->
           <div class="row row-cols-1 row-cols-md-6 align-items-center text-center apartment-card mb-3">
-            <div class="col-lg-1">
-              <p class="fw-lighter fs-6 text-center">23/23/2022 <br>
-                ore <br>
-                15:22:22
-                </p>
+            <div class="d-none d-lg-inline-block col-lg-1">
+              
+              <div class="row row-cols-sm-1 text-center fw-lighter fs-6  me-3 mb-3">
+                Creato il
+                @php
+                echo date_format($apartment->created_at,"d/m/Y");
+                @endphp ore
+                @php echo date_format($apartment->created_at,"H:i:s");
+                @endphp
+              </div>
             </div>
-            <div class="col-lg-5 text-start d-flex align-items-center">
-              <div class="img-container me-3">
+
+            <div class="col-md-6 col-lg-4 text-start d-flex flex-column flex-md-row align-items-center p-0">
+              <div class="img-container flex-shrink-0 mb-3 me-md-3 ">
                 <img src="{{ asset('storage/' . $apartment->cover_img) }}" class="cover-img w-100 h-100" alt="">
               </div>
-              immagine e titolo
+              <div>{{ $apartment->title }}</div>
 
             </div>
 
-            <div class="col-lg-2">
+            <div class="col-4 col-md-1 col-lg-2 mt-4 mt-md-0 border-md-start border-2 py-3">
               <i class="fa fa-envelope" aria-hidden="true"></i>
-                <p>New messages</p>
+                <p class="d-none d-lg-block m-0">New messages</p>
                 {{-- estrapolare dati DB --}}
-                <p>3</p>
+                <p class="m-0">3</p>
             </div>
             
-            <div class="col-lg-1">
+            <div class="col-4 col-md-1 col-lg-1 mt-4 mt-md-0 border-md-start border-2 py-3">
               <i class="fa fa-eye" aria-hidden="true"></i>
-                <p>Views</p>
+                <p class="d-none d-lg-block m-0">Views</p>
                 {{-- estrapolare dati DB --}}
-                <p>3</p>
+                <p class="m-0">3</p>
             </div>
 
-            <div class="col-lg-2">
+            <div class="col-4 col-md-2 col-lg-2 mt-4 mt-md-0 border-md-start border-md-end border-2 py-3">
               <i class="fa fa-rocket" aria-hidden="true"></i>
                 {{-- Estrapolare dati DB --}}
-                <p>Advanced Plan</p>
-                <p class="fw-lighter fs-7">ends 23/12/21 ore 15:30</p>
+                <p class="m-0">Advanced</p>
+                <p class="d-none d-lg-inline-block fw-lighter fs-7 m-0">ends 23/12/21 ore 15:30</p>
             </div>
+            
+            {{-- Pulsanti --}}
+            <div class="col-lg-2 mt-4 mt-md-0 f-shrink-0">
+              <a href="{{ route('admin.apartments.edit', $apartment->id) }}" class="btn btn-orange w-100"> 
+                <div class="p d-md-none d-lg-block">Modifica</div> 
+                <i class="fa fa-paint-brush d-lg-none" aria-hidden="true"></i>
+              </a>
+              
+              <a href="{{ route('admin.apartments.destroy', $apartment->id) }}" class="btn theme-btn-white w-100">
+                <div class="p d-md-none d-lg-block">Elimina</div> 
+                <i class="fa fa-trash d-lg-none" aria-hidden="true"></i>
+              </a>
 
-            <div class="col-lg-1">
-              <a href="{{ route('admin.apartments.edit', $apartment->id) }}" class="btn btn-orange mb-xl-3 w-100">Modifica casa</a>
-              <a href="{{ route('admin.apartments.destroy', $apartment->id) }}" class="btn theme-btn-white w-100">Elimina casa</a>
-              <a href="{{ route('admin.apartments.show', $apartment->id) }}" class="btn theme-btn-white w-100">Vedi casa</a>
+              <a href="{{ route('admin.apartments.show', $apartment->id) }}" class="btn theme-btn-white w-100">
+                <div class="p d-md-none d-lg-block">Vedi</div> 
+                <i class="fa fa-eye d-lg-none" aria-hidden="true"></i>
+              </a>
 
             </div>
           </div>

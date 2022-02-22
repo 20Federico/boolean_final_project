@@ -58,3 +58,10 @@
   color: white;
   
 }
+
+
+@media screen and (min-width: 992px){
+    .list-group .col-lg-5{
+        border-left: 2px solid lightgrey;
+    }
+}
