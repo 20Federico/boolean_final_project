@@ -61,9 +61,9 @@
 
             </div>
             <hr class="my-3">
-            <div class="w-50 fs-5">
+            <div class="fs-5">
                 <h3>Descrizione</h3>
-                <p>
+                <p style="overflow-wrap:break-word">
                   {{ $apartment->description }}
                 </p>
             </div>
