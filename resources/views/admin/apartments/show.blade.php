@@ -23,7 +23,9 @@
         <div class="container nav-responsive d-flex flex-wrap justify-content-center d-flex-wrap">
             <a href="{{ route('admin.apartments.edit', $apartment->id) }}" class="btn-responsive btn btn-primary btn-lg mb-3">Modifica</a>
             <a href="#messaggi" class="btn-responsive btn btn-warning btn-lg mb-3">Messaggi</a>
+            @if(count($apartment->sponsor) == 0)
             <a href="{{route('admin.sponsors.index', $apartment->id)}}" class="btn-responsive btn btn-success btn-lg mb-3">Sponsorizza</a>
+            @endif
             <a href="{{ route('admin.visits.show', $apartment->id) }}" class="btn-responsive btn btn-info btn-lg mb-3">Statistiche</a>
             {{-- <form action="{{ route('admin.apartments.destroy', $apartment->id) }}" method="post" class="btn-responsive">
                 @csrf
