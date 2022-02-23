@@ -16,7 +16,7 @@
         Aggiungi nuovo
       </a>
     </div>
-    <div class="card-body">
+    <div class="card-body orange-bg">
       <ul class="list-group">
         @if (count($apartmentsList) == 0)
         <div class="text-center">
@@ -142,10 +142,10 @@
             </div>
           </div>
           -->
-          <div class="row row-cols-1 row-cols-md-6 align-items-center text-center apartment-card mb-3">
-            <div class="d-none d-lg-inline-block col-lg-1">
+          <div class="row row-cols-1 row-cols-md-6 align-items-center text-center apartment-card mb-3 orange-border">
+            <div class="d-none d-xl-inline-block col-lg-1">
               
-              <div class="row row-cols-sm-1 text-center fw-lighter fs-6  me-3 mb-3">
+              <div class="row row-cols-1 text-center fw-lighter text-small flex-shrink-0 me-lg-3">
                 Creato il
                 @php
                 echo date_format($apartment->created_at,"d/m/Y");
@@ -155,8 +155,8 @@
               </div>
             </div>
 
-            <div class="col-md-6 col-lg-4 text-start d-flex flex-column flex-md-row align-items-center p-0">
-              <div class="img-container flex-shrink-0 mb-3 me-md-3 ">
+            <div class="col-md-6 col-lg-5 col-xl-4 text-start d-flex flex-column flex-md-row align-items-center p-0">
+              <div class="img-container flex-shrink-0 mb-3 mb-md-0 me-md-3 ">
                 {{-- <img src="{{ asset('storage/' . $apartment->cover_img) }}" class="cover-img w-100 h-100" alt=""> --}}
                 @if (substr($apartment->cover_img, 0, 4 ) === 'http')
                   <img src="{{ url($apartment->cover_img) }}" class="cover-img w-100 h-100" alt="">
@@ -164,7 +164,7 @@
                   <img src="{{ asset('storage/' . $apartment->cover_img) }}" class="cover-img w-100 h-100" alt="">
                 @endif
               </div>
-              <div>{{ $apartment->title }}</div>
+              <div class="text-title pe-md-2">{{ $apartment->title }}</div>
 
             </div>
 
@@ -186,10 +186,10 @@
               <i class="fa fa-rocket" aria-hidden="true"></i>
                 {{-- Estrapolare dati DB --}}
                 <p class="m-0">Advanced</p>
-                <p class="d-none d-lg-inline-block fw-lighter fs-7 m-0">ends 23/12/21 ore 15:30</p>
+                <p class="d-none d-lg-inline-block fw-lighter text-small m-0">ends 23/12/21 ore 15:30</p>
             </div>
             {{-- Pulsanti --}}
-            <div class="col-lg-2 mt-4 mt-md-0 f-shrink-0">
+            <div class="col-lg-2 mt-4 mt-md-0 f-shrink-0 2">
               <a href="{{ route('admin.apartments.edit', $apartment->id) }}" class="btn btn-orange w-100"> 
                 <div class="p d-md-none d-lg-block">Modifica</div> 
                 <i class="fa fa-paint-brush d-lg-none" aria-hidden="true"></i>

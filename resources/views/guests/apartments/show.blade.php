@@ -37,9 +37,88 @@
 
   </div>
 
-    <div class="container py-5">
+    <div class="container p-5 my-5 bg-white rounded shadow">
+        <div class="host mb-3 mb-sm-5">
+            {{-- Titolo casa --}}
+            <h1 class="mb-3 mb-sm-3">{{ $apartment->title }}</h1>
 
-        <div class="container d-flex justify-content-center gap-3 d-flex-wrap">
+            <h5 class="mb-4 mb-sm-5"><strong>Host: </strong>{{ $apartment->user->name}} {{ $apartment->user->surname}}</h5>
+
+            <div class="mb-3 mb-sm-5">
+                <h3>Presso per notte: {{ $apartment->price_day }} €</h3>
+            </div>
+            {{-- @if ($apartment->visible)
+            <p class="text-success">Visibile agli utenti</p>
+            @else
+            <p class="text-danger">NON visibile agli utenti</p>
+            @endif --}}
+            {{-- <p class="mb-0 text-secondary">Creato il: {{$apartment->created_at}}</p> --}}
+            {{-- <p class="pb-3 text-secondary">Ultima modifica: {{$apartment->updated_at}}</p> --}}
+
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-2 d-flex flex-column flex-column-reverse f flex-md-row">
+            
+            <div class="col col-md-5 pe-5">
+                
+                
+               {{--  <div class="w-50 fs-5">
+                    <h3>Descrizione</h3>
+                    {{ $apartment->description }}
+                </div>
+                <hr class="my-3"> --}}
+    
+                <section class="mb-4">
+                    <h3>Informazioni</h3>
+    
+                    <ul class="list-unstyled">
+                        <li class="ps-2"><span>Stanze: {{ $apartment->n_rooms }}</span></li>
+                        <li class="ps-2"><span>Bagni: {{ $apartment->n_baths }}</span></li>
+                        <li class="ps-2"><span>Posti letto: {{ $apartment->n_beds }}</span></li>
+                        <li class="ps-2"><span>Grandezza: {{ $apartment->square_meters }} m<sup>2</sup></span></li>
+                        <li class="ps-2"><span>Condiviso: {{ $apartment->shared ? 'Sì' : 'No' }}</span></li>
+                    </ul>
+                </section>
+    
+                
+                @if(count($apartment->services) !== 0)
+                
+                      <section>
+                    <h3>Servizi aggiuntivi</h3>
+    
+                    <ul class="list-unstyled">
+                        @foreach ($apartment->services as $service)
+                        <li class="ps-2">
+                            @if ($service->name == "Wi-fi")
+                            <span class="me-2"><i class="fas fa-wifi"></i></span>
+                            @elseif ($service->name == "posto macchina")
+                            <span class="me-2"><i class="fas fa-car"></i></span>
+                            @elseif ($service->name == "piscina")
+                            <span class="me-2"><i class="fas fa-swimming-pool"></i></span> 
+                            @elseif ($service->name == "portineria")
+                            <span class="me-2"><i class="fas fa-door-open"></i></span>
+                            @elseif ($service->name == "sauna")
+                            <span class="me-2"><i class="fas fa-hot-tub"></i></span>
+                            @elseif ($service->name == "colazione inclusa")
+                            <span class="me-2"><i class="fas fa-coffee"></i></span>
+                            @elseif ($service->name == "vista mare")
+                            <span class="me-2"><i class="fas fa-water"></i></span>
+                            @endif{{$service->name}}</li>
+                        @endforeach
+                    </ul>
+                </section>
+                
+                @endif
+            </div>
+            <div class="col col-md-7">
+                <div class="border rounded fs-6 p-3 p-sm-4 shadow-sm mb-5 mb-md-0" style="word-wrap: break-word;">
+                    {{-- <h3>Descrizione</h3> --}}
+                    {{ $apartment->description }}  
+                </div>
+            </div>
+
+        </div>
+{{--         <div class="container d-flex justify-content-center gap-3 d-flex-wrap">
             <a href="{{ route('admin.apartments.edit', $apartment->id) }}" class="btn btn-primary btn-lg mb-4">Modifica</a>
             <a href="#messaggi" class="btn btn-warning btn-lg mb-4">Messaggi</a>
             <a href="{{route('admin.sponsors.index', $apartment->id)}}" class="btn btn-success btn-lg mb-4">Sponsorizza</a>
@@ -49,68 +128,22 @@
                 @method('delete')
                 <button class="btn btn-outline-danger btn-lg" type="submit" onclick="return confirm('Are you sure you want to delete this appartment? With this apartment all related messages will be deleted')">Elimina</button>
             </form>
-        </div>
+        </div> --}}
 
-        <div class="ms-4">
-            {{-- Titolo casa --}}
-            <h2 class="display-5"><strong>{{ $apartment->title }}</strong></h2>
 
-            @if ($apartment->visible)
-            <p class="text-success">Visibile agli utenti</p>
-            @else
-            <p class="text-danger">NON visibile agli utenti</p>
-            @endif
-            <p class="mb-0 text-secondary">Creato il: {{$apartment->created_at}}</p>
-            <p class="pb-3 text-secondary">Ultima modifica: {{$apartment->updated_at}}</p>
-
-        </div>
 
 
         <!-- sottocontainer -->
-        <div class="ms-4">
+        <div class="mt-5">
 
             {{-- @if (isset($apartment->address->city))
             <p class="fs-3">{{ $apartment->address->city }}, {{ $apartment->address->country }}</p>
             @endif --}}
 
-            <hr class="my-3">
-            <div class="pb-2 fs-4 d-flex justify-content-between">
-                <h3>1 night price : </h3>
-                <div>{{ $apartment->price_day }} €</div>
-
-            </div>
-            <hr class="my-3">
-            <div class="w-50 fs-5">
-                <h3>Description</h3>
-                {{ $apartment->description }}
-            </div>
-            <hr class="my-3">
-            <section>
-                <h3>General information</h3>
-
-                <ul class="apartment__details">
-                    <li class="my-lh"><span class="fs-5">Stanze: {{ $apartment->n_rooms }}</span></li>
-                    <li class="my-lh"><span class="ps-2 fs-5">Bagni: {{ $apartment->n_baths }}</span></li>
-                    <li class="my-lh"><span class="ps-2 fs-5">Posti letto: {{ $apartment->n_beds }}</span></li>
-                    <li class="my-lh"><span class="ps-2 fs-5">Grandezza: {{ $apartment->square_meters }} m<sup>2</sup></span></li>
-                    <li class="my-lh"><span class="ps-2 fs-5">Condiviso: {{ $apartment->shared ? 'Sì' : 'No' }}</span></li>
-                </ul>
-            </section>
-            <hr class="my-3">
-            <section class="pb-5">
-                <h3>Services</h3>
-
-                <ul class="apartment__services">
-                    @foreach ($apartment->services as $service)
-                    <li class="my-lh "><span class="ps-2 fs-5 serv-li">{{$service->name}}</span></li>
-                    @endforeach
-                </ul>
-            </section>
-            <hr class="my-3">
             <section class="pb-2">
-                <h3>Address</h3>
+                <h3>Indirizzo</h3>
                 @if (isset($apartment->address))
-                <p class="fs-5">{{$apartment->address->country}} {{$apartment->address->city}} {{$apartment->address->zip_code}} {{$apartment->address->street_name}} {{$apartment->address->street_number}} </p>
+                <p class="fs-6" >{{$apartment->address->street_name}}, {{$apartment->address->street_number}}, {{$apartment->address->zip_code}}, {{$apartment->address->city}}, {{$apartment->address->country}}</p>
                 @endif
             </section>
             <section class="pb-5 mb-5">
@@ -125,11 +158,11 @@
             <div id="lon" value="{{$apartment->address->longitude}}"></div>
         </div>
 
-        <div class="ms-4">
+        <div>
           <h3 class="mb-3">Contatta l'host</h3>
           <div>
-            <div class="card">
-              <div class="card-header">Invia un messaggio</div>
+            <div class="card shadow-sm">
+              <div class="card-header" style="background-color: #d48166; color: white">Invia un messaggio</div>
 
               <div class="card-body">
                   <div class="mb-4">
@@ -139,11 +172,10 @@
                       @csrf
 
                       <div class="form-group row mb-3">
-                          <label for="title" class="col-md-4 col-form-label text-md-right">Il tuo indirizzo email<span style="color: rgb(207, 29, 29)">*</span></label>
+                          <label for="title" class="col-md-4 col-form-label text-md-right">Il tuo indirizzo email <span style="color: rgb(207, 29, 29)">*</span></label>
 
-                          <div class="col-md-6">
+                          <div class="col-md-7">
                             <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}">
-
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -154,7 +186,7 @@
 
                       <div class="form-group row mb-3">
                           <label for="description" class="col-md-4 col-form-label text-md-right">Testo <span style="color: rgb(207, 29, 29)">*</span></label>
-                          <div class="col-md-6">
+                          <div class="col-md-7">
                               <textarea name="description" id="description" cols="30" rows="7" class="form-control @error('description') is-invalid @enderror">{{ old('description') }}</textarea>
                               @error('description')
                                   <span class="invalid-feedback" role="alert">
