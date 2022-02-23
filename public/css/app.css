@@ -12173,6 +12173,70 @@ fieldset:disabled .btn {
   }
 }
 
+.img-container {
+  width: 150px;
+  height: 150px;
+}
+
+.apartment-card {
+  background-color: #F6F4F2;
+  padding: 15px 20px;
+  border-radius: 15px;
+}
+
+.cover-img {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  -o-object-fit: cover;
+     object-fit: cover;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.apartment-data p {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.apartment-data:nth-child(3) {
+  align-items: flex-start;
+}
+
+.apartment-data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-right: 1rem;
+  margin-right: 1rem;
+}
+
+.btn-orange {
+  background-color: #d48166;
+  color: #f9f9f9;
+  border-radius: 10px;
+}
+
+.theme-btn-white {
+  border-radius: 10px;
+  background-color: white;
+  color: #d48166;
+  border: 1px solid #d48166;
+}
+
+.theme-btn-white::hover {
+  background-color: #3F423E;
+  color: white;
+}
+
+@media screen and (min-width: 992px) {
+  .list-group .col-lg-5 {
+    border-left: 2px solid lightgrey;
+  }
+}
+
 html,
 body {
   height: 100%;
@@ -12244,7 +12308,7 @@ body {
 
 #map {
   width: 100%;
-  height: 500px;
+  height: 300px;
 }
 
 .marker-icon {
@@ -12258,6 +12322,8 @@ body {
   top: 3px;
   transform: rotate(45deg);
   width: 22px;
+  background: url(/images/icons8-home.svg?60328291500bd056dd3be6b5a48cf3a5);
+  background-size: cover;
 }
 
 .marker {
@@ -12324,6 +12390,9 @@ body {
   padding-left: 0;
   height: 56px;
   z-index: 1039;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
 }
 
 .sb-topnav .navbar-brand {
@@ -12353,6 +12422,9 @@ body {
 .sb-sidenav .sb-sidenav-menu .nav {
   flex-direction: column;
   flex-wrap: nowrap;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 70px;
 }
 
 .sb-sidenav .sb-sidenav-menu .nav .sb-sidenav-menu-heading {
@@ -12473,21 +12545,13 @@ nav.main-nav a.nav-link {
   box-sizing: border-box;
 }
 
-.my-carousel {
-  height: 550px;
-  width: 65%;
+.img_container {
+  width: 50%;
+  margin: auto;
 }
 
 .housepic-container {
   background-color: rgba(177, 177, 177, 0.158);
-}
-
-.img-container > img {
-  position: absolute;
-  -o-object-fit: cover;
-     object-fit: cover;
-  width: 100%;
-  height: 100%;
 }
 
 .sub-nav ul {
@@ -12497,10 +12561,54 @@ nav.main-nav a.nav-link {
   /* border-bottom: 1px solid black; */
 }
 
+.btn-responsive {
+  width: auto;
+  margin: 0 15px;
+}
+
 /*UTILITIES*/
 
 .my-lh {
   line-height: 40px;
+}
+
+@media only screen and (max-width: 600px) {
+  .nav-responsive .btn-responsive {
+    margin: 0;
+    width: 100%;
+  }
+}
+
+/* boostrap overwrite */
+
+.btn-primary {
+  background-color: #d48166;
+  border-color: #d48166;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #c96443;
+  border-color: #d48166;
+}
+
+.form-check-input:checked {
+  background-color: #d48166;
+  border-color: #d48166;
+}
+
+.form-control:focus {
+  color: #212529;
+  background-color: #fff;
+  border-color: #b1b1b1;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(255, 63, 0, 0.25);
+}
+
+.btn-outline-danger {
+  color: #dc3545;
+  border-color: #dc3545;
+  background-color: white;
 }
 
 .btn-custom {
@@ -12508,9 +12616,10 @@ nav.main-nav a.nav-link {
   color: #373a36;
 }
 
-html,
-body {
-  height: 100%;
+.layout_container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 header {
@@ -12526,10 +12635,14 @@ header nav.main-nav a.nav-link {
   color: #d48166;
 }
 
+main {
+  background-color: #fffefd;
+}
+
 main .container .title {
   background-color: #373a361f;
   color: #373a36;
-  box-shadow: 10px 10px 5px #373a3648;
+  box-shadow: 1px 2px 9px 6px #373a3648;
 }
 
 main .container .title h1,
@@ -12574,6 +12687,30 @@ main .container .title .search button {
 
 main .container .title .search button:focus {
   box-shadow: none;
+}
+
+main .container .card img {
+  height: 170px;
+  background-size: cover;
+}
+
+main .container .promo-icon {
+  font-size: 70px;
+  margin-bottom: 30px;
+}
+
+main .container .promo-title {
+  padding-bottom: 15px;
+  color: #d48166;
+}
+
+main .container .promo-desc {
+  font-size: 13px;
+}
+
+main .container .card-option {
+  width: 90%;
+  margin: auto;
 }
 
 footer ul {

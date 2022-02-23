@@ -23,9 +23,11 @@
               </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <p class="card-text mb-0">
+                  <p class="card-text mb-1">
                     <small class="text-muted">{{
-                      apartment.shared ? "Camera condivisa" : "Intero alloggio"
+                      apartment.shared
+                        ? "Appartamento condiviso"
+                        : "Intero alloggio"
                     }}</small>
                   </p>
                   <h5 class="card-title">{{ apartment.title }}</h5>
@@ -53,17 +55,24 @@
                       </li>
                     </ul>
                   </div>
-                  <p class="card-text text-end">
-                    € <strong class="fs-4">{{ apartment.price_day }}</strong> /
-                    notte
-                  </p>
+                  <div class="d-flex justify-content-between">
+                    <div>
+                      <p class="card-text text-end">
+                        €
+                        <strong class="fs-4">{{ apartment.price_day }}</strong>
+                        / notte
+                      </p>
+                    </div>
+                    <div>
+                      <a
+                        :href="'apartments/' + apartment.id"
+                        class="btn btn-orange mb-3"
+                        >Dettagli</a
+                      >
+                    </div>
+                  </div>
                 </div>
               </div>
-              <a
-                :href="'apartments/' + apartment.id"
-                class="btn btn-orange mb-3"
-                >Dettagli</a
-              >
             </div>
           </div>
         </div>
