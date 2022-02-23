@@ -17,6 +17,13 @@
 
 @section('content')
 
+@if(session('message'))
+  <div class="alert alert-success m-4 text-center"> {{session('message')}}</div>
+@endif
+@if ($errors->any())
+  <div class="alert alert-danger m-4 text-center"> Message sending failed. Check errors in the form </div>
+@endif
+
 <div class="main-container m-auto h-50 w-100">
     <!-- immagine casa -->
     <div class="housepic-container">
@@ -135,7 +142,7 @@
                           <label for="title" class="col-md-4 col-form-label text-md-right">Il tuo indirizzo email<span style="color: rgb(207, 29, 29)">*</span></label>
 
                           <div class="col-md-6">
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                            <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}">
 
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
