@@ -57,7 +57,6 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
-
         $address = Address::where('apartment_id', $apartment->id)->get(['latitude', 'longitude']);
         /* $messages = Message::orderBy('created_at', 'desc')->where('apartment_id', $apartment->id)->get(); */
 
