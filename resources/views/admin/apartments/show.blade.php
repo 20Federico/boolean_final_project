@@ -101,23 +101,21 @@
             <div class="fs-5">
                 <h3>Sponsor</h3>
                 <span style="overflow-wrap:break-word">
+                
                   @if(count($apartment->sponsor) == 0)
                   <span>Nessuna sponsorizzazione</span>
                   @else
-                  
-                  
-                  @foreach ($apartment->sponsor as $item)
-                  
-                      @if ($item->price_euro === "2.99")
-                      <span>Base</span>
-                      @endif
-                      @if ($item->price_euro === "5.99")
-                      <span>Medium</span>
-                      @endif
-                      @if ($item->price_euro === "9.99")
-                      <span>Premium</span>
-                      @endif
-                  @endforeach
+                    @foreach ($apartment->sponsor as $item)
+                          @if ($item->id == "1")
+                          <span>Base</span>
+                          @endif
+                          @if ($item->id == "2")
+                          <span>Medium</span>
+                          @endif
+                          @if ($item->id == "3")
+                          <span>Premium</span>
+                          @endif
+                    @endforeach
                   @endif
                 </span>
             </div>
