@@ -12,8 +12,9 @@ use Illuminate\Support\Facades\DB;
 
 class VisitController extends Controller
 {
-    public function show(Apartment $apartment, $id)
+    public function show($id)
     {
+
         //CREO LA VISITA (DA SPOSTARE NEL VISITCONTROLLER PUBBLICO)
         function createVisit($ip, $appId)
         {
@@ -25,6 +26,7 @@ class VisitController extends Controller
         }
 
         $appartamento_id = $id;
+        $apartment = Apartment::find($appartamento_id);
         
         $ipClient = Request::ip();
         $nowDate = Carbon::now('Europe/Rome');
@@ -40,7 +42,7 @@ class VisitController extends Controller
         }
 
         //PASSO I DATI DI VISITE E MESSAGGI
-       
+      
         $visits = DB::select('SELECT count(id), MONTHNAME(created_at) from `visits` WHERE apartment_id = :id AND YEAR(CURRENT_DATE()) = YEAR(created_at) group by MONTHNAME(created_at)', ['id' => $appartamento_id]);
         $messages = DB::select('SELECT count(id), MONTHNAME(created_at) from `messages` WHERE apartment_id = :id AND YEAR(CURRENT_DATE()) = YEAR(created_at) group by MONTHNAME(created_at)', ['id' => $appartamento_id]);
       
