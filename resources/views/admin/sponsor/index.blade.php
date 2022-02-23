@@ -3,14 +3,18 @@
 @section('title', 'Sponsors')
 
 @section('content')
-    <div>
-        <h1 class="mb-5">Metti in evidenza il tuo annuncio - {{$apartment->title}}</h1>
-    </div>
-    <div class="container">
+<div class="container">
+      <div class="mb-4 my-3">
+          <h1>Metti in evidenza il tuo annuncio - {{$apartment->title}}</h1>
+          <p class="fs-4">
+            Sponsorizza il tuo appartamento per farlo comparire in alto nelle ricerce. Avrai molte più possibilità di affittarlo!
+          </p>
+      </div>
 
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <div class="card">
+              
+                <div class="card mb-3">
                     <div class="card-header">Sponsors</div>
     
                     <div class="card-body">

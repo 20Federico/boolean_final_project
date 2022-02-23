@@ -26,16 +26,16 @@ class SponsorController extends Controller
         return abort(401);
       }
 
+      $sponsorList = Sponsor::all();
+      $clientToken = $this->gateway()->clientToken()->generate();
 
-        $sponsorList = Sponsor::all();
-        $clientToken = $this->gateway()->clientToken()->generate();
-
-        // return view('admin.sponsor.index', [
-        //     "apartment" => $apartment,
-        //     "sponsorList" => $sponsorList,
-        //     "clientToken" => $clientToken
-        // ]);
-        return view('admin.sponsor.index', compact('apartment', 'sponsorList', 'clientToken' ));
+      // return view('admin.sponsor.index', [
+      //     "apartment" => $apartment,
+      //     "sponsorList" => $sponsorList,
+      //     "clientToken" => $clientToken
+      // ]);
+      Session::flash('message', 'La sponsorizzazione dell\'alloggio è ancora attiva');
+      return view('admin.sponsor.index', compact('apartment', 'sponsorList', 'clientToken' ));
     }
 
     /**
