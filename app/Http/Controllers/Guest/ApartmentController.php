@@ -63,6 +63,7 @@ class ApartmentController extends Controller
         return view('guests.apartments.show', ['apartment' => $apartment, 'address' => $address/* , 'messages' => $messages */]);
     }
 
+
     /**
      * Show the form for editing the specified resource.
      *
