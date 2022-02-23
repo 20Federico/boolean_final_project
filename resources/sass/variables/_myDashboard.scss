@@ -59,6 +59,43 @@
   
 }
 
+.text-small{
+    font-size: 12px;
+}
+
+.text-title{
+    font-size: 20px;
+}
+
+.orange-border{
+    border: 2px solid #d48166;
+}
+
+.orange-bg{
+    background-color: #d4816681;
+}
+
+
+
+
+
+
+
+
+
+
+@media screen and (min-width: 768px){
+    .text-title{
+        font-size: 16px;
+    }
+}
+
+@media screen and (min-width: 1400px){
+    .text-title{
+        font-size: 20px;
+    }
+}
+
 @media screen and (min-width: 992px){
     .list-group .col-lg-5{
         border-left: 2px solid lightgrey;
