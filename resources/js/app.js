@@ -7,6 +7,7 @@ import Vue from "vue";
 import store from "./store";
 require("./bootstrap");
 require("./scripts");
+window.Vue = require("axios");
 
 window.Vue = require("vue");
 

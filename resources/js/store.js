@@ -10,6 +10,8 @@ let store = new Vuex.Store({
     searchNumRooms: 1,
     searchNumBeds: 1,
     searchNumServices: [],
+    searchQuery : "",
+    searchKm : 0,
   },
   
 
@@ -26,6 +28,12 @@ let store = new Vuex.Store({
     SET_FILTER_SERVICE: (state, service) => {
       state.searchNumServices = service;
     },
+    SET_FILTER_ADRESSES: (state, address) => {
+      state.searchQuery = address;
+    },
+    SET_FILTER_KM: (state, km) => {
+      state.searchKm = km;
+    },
   },
 
   getters: {
@@ -40,6 +48,12 @@ let store = new Vuex.Store({
     },
     SEARCHARRSERVICES(state) {
       return state.searchNumServices;
+    },
+    SEARCHADDRESS(state) {
+      return state.searchQuery;
+    },
+    SEARCHKM(state) {
+      return state.searchKm;
     },
 
   },
@@ -66,6 +80,12 @@ let store = new Vuex.Store({
     GET_FILTER_SERVICE({ commit }, service) {
       commit("SET_FILTER_SERVICE", service);
     }, 
+    GET_FILTER_ADRESSES({ commit }, address) {
+      commit("SET_FILTER_ADRESSES", address);
+    },
+    GET_FILTER_KM({ commit }, km) {
+      commit("SET_FILTER_KM", km);
+    },
   },
 });
 

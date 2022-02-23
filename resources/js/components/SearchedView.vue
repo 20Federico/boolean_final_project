@@ -95,14 +95,21 @@ export default {
     name: "SearchedView",
     data() {
         return {
-            map: {},
             markers: [],
+            sortedMarkers: [],
+            map: undefined,
             sortedApartments: [],
             sorted: false,
+            mountedApartments: [],
+            myLocation: undefined,
         };
     },
     methods: {
-        ...mapActions(["GET_APARTMENTS_FROM_API"]),
+        ...mapActions([
+            "GET_APARTMENTS_FROM_API",
+            "GET_FILTER_ADRESSES",
+          
+        ]),
 
         searchApartmentsByAll() {
             this.sorted = true;
@@ -110,6 +117,9 @@ export default {
             let services = this.SEARCHARRSERVICES;
             let room = parseInt(this.SEARCHNUMROOMS);
             let bed = parseInt(this.SEARCHNUMBEDS);
+            let address = this.SEARCHADDRESS;
+            let km = this.SEARCHKM;
+
             if (room !== 1) {
                 this.sortedApartments = this.sortedApartments.filter((item) => {
                     return item.n_rooms >= room;
@@ -130,7 +140,112 @@ export default {
                     );
                 });
             }
+
+            if(address && km==0){
+                this.getPositionWithApartments();
+            }
+
+
+            if(address && km!=0){ 
+              console.log("inizio filtro")
+                    this.sortedApartments = this.sortedApartments.filter((item)=>{
+
+                      console.log(item.address)
+                      console.log(this.myLocation.lat + " " +  this.myLocation.lng)
+                        let dist = this.calcCrow(item.address.lat , item.address.lng , this.myLocation.lat , this.myLocation.lng);
+                        console.log(dist)
+                        if(dist <= km){
+                          console.log(dist);
+                          return item;
+                        }
+                    });
+                    
+            }
+
+            this.createMarkers();
         },
+
+
+        createMarkers(){
+              this.markers =[];
+              this.sortedApartments.forEach((element) => {
+                    var marker = new tt.Marker()
+                        .setLngLat([
+                            element.address.longitude,
+                            element.address.latitude,
+                        ])
+                        .addTo(this.map);
+                    this.markers.push(marker);
+                });
+        },
+
+        handleresults(result) {
+            if (result) {
+                this.markers = [];
+                this.myLocation = result.results[0].position;
+                this.moveMap(this.myLocation);
+                if(this.filteredApartments){
+                  this.filteredApartments.forEach((element) => {
+                    var marker = new tt.Marker()
+                        .setLngLat([
+                            element.address.longitude,
+                            element.address.latitude,
+                        ])
+                        .addTo(this.map);
+                    this.markers.push(marker);
+                });
+                }else{
+                  this.sortedApartments.forEach((element) => {
+                    var marker = new tt.Marker()
+                        .setLngLat([
+                            element.address.longitude,
+                            element.address.latitude,
+                        ])
+                        .addTo(this.map);
+                    this.markers.push(marker);
+                });
+                }
+                
+            }
+        },
+
+        calcCrow(lat1, lon1, lat2, lon2) {
+            var R = 6371; // km
+            var dLat = this.toRad(lat2 - lat1);
+            var dLon = this.toRad(lon2 - lon1);
+            var lat1 = this.toRad(lat1);
+            var lat2 = this.toRad(lat2);
+
+            var a =
+                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.sin(dLon / 2) *
+                    Math.sin(dLon / 2) *
+                    Math.cos(lat1) *
+                    Math.cos(lat2);
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            var d = R * c;
+            console.log(typeof d);
+            return d;
+        },
+
+        toRad(Value) {
+            return (Value * Math.PI) / 180;
+        },
+        moveMap(location) {
+            this.map.flyTo({
+                center: location,
+                zoom: 10,
+            });
+        },
+        getPositionWithApartments(){
+          tt.services
+                .fuzzySearch({
+                    key: "hwUAMJjGlcfAD2Yd3w1owWJqbrrLpfoo",
+                    query: document.getElementById("query").value,
+                })
+                .then(this.handleresults);
+        }
+
     },
     computed: {
         ...mapGetters([
@@ -138,6 +253,8 @@ export default {
             "SEARCHNUMROOMS",
             "SEARCHNUMBEDS",
             "SEARCHARRSERVICES",
+            "SEARCHADDRESS",
+            "SEARCHKM",
         ]),
 
         filteredApartments() {
@@ -154,12 +271,13 @@ export default {
             key: "hwUAMJjGlcfAD2Yd3w1owWJqbrrLpfoo",
             container: "map",
             center: [12.494689, 41.899783],
-            zoom: 10,
+            zoom: 5,
         });
 
         this.map.addControl(new tt.FullscreenControl());
         this.map.addControl(new tt.NavigationControl());
     },
+
     watch: {
         SEARCHNUMROOMS() {
             this.searchApartmentsByAll();
@@ -170,6 +288,12 @@ export default {
         SEARCHARRSERVICES() {
             this.searchApartmentsByAll();
         },
+        SEARCHADDRESS() {
+            this.searchApartmentsByAll();
+        },
+        SEARCHKM(){
+          this.searchApartmentsByAll();
+        }
     },
 };
 </script>

@@ -9,8 +9,8 @@
             <div class="row d-flex justify-content-center align-items-center">
               <div class="col-md-4 mb-5">
                 <div class="search"> 
-                  <input v-on:keyup.enter="search()" id="query" type="text" class="form-control" placeholder="type city or address..."> 
-                  <button @click="search()" class="btn btn-primary"><i class="fa fa-search"></i></button> 
+                  <input v-on:keyup.enter="search(searchQuery)" v-model="searchQuery" id="query" type="text" class="form-control" placeholder="type city or address..."> 
+                  <button  @click="search(searchQuery)" class="btn btn-primary"><i class="fa fa-search"></i></button>
                 </div>
               </div>
               <search-filters v-if="searching"></search-filters>
@@ -23,35 +23,23 @@
 </template>
 
 <script>
+import {mapActions} from "vuex";
 export default {
   name: 'HeroSection',
-  props: {
-    searching: Boolean
-  },
+  
   data() {
     return {
-      searchQuery: {}
+      searchQuery: '',
+      searching: false,
+      
     }
   },
+  
   methods: {
-    
-    handleresults(result) {
-      if (result) {
-        this.searchQuery = result
-        this.$emit('query', this.searchQuery)
-      }
-    },
-    
-    search() {
-      if (document.getElementById('query').value != '') {
-
-        this.$emit('search');
-
-        tt.services.fuzzySearch({
-          key: 'hwUAMJjGlcfAD2Yd3w1owWJqbrrLpfoo',
-          query: document.getElementById('query').value,
-        }).then(this.handleresults)
-      }
+    ...mapActions(['GET_FILTER_ADRESSES']),
+    search(value){
+        this.searching = true;
+         this.GET_FILTER_ADRESSES(value);
     }
   }
 }

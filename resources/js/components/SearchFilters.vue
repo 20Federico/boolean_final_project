@@ -12,6 +12,8 @@
                         max="100"
                         step="10"
                         v-model="kmValue"
+                        v-on:change="searchByKm
+"
                       
                     />
                 </div>
@@ -94,6 +96,8 @@ export default {
             "GET_FILTER_ROOM",
             "GET_FILTER_BED",
             "GET_FILTER_SERVICE",
+            "GET_FILTER_KM",
+            
         ]),
 
         searchByRoom() {
@@ -105,6 +109,9 @@ export default {
         searchByService() {
             this.GET_FILTER_SERVICE(this.servicesIds);
         },
+        searchByKm(){
+            this.GET_FILTER_KM(this.kmValue);
+        }
     },
 
     mounted() {
