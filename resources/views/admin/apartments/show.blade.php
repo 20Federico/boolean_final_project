@@ -5,15 +5,6 @@
 
 @section('content')
 
-{{-- @php
-    $errormessage = false;
-@endphp
-
-@if ($errormessage)
-    <div class="alert alert-danger"> {{session('message')}}</div>  
-@endif --}}
-
-
 <div class="container py-3">
     <!-- immagine casa -->
     <div class="housepic-container">
@@ -32,11 +23,9 @@
         <div class="container nav-responsive d-flex flex-wrap justify-content-center d-flex-wrap">
             <a href="{{ route('admin.apartments.edit', $apartment->id) }}" class="btn-responsive btn btn-primary btn-lg mb-3">Modifica</a>
             <a href="#messaggi" class="btn-responsive btn btn-warning btn-lg mb-3">Messaggi</a>
-            {{-- @if ($sponsored === false) --}}
+            @if(count($apartment->sponsor) == 0)
             <a href="{{route('admin.sponsors.index', $apartment->id)}}" class="btn-responsive btn btn-success btn-lg mb-3">Sponsorizza</a>
-            {{-- @else --}}
-            {{-- <a href="#" {{$errormessage = true}} class="btn-responsive btn btn-success btn-lg mb-3">Sponsorizza</a> --}}
-            {{-- @endif --}}
+            @endif
             <a href="{{ route('admin.visits.show', $apartment->id) }}" class="btn-responsive btn btn-info btn-lg mb-3">Statistiche</a>
             <form action="{{ route('admin.apartments.destroy', $apartment->id) }}" method="post" class="btn-responsive">
                 @csrf

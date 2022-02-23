@@ -32,16 +32,8 @@ class ApartmentController extends Controller
 
       $address = Address::where('apartment_id', $apartment->id)->get(['latitude', 'longitude']);
       $messages = Message::orderBy('created_at', 'desc')->where('apartment_id', $apartment->id)->get();
-
-
-      $sponsored = false;
-
-      if ($apartment->services()) {
-        return $sponsored = true ;  
-      }
       
-      Session::flash('message', 'La sponsorizzazione dell\'alloggio è ancora attiva');
-      return view('admin.apartments.show', ['apartment'=> $apartment, 'address'=>$address, 'messages'=>$messages, 'sponsored' => $sponsored]);
+      return view('admin.apartments.show', ['apartment'=> $apartment, 'address'=>$address, 'messages'=>$messages]);
     }
 
     public function create()
