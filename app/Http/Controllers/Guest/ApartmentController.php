@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class ApartmentController extends Controller
 {
@@ -41,12 +42,20 @@ class ApartmentController extends Controller
      */
     public function store(Request $request, Apartment $apartment)
     {
+
+      $request->validate([
+        'email' => ['required', 'string', 'email', 'max:255'],
+        'description' => 'required|min:10',
+      ]);
+
         $newMessage = new Message();
         $newMessage->email_sender = $request->email;
         $newMessage->content = $request->description;
         $newMessage->apartment_id = $apartment->id;
         $newMessage->save();
-        return redirect()->route('guests.home');
+
+        Session::flash('message', 'Message sent correctly');
+        return redirect()->back();
     }
 
     /**
