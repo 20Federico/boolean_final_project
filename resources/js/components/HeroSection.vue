@@ -17,7 +17,7 @@
                   id="query"
                   type="text"
                   class="form-control"
-                  placeholder="type city or address..."
+                  placeholder="Città, Indirizzo, CAP..."
                 />
                 <button @click="search()" class="btn btn-primary">
                   <i class="fa fa-search"></i>

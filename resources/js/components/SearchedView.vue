@@ -1,14 +1,15 @@
 <template>
   <div>
-    <div class="row me-0">
-      <div class="col-5">
+    <div class="row d-flex flex-column flex-md-row py-3 g-0">
+      <div class="col-12 col-md-5">
         <div class="p-4">
           <button
             @click="$emit('back')"
             type="button"
             class="btn btn-outline-dark mb-4"
           >
-            <i class="fas fa-arrow-left"></i> Homepage
+            <i class="fas fa-arrow-left"></i>
+            <span class="d-none d-sm-inline">Homepage</span>
           </button>
           <!-- {{apartments}} -->
 
@@ -17,21 +18,21 @@
             v-for="(apartment, i) in apartments"
             :key="i"
           >
-            <div class="row g-0">
-              <div class="col-md-4">
+            <div class="row flex-column g-0">
+              <div class="col">
                 <img :src="apartment.cover_img" class="card_img" alt="cover" />
               </div>
-              <div class="col-md-8">
+              <div class="col">
                 <div class="card-body">
+                  <h5 class="card-title">{{ apartment.title }}</h5>
+                  <hr class="w-25" />
                   <p class="card-text mb-1">
                     <small class="text-muted">{{
                       apartment.shared
                         ? "Appartamento condiviso"
-                        : "Intero alloggio"
+                        : "Appartamento intero"
                     }}</small>
                   </p>
-                  <h5 class="card-title">{{ apartment.title }}</h5>
-                  <hr class="w-25" />
                   <div class="card-text">
                     <ul class="list-unstyled text-secondary mb-4">
                       <li class="d-inline-block">
@@ -77,7 +78,7 @@
           </div>
         </div>
       </div>
-      <div class="col-7">
+      <div class="col-12 col-md-7 p-4">
         <div class="map_container">
           <div class="mymap" id="map"></div>
         </div>
