@@ -289,6 +289,7 @@ export default {
             this.SET_FILTER_KM(0);
             this.resetMap();
             this.sortedApartments = [];
+            this.deleteMarkers();
             this.sorted = false;
         },
     },
