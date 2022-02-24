@@ -5,7 +5,7 @@
 @section('content')
   <hero-section @query="getQuery" @search="searching = true" :searching='searching'></hero-section>
 
-  <home-page v-if="!searching" :apartments="{{json_encode($apartments)}}">
+  <home-page v-if="!searching" :apartments="{{json_encode($apartments)}}" :pluto="{{json_encode($pluto)}}">
   </home-page>
 
   <searched-view v-if="searching" @back="searching = false" :apartments="{{json_encode($apartments)}}" :search='search' ></searched-view>

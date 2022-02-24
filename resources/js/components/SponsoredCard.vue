@@ -7,7 +7,9 @@
       alt="..."
     />
     <div class="card-body text-center">
-      <h5 style="color: #d48166">Villa moderna con piscina</h5>
+      <h5 style="color: #d48166">
+        {{ apartments[0].title }}
+      </h5>
 
       <hr class="mt-3 mb-3" style="width: 25%; margin: auto" />
 
@@ -23,6 +25,10 @@
 <script>
 export default {
   name: "SponsoredCard",
+  props: {
+    apartments: Array,
+    search: Object,
+  },
 };
 </script>
 

@@ -13,9 +13,10 @@
     >
       <div
         class="col d-flex justify-content-center"
-        v-for="(apartment, i) in apartments"
+        v-for="(value, i) in pluto"
         :key="i"
       >
+        <p>{{ value }}</p>
         <SponsoredCard></SponsoredCard>
         <!--       <div class="col d-flex justify-content-center">
         <div
@@ -293,12 +294,14 @@ export default {
   props: {
     apartments: Array,
     search: Object,
+    pluto: Array,
   },
   data() {
     return {};
   },
   methods: {
     Log() {
+      console.log(this.pluto);
       console.log(this.apartments);
     },
   },

@@ -2,6 +2,9 @@
 
 use App\Apartment;
 use App\Http\Controllers\Admin\ApartmentController;
+use App\Sponsor;
+use App\SponsorApartment;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -46,7 +49,16 @@ Route::post("{apartment}/apartments", "Guest\ApartmentController@store")->name("
 
 Route::get('/', function () {
 
-  $apartments = Apartment::limit(10)->with('services', 'address')->get();
+  $apartments = Apartment::limit(10)->with('services', 'address', 'sponsor')->get();
+  $sponsored = SponsorApartment::whereDate('expiry', '>', Carbon::now())->orderBy("created_at", "DESC")->get("apartment_id");
+  $pluto = [];
 
-  return view('guests.home', compact('apartments'));
+  foreach ($sponsored as $value) {
+    $apartment = Apartment::where("id", $value->apartment_id)->get();
+    array_push($pluto, $apartment);
+  }
+
+  /*   $apartmentsSponsored = Apartment::with('services', 'address', 'sponsor')->where('sponsor' <> [])->get(); */
+
+  return view('guests.home', ['apartments' => $apartments, 'pluto' => $pluto]);
 })->name('guests.home');
