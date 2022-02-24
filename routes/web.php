@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
   return view('welcome');
 })->name('home'); */
 
-Route::get('/home', 'HomeController@index')->name("admin.home");
+// Route::get('/home', 'HomeController@index')->name("admin.home");
 
 Route::namespace("Admin")
   ->prefix("admin")

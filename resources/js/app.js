@@ -48,10 +48,13 @@ const app = new Vue({
     store,
     el: "#app",
     data() {
-        return {
-            searching: false,
-            search: {},
-        };
+
+      return {
+        searching: false,
+        search: {},
+        editImgVisible: true
+      }
+
     },
     methods: {
         getQuery(value) {
