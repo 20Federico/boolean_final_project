@@ -6,7 +6,7 @@
 <div class="container">
 
     <div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="col-md-12  py-3 py-md-0">
             <div class="card">
                 <div class="card-header">Modifica la tua abitazione - <strong>{{$apartment->title}}</strong></div>
 
@@ -32,7 +32,7 @@
 
                         <div class="form-group row mb-3">
                             <label for="street_name" class="col-md-4 col-form-label text-md-right" >Indirizzo <span style="color: rgb(207, 29, 29)">*</span></label>
-                            <div class="col-md-5">
+                            <div class="col-md-5 mb-2 mb-md-0">
                                 <input type="text" class="form-control @error('street_name') is-invalid @enderror" name="street_name" id="street_name" value="{{old('street_name') ?? $apartment->address->street_name}}">
                                 @error('street_name')
                                   <span class="invalid-feedback" role="alert">
@@ -40,7 +40,7 @@
                                   </span>
                                 @enderror
                             </div>
-                            <div class="col-md-1 pl-0">
+                            <div class="col-md-1 ps-md-0">
                                 <input type="text" class="form-control @error('street_number') is-invalid @enderror" name="street_number" id="street_number" value="{{ old('street_number') ?? $apartment->address->street_number}}">
                                 @error('street_number')
                                   <span class="invalid-feedback" role="alert">
@@ -106,9 +106,9 @@
                               </div>
                                 <div v-if="editImgVisible">
                                   @if (substr($apartment->cover_img, 0, 4 ) === 'http')
-                                  <img src="{{ url($apartment->cover_img) }}" class="img-thumbnail w-25" alt="">
+                                  <img src="{{ url($apartment->cover_img) }}" class="img-thumbnail" alt="">
                                   @else    
-                                  <img src="{{ asset('storage/' . $apartment->cover_img) }}" class="class="img-thumbnail"" alt="">
+                                  <img src="{{ asset('storage/' . $apartment->cover_img) }}" class="img-thumbnail" alt="">
                                   @endif
                                 </div>
                           </div>
@@ -220,7 +220,7 @@
                         </div>
                         <div class="form-group row mb-4">
                             <label for="" class="col-md-4 col-form-label text-md-right" >Servizi aggiuntivi</label>
-                            <div class="col-md-6 d-flex align-items-center gap-3">
+                            <div class="col-md-6 d-flex flex-wrap align-items-center gap-3">
                                 
                                 @foreach ($services as $service)
                                     

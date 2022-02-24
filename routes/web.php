@@ -31,7 +31,8 @@ Route::namespace("Admin")
     Route::resource("apartments", "ApartmentController");
     Route::resource("visits", "VisitController");
     Route::resource("messages", "MessageController");
-    Route::resource("sponsors", "SponsorController");
+    Route::get('{apartment}/sponsors', 'SponsorController@index')->name('sponsors.index');
+    Route::post('{apartment}/sponsors', 'SponsorController@store')->name('sponsors.store');
   });
 
 Auth::routes();
@@ -40,6 +41,8 @@ Auth::routes();
   return view("guests.home");
 })->where("any", ".*");  */
 
+Route::resource("apartments", "Guest\ApartmentController")->except(["store"]);
+Route::post("{apartment}/apartments", "Guest\ApartmentController@store")->name("apartments.store");
 
 Route::get('/', function () {
 

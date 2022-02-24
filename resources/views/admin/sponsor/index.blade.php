@@ -3,41 +3,67 @@
 @section('title', 'Sponsors')
 
 @section('content')
-    <div>
-        <h1 class="mb-5">Metti in evidenza i tuoi annunci</h1>
-    </div>
-    <div class="container">
+<div class="container">
+      <div class="mb-4 my-3">
+          <h1>Metti in evidenza il tuo annuncio - {{$apartment->title}}</h1>
+          <p class="fs-4">
+            Sponsorizza il tuo appartamento per farlo comparire in alto nelle ricerce. Avrai molte più possibilità di affittarlo!
+          </p>
+      </div>
 
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <div class="card">
+              
+                <div class="card mb-3">
                     <div class="card-header">Sponsors</div>
     
                     <div class="card-body">
-                        <div class="row row-cols-3">
-
-                            @foreach($sponsorList as $sponsor)
-                                <div class="col">
-                                    <div class="card">
-                                        <div class="card-body">
-                                        <h5 class="card-title">Pacchetto {{$sponsor->duration_hours}}H</h5>
-                                        <h6 class="card-subtitle mb-2 text-muted mb-3">Sponsorizza il tuo annuncio per {{$sponsor->duration_hours}} ore!</h6>
-                                        <h5 class="mb-4">Prezzo: {{$sponsor->price_euro}} €</h5>
-                                        {{-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> --}}
-                                        <div class="d-flex justify-content-between">
-                                            <a href="{{route('admin.sponsors.show', $sponsor->id)}}"><button type="button" class="btn btn-success"> Dettagli </button> </a>
-                                            <a href="#"><button type="button" class="btn btn-primary d-flex"> Acquista  <i class="material-icons ms-2">credit_card</i></button> </a>                                      
-                                        </div>
-                                        
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
+                        
+                      <form id="payment-form" action="{{route('admin.sponsors.store', $apartment->id)}}" method="post">
+                        @csrf
+                        @method("POST")
+                        
+                        {{-- Error message for empty sponsorship field --}}
+                        @if (session('sponsorshipError'))
+                        <div class="alert alert-danger">
+                            <p>{{ session('sponsorshipError') }}</p>
                         </div>
+                        @endif
+                
+                        <!-- IMPORTO INPUT -->
+                        <label for="amount">
+                          <div class="input-wrapper amount-wrapper">
+                            <select id="amount" name="amount" class="form-control">
+                              <option selected disabled style="display: none">Seleziona una sponsorship</option>
+                              @foreach($sponsorList as $sponsor)
+                                <option value="{{ $sponsor->id }}"> 
+                                  {{ $sponsor->price_euro }}€ / {{ $sponsor->duration_hours }} h
+                                </option>
+                              @endforeach
+                            </select>
+                          </div>
+                        </label>
+                
+                        <!-- PAGAMENTI LISTA -->
+                        <div class="bt-drop-in-wrapper">
+                          <div id="bt-dropin"></div>
+                        </div>
+                
+                        {{-- ClientToken for js --}}
+                        <input id="clientToken" type="hidden" value="{{ $clientToken }}"/>
+                
+                        <!-- SUBMIT -->
+                        <input id="nonce" name="payment_method_nonce" type="hidden" />
+                        <button class="btn btn-success" type="submit">Acquista</button>
+                      </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+@endsection
     
+@section('extra_scripts')
+    <script src="https://js.braintreegateway.com/web/dropin/1.22.1/js/dropin.min.js"></script>
+    <script src="{{ asset('js/pay.js') }}"></script>
 @endsection

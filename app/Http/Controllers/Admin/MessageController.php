@@ -82,10 +82,24 @@ class MessageController extends Controller
      */
     public function show(Request $request, Message $message)
     {
+        $apartmentList = Apartment::where('user_id', Auth::user()->id)->get();
+        $apartmentsListId=[];
+        foreach ($apartmentList as $item_Id) {
+            array_push($apartmentsListId, $item_Id->id);
+        }
+        /* dd($apartmentsListId);
+        dd($message->apartment_id); */
+        if(!in_array($message->apartment_id, $apartmentsListId)){
+            return abort(404);
+        } 
+
         $data = $request->all();
         $message->read = 1;
         $message->update();
-        return view("admin.messages.show", compact("message"));
+        return view("admin.messages.show", [
+            'message'=>$message,
+            'apartmentsListId'=>$apartmentsListId
+        ]);
     }
 
     /**
@@ -98,6 +112,6 @@ class MessageController extends Controller
     {
         $message->delete();
 
-        return redirect()->route("admin.messages.index");
+        return redirect()->back();
     }
 }

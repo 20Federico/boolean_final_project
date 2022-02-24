@@ -6,11 +6,11 @@
 @section('content')
 
 
-<h1>Appartamento: </h1>
+<h1>Appartamento: {{$apartment->title}}</h1>
 
 <h2>Statistiche</h2>
 <div>Visite totali: {{count($visits)}}</div>
-<div>Visite totali: {{count($messages)}}</div>
+<div>Messaggi totali: {{count($messages)}}</div>
 <div class="row">
     <div class="col text-center">
         <h3>Visits</h3>

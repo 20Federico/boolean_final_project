@@ -97,7 +97,7 @@
             @yield('content')
         </main>
 
-        <footer class="py-4 bg-light mt-auto border-top">
+        <footer class="py-5 bg-light mt-auto border-top">
             <div class="container">
                 <div>
                     <div class="row row-cols-1 row-cols-sm-4 d-flex flex-column flex-sm-row">
@@ -166,5 +166,7 @@
       </div>
       <script src="{{ asset('js/app.js') }}"></script>
       <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/services/services-web.min.js"></script>
+      @yield('extra_scripts')
+
     </body>
 </html>

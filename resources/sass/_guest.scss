@@ -25,12 +25,12 @@ header {
 }
 
 main {
-    /* background-color: #f6f4f2; */
+    background-color: #fffefd;
     .container {
         .title {
           background-color: #373a361f;
           color: #373a36;
-          box-shadow: 10px 10px 5px #373a3648;
+          box-shadow: 1px 2px 9px 6px #373a3648;
           h1, h3 {
             font-family: 'Pacifico', cursive;
           }
@@ -70,6 +70,27 @@ main {
                 box-shadow: none;
               }
           }
+        }
+        .card{
+            img{
+                height: 170px ;
+                background-size: cover;
+            }
+        }
+        .promo-icon{
+            font-size: 70px;
+            margin-bottom: 30px;
+        }
+        .promo-title{
+            padding-bottom: 15px;
+            color: #d48166;
+        }
+        .promo-desc{
+            font-size: 13px;
+        }
+        .card-option{
+            width: 90%;
+            margin: auto;
         }
     }
 }

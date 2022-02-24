@@ -1,0 +1,27 @@
+/* boostrap overwrite */
+.btn-primary {
+    background-color: #d48166;
+    border-color: #d48166;
+  }
+  .btn-primary:hover {
+    color: #fff;
+    background-color: #c96443;
+    border-color: #d48166;
+  }
+  
+  .form-check-input:checked {
+    background-color: #d48166;
+    border-color: #d48166;
+  }
+  .form-control:focus {
+    color: #212529;
+    background-color: #fff;
+    border-color: #b1b1b1;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgb(255 63 0 / 25%);
+  }
+  .btn-outline-danger {
+    color: #dc3545;
+    border-color: #dc3545;
+    background-color: white;
+  }
