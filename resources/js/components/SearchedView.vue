@@ -148,81 +148,102 @@ export default {
             }
 
             if (address || km) {
-                console.log(km == 0);
                 if (address && km == 0) {
-                    this.getPositionWithApartments().then(async () => {
-                        console.log("SORTED 1111");
-                        this.sortedApartments =
-                            await this.sortedApartments.filter((item) => {
-                                let dist = this.calcCrow(
-                                    item.address.latitude,
-                                    item.address.longitude,
-                                    this.myLocation.lat,
-                                    this.myLocation.lng
-                                );
-                                if (dist <= 200) {
-                                    return item;
-                                }
+                    this.getPosition()
+                        .then(async () => {
+                            console.log("Filtro 1");
+                            this.sortedApartments =
+                                this.sortedApartments.filter((item) => {
+                                    let dist = this.calcCrow(
+                                        item.address.latitude,
+                                        item.address.longitude,
+                                        this.myLocation.lat,
+                                        this.myLocation.lng
+                                    );
+                                    if (dist <= 200) {
+                                        console.log(dist);
+                                        console.log(item);
+                                        return item;
+                                    }
+                                });
+                        })
+                        .then(async () => {
+                            console.log("elimino markers");
+                            this.deleteMarkers().then(async () => {
+                                this.createMarkers();
                             });
-                    });
+                        });
                 } else if (address && km > 0) {
                     console.log(km > 0);
-                    this.getPositionWithApartments().then(async () => {
-                        console.log("SORTED 2222");
-                        this.sortedApartments =
-                            await this.sortedApartments.filter((item) => {
-                                let dist = this.calcCrow(
-                                    item.address.latitude,
-                                    item.address.longitude,
-                                    this.myLocation.lat,
-                                    this.myLocation.lng
-                                );
-                                if (dist <= km) {
-                                    return item;
-                                }
+                    this.getPosition()
+                        .then(async () => {
+                            console.log("Filtro 2");
+                            this.sortedApartments =
+                                this.sortedApartments.filter((item) => {
+                                    let dist = this.calcCrow(
+                                        item.address.latitude,
+                                        item.address.longitude,
+                                        this.myLocation.lat,
+                                        this.myLocation.lng
+                                    );
+
+                                    if (dist < km) {
+                                        console.log(dist + "  " + km);
+                                        return item;
+                                    }
+                                });
+                        })
+                        .then(async () => {
+                            console.log("elimino markers");
+                            this.deleteMarkers().then(async () => {
+                                this.createMarkers();
                             });
-                    });
+                        });
                 }
             }
-
-            this.handleresults();
         },
 
-        async handleresults(result) {
+        async deleteMarkers() {
+            console.log("prima length " + this.markers.length);
+            for (let index = 0; index < this.markers.length; index++) {
+                console.log("Elimino marker " + this.markers[index]);
+                console.log(index);
+                this.markers[index].remove();
+            }
+
+            this.markers = [];
+        },
+
+        async createMarkers() {
+            if (this.sortedApartments.length == 0) {
+                this.filteredApartments.forEach((element) => {
+                    console.log("aggiungo marker 1");
+                    let marker = new tt.Marker()
+                        .setLngLat([
+                            element.address.longitude,
+                            element.address.latitude,
+                        ])
+                        .addTo(this.map);
+                    this.markers.push(marker);
+                });
+            } else {
+                this.sortedApartments.forEach((element) => {
+                    console.log("aggiungo marker 2");
+                    let marker = new tt.Marker()
+                        .setLngLat([
+                            element.address.longitude,
+                            element.address.latitude,
+                        ])
+                        .addTo(this.map);
+                    this.markers.push(marker);
+                });
+            }
+        },
+
+        async handlePosition(result) {
             if (result) {
                 this.myLocation = await result.results[0].position;
-                if (this.markers.length > 0) {
-                    this.markers.forEach((element) => {
-                        element.remove();
-                        this.markers.splice(element);
-                    });
-                }
-
                 this.moveMap(this.myLocation);
-
-                if (this.sortedApartments.length == 0) {
-                    console.log("filteredApartments");
-                    this.filteredApartments.forEach((element) => {
-                        let marker = new tt.Marker()
-                            .setLngLat([
-                                element.address.longitude,
-                                element.address.latitude,
-                            ])
-                            .addTo(this.map);
-                        this.markers.push(marker);
-                    });
-                } else {
-                    console.log("sortedApartments");
-                    this.sortedApartments.forEach((element) => {
-                        let marker = new tt.Marker()
-                            .setLngLat([
-                                element.address.longitude,
-                                element.address.latitude,
-                            ])
-                            .addTo(this.map);
-                        this.markers.push(marker);
-                    });
-                }
             }
         },
 
@@ -258,13 +279,14 @@ export default {
                 zoom: 2,
             });
         },
-        async getPositionWithApartments() {
+        async getPosition() {
             await tt.services
                 .fuzzySearch({
                     key: "hwUAMJjGlcfAD2Yd3w1owWJqbrrLpfoo",
                     query: document.getElementById("query").value,
                 })
-                .then(this.handleresults);
+                .then(this.handlePosition);
+            console.log("ottengo position");
         },
 
         resetAll() {
