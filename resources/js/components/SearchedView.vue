@@ -24,11 +24,8 @@
                     >
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <img
-                                    :src="apartment.cover_img"
-                                    class="card_img"
-                                    alt="cover"
-                                />
+                                <img v-if="apartment['cover_img'].substr(0, 4) === 'http'" :src="apartment.cover_img" class="card_img" alt="cover" />
+                                <img v-if="apartment['cover_img'].substr(0, 4) !== 'http'" :src="'../storage/' + apartment.cover_img" class="card_img" alt="cover" />
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
