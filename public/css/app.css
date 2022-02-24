@@ -12173,6 +12173,64 @@ fieldset:disabled .btn {
   }
 }
 
+.apartment-card .img-container {
+  width: 150px;
+  height: 150px;
+}
+
+.apartment-card {
+  background-color: #F6F4F2;
+  padding: 15px 20px;
+  border-radius: 15px;
+}
+
+.apartment-card .img-container img {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  -o-object-fit: cover;
+     object-fit: cover;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.apartment-data p {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.apartment-data:nth-child(3) {
+  align-items: flex-start;
+}
+
+.apartment-data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-right: 1rem;
+  margin-right: 1rem;
+}
+
+.btn-orange {
+  background-color: #d48166;
+  color: #f9f9f9;
+  border-radius: 10px;
+}
+
+.theme-btn-white {
+  border-radius: 10px;
+  background-color: white;
+  color: #d48166;
+  border: 1px solid #d48166;
+}
+
+.theme-btn-white::hover {
+  background-color: #3F423E;
+  color: white;
+}
+
 html,
 body {
   height: 100%;
@@ -12258,6 +12316,8 @@ body {
   top: 3px;
   transform: rotate(45deg);
   width: 22px;
+  background: url(/images/icons8-home.svg?60328291500bd056dd3be6b5a48cf3a5);
+  background-size: cover;
 }
 
 .marker {
@@ -12508,6 +12568,64 @@ nav.main-nav a.nav-link {
   color: #373a36;
 }
 
+.apartment-card .img-container {
+  width: 150px;
+  height: 150px;
+}
+
+.apartment-card {
+  background-color: #F6F4F2;
+  padding: 15px 20px;
+  border-radius: 15px;
+}
+
+.apartment-card .img-container img {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  -o-object-fit: cover;
+     object-fit: cover;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.apartment-data p {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.apartment-data:nth-child(3) {
+  align-items: flex-start;
+}
+
+.apartment-data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-right: 1rem;
+  margin-right: 1rem;
+}
+
+.btn-orange {
+  background-color: #d48166;
+  color: #f9f9f9;
+  border-radius: 10px;
+}
+
+.theme-btn-white {
+  border-radius: 10px;
+  background-color: white;
+  color: #d48166;
+  border: 1px solid #d48166;
+}
+
+.theme-btn-white::hover {
+  background-color: #3F423E;
+  color: white;
+}
+
 html,
 body {
   height: 100%;
@@ -12524,6 +12642,10 @@ header nav.main-nav a.navbar-brand {
 
 header nav.main-nav a.nav-link {
   color: #d48166;
+}
+
+main {
+  /* background-color: #f6f4f2; */
 }
 
 main .container .title {
