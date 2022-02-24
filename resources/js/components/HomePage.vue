@@ -3,6 +3,7 @@
     <div class="text-center">
       <h2 class="pb-5">Appartamenti in primo piano</h2>
     </div>
+    <button type="button" v-on:click="Log">Display</button>
     <div
       class="
         row row-cols-1 row-cols-md-2 row-cols-lg-4
@@ -10,7 +11,13 @@
         text-center
       "
     >
-      <div class="col d-flex justify-content-center">
+      <div
+        class="col d-flex justify-content-center"
+        v-for="(apartment, i) in apartments"
+        :key="i"
+      >
+        <SponsoredCard></SponsoredCard>
+        <!--       <div class="col d-flex justify-content-center">
         <div
           class="card px-0 shadow-lg mb-5 bg-body rounded"
           style="width: 18rem"
@@ -97,9 +104,9 @@
             </p>
           </div>
         </div>
+      </div> -->
       </div>
     </div>
-
     <div class="pb-4">
       <div class="my-5 text-center">
         <h2 style="color: #3d403c">Scopri Boolbnb</h2>
@@ -279,8 +286,22 @@
 </template>
 
 <script>
+import SponsoredCard from "./SponsoredCard.vue";
 export default {
+  components: { SponsoredCard },
   name: "HomePage",
+  props: {
+    apartments: Array,
+    search: Object,
+  },
+  data() {
+    return {};
+  },
+  methods: {
+    Log() {
+      console.log(this.apartments);
+    },
+  },
 };
 </script>
 
