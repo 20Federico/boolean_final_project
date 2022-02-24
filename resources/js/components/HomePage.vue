@@ -21,13 +21,13 @@
             alt="..."
           />
           <div class="card-body text-center">
-            <h5 style="color: #d48166">Nome Appartamento</h5>
+            <h5 style="color: #d48166">Villa moderna con piscina</h5>
 
             <hr class="mt-3 mb-3" style="width: 25%; margin: auto" />
 
             <p class="card-text text-center">
               <i class="fas fa-map-marker-alt fs-5" style="color: #d48166"></i>
-              Via roma 83
+              Via Libertà 266/A
             </p>
           </div>
         </div>
