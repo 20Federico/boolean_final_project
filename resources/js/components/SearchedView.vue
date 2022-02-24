@@ -126,6 +126,9 @@ export default {
             let address = this.SEARCHADDRESS;
             let km = this.SEARCHKM;
 
+
+            
+
             if (room !== 1) {
                 this.sortedApartments = this.sortedApartments.filter((item) => {
                     return item.n_rooms >= room;
@@ -151,7 +154,6 @@ export default {
                 if (address && km == 0) {
                     this.getPosition()
                         .then(async () => {
-                            console.log("Filtro 1");
                             this.sortedApartments =
                                 this.sortedApartments.filter((item) => {
                                     let dist = this.calcCrow(
@@ -161,23 +163,18 @@ export default {
                                         this.myLocation.lng
                                     );
                                     if (dist <= 200) {
-                                        console.log(dist);
-                                        console.log(item);
                                         return item;
                                     }
                                 });
                         })
                         .then(async () => {
-                            console.log("elimino markers");
                             this.deleteMarkers().then(async () => {
                                 this.createMarkers();
                             });
                         });
                 } else if (address && km > 0) {
-                    console.log(km > 0);
                     this.getPosition()
                         .then(async () => {
-                            console.log("Filtro 2");
                             this.sortedApartments =
                                 this.sortedApartments.filter((item) => {
                                     let dist = this.calcCrow(
@@ -188,13 +185,11 @@ export default {
                                     );
 
                                     if (dist < km) {
-                                        console.log(dist + "  " + km);
                                         return item;
                                     }
                                 });
                         })
                         .then(async () => {
-                            console.log("elimino markers");
                             this.deleteMarkers().then(async () => {
                                 this.createMarkers();
                             });
@@ -204,10 +199,7 @@ export default {
         },
 
         async deleteMarkers() {
-            console.log("prima length " + this.markers.length);
             for (let index = 0; index < this.markers.length; index++) {
-                console.log("Elimino marker " + this.markers[index]);
-                console.log(index);
                 this.markers[index].remove();
             }
 
@@ -215,9 +207,11 @@ export default {
         },
 
         async createMarkers() {
+            if(this.filteredApartments == undefined && this.sortedApartments.length == 0){
+                return;
+            }
             if (this.sortedApartments.length == 0) {
                 this.filteredApartments.forEach((element) => {
-                    console.log("aggiungo marker 1");
                     let marker = new tt.Marker()
                         .setLngLat([
                             element.address.longitude,
@@ -228,7 +222,6 @@ export default {
                 });
             } else {
                 this.sortedApartments.forEach((element) => {
-                    console.log("aggiungo marker 2");
                     let marker = new tt.Marker()
                         .setLngLat([
                             element.address.longitude,
@@ -286,7 +279,6 @@ export default {
                     query: document.getElementById("query").value,
                 })
                 .then(this.handlePosition);
-            console.log("ottengo position");
         },
 
         resetAll() {
