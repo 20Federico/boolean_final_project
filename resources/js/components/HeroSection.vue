@@ -8,38 +8,21 @@
           l'avventura!
         </h3>
 
-<!--  -->
           <div class="container">
             <div class="row d-flex justify-content-center align-items-center">
-              <div class="col-md-4 mb-5">
+              <div class="col-12 col-md-8 mb-5">
                 <div class="search"> 
                   <input v-on:keyup.enter="search(searchQuery)" v-model="searchQuery" id="query" type="text" class="form-control" placeholder="type city or address..."> 
                   <button  @click="search(searchQuery)" class="btn btn-primary"><i class="fa fa-search"></i></button>
                 </div>
-
-        <!-- <div class="container">
-          <div class="row d-flex justify-content-center align-items-center">
-            <div class="col-12 col-md-8 mb-5">
-              <div class="search">
-                <input
-                  v-on:keyup.enter="search()"
-                  id="query"
-                  type="text"
-                  class="form-control"
-                  placeholder="type city or address..."
-                />
-                <button @click="search()" class="btn btn-primary">
-                  <i class="fa fa-search"></i>
-                </button> -->
-
               </div>
             </div>
-            <search-filters v-if="searching"></search-filters>
+            <search-filters v-if="searching === true"></search-filters>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  <!-- </div> -->
 </template>
 
 <script>
@@ -47,22 +30,25 @@ import {mapActions} from "vuex";
 export default {
 
   name: 'HeroSection',
+  props: {
+    searching: Boolean,
+  },
   
   data() {
     return {
       searchQuery: '',
-      searching: false,
-      
     }
 
   },
   
   methods: {
-
     ...mapActions(['GET_FILTER_ADRESSES']),
     search(value){
-        this.searching = true;
-         this.GET_FILTER_ADRESSES(value);
+      if (this.searchQuery !== '') {
+          this.searching = true;
+          this.$emit('search');
+        }
+        this.GET_FILTER_ADRESSES(value);
     }
   }
 }
