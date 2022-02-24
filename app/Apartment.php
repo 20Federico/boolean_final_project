@@ -36,7 +36,7 @@ class Apartment extends Model
 
   public function messages()
   {
-    return $this->hasMany('App\Message')->withTimestamps();
+    return $this->hasMany('App\Message');
   }
 
   protected $fillable =  [

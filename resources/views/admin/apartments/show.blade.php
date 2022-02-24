@@ -105,19 +105,9 @@
                 <span style="overflow-wrap:break-word">
                 
                   @if(count($apartment->sponsor) == 0)
-                  <span>Nessuna sponsorizzazione</span>
+                    <span>Base</span>
                   @else
-                    @foreach ($apartment->sponsor as $item)
-                          @if ($item->id == "1")
-                          <span>Base</span>
-                          @endif
-                          @if ($item->id == "2")
-                          <span>Medium</span>
-                          @endif
-                          @if ($item->id == "3")
-                          <span>Premium</span>
-                          @endif
-                    @endforeach
+                    <span>Premium</span>
                   @endif
                 </span>
             </div>

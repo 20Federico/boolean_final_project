@@ -142,6 +142,7 @@
             </div>
           </div>
           -->
+          
           <div class="row row-cols-1 row-cols-md-6 align-items-center text-center apartment-card mb-3 orange-border">
             <div class="d-none d-xl-inline-block col-lg-1">
               
@@ -172,20 +173,53 @@
               <i class="fa fa-envelope" aria-hidden="true"></i>
                 <p class="d-none d-lg-block m-0">New messages</p>
                 {{-- estrapolare dati DB --}}
-                <p class="m-0">3</p>
+                <p class="m-0">
+                  {{-- {{ $apartment->messages }} --}}
+                  @php
+                      $messageToRead = [];
+                      foreach ($apartment->messages as $item) {
+                        $item->read;
+                        if ($item->read== 0) 
+                          array_push($messageToRead, $item);
+                      }
+                      echo count($messageToRead);
+                  @endphp
+                </p>
             </div>
             
             <div class="col-4 col-md-1 col-lg-1 mt-4 mt-md-0 border-md-start border-2 py-3">
               <i class="fa fa-eye" aria-hidden="true"></i>
                 <p class="d-none d-lg-block m-0">Views</p>
                 {{-- estrapolare dati DB --}}
-                <p class="m-0">3</p>
+                <p class="m-0">
+                  @php
+                    $visits = [];
+                    foreach ($apartment->visits as $visit) {
+                      if ($visit->apartment_id == $apartment->id) 
+                        array_push($visits, $visit->apartment_id);
+                    }  
+                    echo count($visits);
+                  @endphp
+                </p>
+                
             </div>
 
             <div class="col-4 col-md-2 col-lg-2 mt-4 mt-md-0 border-md-start border-md-end border-2 py-3">
               <i class="fa fa-rocket" aria-hidden="true"></i>
                 {{-- Estrapolare dati DB --}}
-                <p class="m-0">Advanced</p>
+                <p class="m-0">
+                  
+                    
+                    
+                    
+                  
+                  
+                  @if(count($apartment->sponsor) == 0)
+                    <span>Base</span>
+                  @else
+                    <span>Premium</span>
+                  @endif  
+                </p>
                 <p class="d-none d-lg-inline-block fw-lighter text-small m-0">ends 23/12/21 ore 15:30</p>
             </div>
             {{-- Pulsanti --}}
@@ -195,10 +229,33 @@
                 <i class="fa fa-paint-brush d-lg-none" aria-hidden="true"></i>
               </a>
               
-              <a href="{{ route('admin.apartments.destroy', $apartment->id) }}" class="btn theme-btn-white w-100">
+              <a type="button" class="btn theme-btn-white w-100" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $apartment->id }}">
                 <div class="p d-md-none d-lg-block">Elimina</div> 
                 <i class="fa fa-trash d-lg-none" aria-hidden="true"></i>
               </a>
+              
+
+              <div class="modal fade" id="exampleModal{{ $apartment->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Conferma eleminzione</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-start">
+                      Vuoi davvero cancellare l'appartamento?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <form action="{{ route('admin.apartments.destroy', $apartment->id) }}" method="post" class="btn-responsive">
+                        @csrf
+                        @method('delete')
+                        <button class="btn btn-outline-danger" type="submit" >Elimina</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               <a href="{{ route('admin.apartments.show', $apartment->id) }}" class="btn theme-btn-white w-100">
                 <div class="p d-md-none d-lg-block">Vedi</div> 
