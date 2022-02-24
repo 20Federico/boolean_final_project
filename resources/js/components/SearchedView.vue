@@ -72,14 +72,25 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <p class="card-text text-end">
-                                        €
-                                        <strong class="fs-4">{{
-                                            apartment.price_day
-                                        }}</strong>
-                                        / notte
-                                    </p>
+
+                                    <div class="d-flex justify-content-between">
+                                      <div>
+                                        <p class="card-text text-end">
+                                          €
+                                          <strong class="fs-4">{{ apartment.price_day }}</strong>
+                                          / notte
+                                        </p>
+                                      </div>
+                                      <div>
+                                        <a
+                                          :href="'apartments/' + apartment.id"
+                                          class="btn btn-orange mb-3"
+                                          >Dettagli</a
+                                        >
+                                      </div>
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
