@@ -1,5 +1,5 @@
 <template>
-
+<!-- 
   <div class="mb-3">
     <form action="#" class="p-4">
       <div class="row justify-content-center align-items-center">
@@ -68,9 +68,8 @@
         </div>
       </div>
     </form>
-  </div>
+  </div> -->
 
-/*
     <div class="mb-3">
         <form action="#" class="py-4">
             <div class="row justify-content-center align-items-center">
@@ -84,8 +83,7 @@
                         max="100"
                         step="10"
                         v-model="kmValue"
-                        v-on:change="searchByKm
-"
+                        v-on:change="searchByKm"
                       
                     />
                 </div>
@@ -142,7 +140,6 @@
 
         </form>
     </div>
-  */
 </template>
 
 <script>

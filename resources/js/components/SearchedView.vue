@@ -2,8 +2,13 @@
 
   <div>
     <div class="row d-flex flex-column flex-md-row py-3 g-0">
-      <div class="col-12 col-md-5">
+      <div class="col-12 col-lg-6">
         <div class="p-4">
+          <div>
+                        <button @click="resetAll" class="btn btn-primary py-2">
+                            Reset All
+                        </button>
+                    </div>
           <button
             @click="$emit('back')"
             type="button"
@@ -12,14 +17,14 @@
             <i class="fas fa-arrow-left"></i>
             <span class="d-none d-sm-inline">Homepage</span>
           </button>
-          <!-- {{apartments}} -->
+
 
           <div
             class="card mb-1 p-3"
-            v-for="(apartment, i) in apartments"
-            :key="i"
+            v-for="apartment in filteredApartments"
+            :key="apartment.id"
           >
-            <div class="row flex-column g-0">
+            <div class="row flex-column flex-md-row g-0">
               <div class="col">
                 <img :src="apartment.cover_img" class="card_img" alt="cover" />
               </div>
@@ -59,8 +64,8 @@
                   </div>
                   <div class="d-flex justify-content-between">
 
-/*
-    <div>
+
+        <!-- <div>
         <div class="row me-0">
             <div class="col-5">
                 <div class="p-4">
@@ -76,7 +81,7 @@
                     >
                         <i class="fas fa-arrow-left"></i> Homepage
                     </button>
-                    <!-- {{apartments}} -->
+                    
 
                     <div
                         class="card mb-1 p-3"
@@ -134,8 +139,8 @@
                                         </ul>
                                     </div>
 
-                                    <div class="d-flex justify-content-between">
-                                */
+                                    <div class="d-flex justify-content-between"> -->
+
                                       <div>
                                         <p class="card-text text-end">
                                           €
@@ -159,22 +164,13 @@
                 </div>
             </div>
 
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-md-7 p-4">
-        <div class="map_container">
-          <div class="mymap" id="map"></div>
-
-/*
-            <div class="col-7">
-                <div class="map_container">
-                    <div class="mymap" id="map"></div>
-                </div>
+            <div class="col-12 col-lg-6 p-4">
+              <div class="map_container">
+              <div class="mymap" id="map"></div>
             </div>
-      */
-        </div>
-    </div>
+          </div>
+      </div>
+  </div>
 </template>
 
 <script>
