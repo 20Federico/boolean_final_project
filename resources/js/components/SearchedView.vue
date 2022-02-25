@@ -85,11 +85,8 @@
                     >
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <img
-                                    :src="apartment.cover_img"
-                                    class="card_img"
-                                    alt="cover"
-                                />
+                                <img v-if="apartment['cover_img'].substr(0, 4) === 'http'" :src="apartment.cover_img" class="card_img" alt="cover" />
+                                <img v-if="apartment['cover_img'].substr(0, 4) !== 'http'" :src="'../storage/' + apartment.cover_img" class="card_img" alt="cover" />
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
@@ -151,6 +148,7 @@
                                         >
                                       </div>
                                     </div>
+                                    <span class="badge rounded-pill px-3"><i class="fas fa-ribbon"></i> Sponsored</span>
                                 </div>
 
                             </div>
@@ -448,5 +446,12 @@ export default {
 .card-body {
     padding: 0 !important;
     padding-left: 20px !important;
+}
+
+.badge {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: #d48166;
 }
 </style>
