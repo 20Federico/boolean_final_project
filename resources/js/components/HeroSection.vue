@@ -26,7 +26,7 @@
 
               </div>
             </div>
-            <search-filters v-if="searching === true"></search-filters>
+            <search-filters v-if="isSearching === true && searching !== false"></search-filters>
           </div>
         </div>
       </div>
@@ -46,6 +46,7 @@ export default {
   data() {
     return {
       searchQuery: '',
+      isSearching: false
     }
 
   },
@@ -54,7 +55,7 @@ export default {
     ...mapActions(['GET_FILTER_ADRESSES']),
     search(value){
       if (this.searchQuery !== '') {
-          this.searching = true;
+          this.isSearching = true;
           this.$emit('search');
         }
         this.GET_FILTER_ADRESSES(value);
