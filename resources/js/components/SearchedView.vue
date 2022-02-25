@@ -5,10 +5,10 @@
       <div class="col-12 col-lg-6">
         <div class="p-4">
           <div>
-                        <button @click="resetAll" class="btn btn-primary py-2">
-                            Reset All
-                        </button>
-                    </div>
+            <button @click="resetAll" class="btn btn-primary py-2">
+              Reset All
+            </button>
+          </div>
           <button
             @click="$emit('back')"
             type="button"
@@ -26,7 +26,8 @@
           >
             <div class="row flex-column flex-md-row g-0">
               <div class="col">
-                <img :src="apartment.cover_img" class="card_img" alt="cover" />
+                <img v-if="apartment['cover_img'].substr(0, 4) === 'http'" :src="apartment.cover_img" class="card_img" alt="cover" />
+                <img v-if="apartment['cover_img'].substr(0, 4) !== 'http'" :src="'../storage/' + apartment.cover_img" class="card_img" alt="cover" />
               </div>
               <div class="col">
                 <div class="card-body">
