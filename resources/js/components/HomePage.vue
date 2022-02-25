@@ -3,7 +3,7 @@
     <div class="text-center">
       <h2 class="pb-5">Appartamenti in primo piano</h2>
     </div>
-    <button type="button" v-on:click="Log">Display</button>
+    <!-- <button type="button" v-on:click="Log">Display</button> -->
     <div
       class="
         row row-cols-1 row-cols-md-2 row-cols-lg-4
@@ -13,11 +13,16 @@
     >
       <div
         class="col d-flex justify-content-center"
-        v-for="(value, i) in pluto"
+        v-for="(card, i) in pluto"
         :key="i"
       >
-        <p>{{ value }}</p>
-        <SponsoredCard></SponsoredCard>
+        <SponsoredCard
+          :title="card[0].title"
+          :img="card[0].cover_img"
+          :via="card[0].address.street_name"
+          :civico="card[0].address.street_number"
+          :citta="card[0].address.city"
+        ></SponsoredCard>
         <!--       <div class="col d-flex justify-content-center">
         <div
           class="card px-0 shadow-lg mb-5 bg-body rounded"
@@ -303,6 +308,7 @@ export default {
     Log() {
       console.log(this.pluto);
       console.log(this.apartments);
+      console.log(this.apartment);
     },
   },
 };

@@ -50,15 +50,13 @@ Route::post("{apartment}/apartments", "Guest\ApartmentController@store")->name("
 Route::get('/', function () {
 
   $apartments = Apartment::limit(10)->with('services', 'address', 'sponsor')->get();
-  $sponsored = SponsorApartment::whereDate('expiry', '>', Carbon::now())->orderBy("created_at", "DESC")->get("apartment_id");
+  $sponsored = SponsorApartment::limit(1)->whereDate('expiry', '>', Carbon::now())->orderBy("created_at", "DESC")->get("apartment_id");
   $pluto = [];
 
   foreach ($sponsored as $value) {
-    $apartment = Apartment::where("id", $value->apartment_id)->get();
+    $apartment = Apartment::where("id", $value->apartment_id)->with('services', 'address', 'sponsor')->get();
     array_push($pluto, $apartment);
   }
-
-  /*   $apartmentsSponsored = Apartment::with('services', 'address', 'sponsor')->where('sponsor' <> [])->get(); */
 
   return view('guests.home', ['apartments' => $apartments, 'pluto' => $pluto]);
 })->name('guests.home');
