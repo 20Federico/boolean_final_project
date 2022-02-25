@@ -2,13 +2,10 @@
 
 @section('title', 'BoolBnB - Affittare casa non è mai stato così facile!')
 
-
-
-
 @section('content')
   <hero-section @search="searching = true" :searching='searching'></hero-section>
-  <home-page v-if="!searching"></home-page>
+  <home-page v-if="!searching" :pluto="{{json_encode($pluto)}}">
+  </home-page>
   <searched-view v-if="searching" @back="searching = false" :search='search'></searched-view>
-
 
 @endsection

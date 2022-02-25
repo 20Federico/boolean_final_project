@@ -1,4 +1,65 @@
 <template>
+
+  <div>
+    <div class="row d-flex flex-column flex-md-row py-3 g-0">
+      <div class="col-12 col-md-5">
+        <div class="p-4">
+          <button
+            @click="$emit('back')"
+            type="button"
+            class="btn btn-outline-dark mb-4"
+          >
+            <i class="fas fa-arrow-left"></i>
+            <span class="d-none d-sm-inline">Homepage</span>
+          </button>
+          <!-- {{apartments}} -->
+
+          <div
+            class="card mb-1 p-3"
+            v-for="(apartment, i) in apartments"
+            :key="i"
+          >
+            <div class="row flex-column g-0">
+              <div class="col">
+                <img :src="apartment.cover_img" class="card_img" alt="cover" />
+              </div>
+              <div class="col">
+                <div class="card-body">
+                  <h5 class="card-title">{{ apartment.title }}</h5>
+                  <hr class="w-25" />
+                  <p class="card-text mb-1">
+                    <small class="text-muted">{{
+                      apartment.shared
+                        ? "Appartamento condiviso"
+                        : "Appartamento intero"
+                    }}</small>
+                  </p>
+                  <div class="card-text">
+                    <ul class="list-unstyled text-secondary mb-4">
+                      <li class="d-inline-block">
+                        Mq: {{ apartment.square_meters }} |
+                      </li>
+                      <li class="d-inline-block">
+                        Stanze: {{ apartment.n_rooms }} |
+                      </li>
+                      <li class="d-inline-block">
+                        Letti: {{ apartment.n_beds }} |
+                      </li>
+                      <li class="d-inline-block">
+                        Bagni: {{ apartment.n_baths }} |
+                      </li>
+                      <li
+                        class="d-inline-block"
+                        v-for="(service, i) in apartment.services"
+                        :key="i"
+                      >
+                        {{ service.name }} |&#160;
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="d-flex justify-content-between">
+
+/*
     <div>
         <div class="row me-0">
             <div class="col-5">
@@ -74,6 +135,7 @@
                                     </div>
 
                                     <div class="d-flex justify-content-between">
+                                */
                                       <div>
                                         <p class="card-text text-end">
                                           €
@@ -96,11 +158,21 @@
                     </div>
                 </div>
             </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-7 p-4">
+        <div class="map_container">
+          <div class="mymap" id="map"></div>
+
+/*
             <div class="col-7">
                 <div class="map_container">
                     <div class="mymap" id="map"></div>
                 </div>
             </div>
+      */
         </div>
     </div>
 </template>

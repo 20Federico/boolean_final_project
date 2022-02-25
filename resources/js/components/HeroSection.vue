@@ -8,13 +8,22 @@
           l'avventura!
         </h3>
 
-          <div class="container">
-            <div class="row d-flex justify-content-center align-items-center">
-              <div class="col-12 col-md-8 mb-5">
-                <div class="search"> 
-                  <input v-on:keyup.enter="search(searchQuery)" v-model="searchQuery" id="query" type="text" class="form-control" placeholder="type city or address..."> 
-                  <button  @click="search(searchQuery)" class="btn btn-primary"><i class="fa fa-search"></i></button>
-                </div>
+        <div class="container">
+          <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-12 col-md-8 mb-5">
+              <div class="search">
+                <input
+                  v-on:keyup.enter="search(searchQuery)"
+                  v-model="searchQuery"
+                  id="query"
+                  type="text"
+                  class="form-control"
+                  placeholder="Città, Indirizzo, CAP..."
+                />
+                <button @click="search(searchQuery)" class="btn btn-primary">
+                  <i class="fa fa-search"></i>
+                </button>
+
               </div>
             </div>
             <search-filters v-if="searching === true"></search-filters>
