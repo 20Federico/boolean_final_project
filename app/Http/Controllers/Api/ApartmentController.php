@@ -10,7 +10,9 @@ use Illuminate\Http\Request;
 class ApartmentController extends Controller
 {
     public function index(){
-        $apartments = Apartment::with('services','address','sponsor')->get();
+
+
+        $apartments = Apartment::with('services','address','sponsor')->where('visible', 1)->get();
         $services = Service::all();
 
 

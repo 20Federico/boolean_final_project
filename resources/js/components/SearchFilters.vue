@@ -10,9 +10,10 @@
                         type="range"
                         min="0"
                         max="100"
-                        step="10"
+                        step="1"
                         v-model="kmValue"
                         v-on:change="searchByKm
+                        
 "
                       
                     />
@@ -86,6 +87,7 @@ export default {
             kmValue: 0,
         };
     },
+    
     methods: {
         getShowServices() {
             axios.get("/api/apartments").then((resp) => {
@@ -118,6 +120,8 @@ export default {
     mounted() {
         this.getShowServices();
     },
+
+    
 };
 </script>
 

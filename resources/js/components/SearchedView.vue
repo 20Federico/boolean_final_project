@@ -74,23 +74,26 @@
                                     </div>
 
                                     <div class="d-flex justify-content-between">
-                                      <div>
-                                        <p class="card-text text-end">
-                                          €
-                                          <strong class="fs-4">{{ apartment.price_day }}</strong>
-                                          / notte
-                                        </p>
-                                      </div>
-                                      <div>
-                                        <a
-                                          :href="'apartments/' + apartment.id"
-                                          class="btn btn-orange mb-3"
-                                          >Dettagli</a
-                                        >
-                                      </div>
+                                        <div>
+                                            <p class="card-text text-end">
+                                                €
+                                                <strong class="fs-4">{{
+                                                    apartment.price_day
+                                                }}</strong>
+                                                / notte
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <a
+                                                :href="
+                                                    'apartments/' + apartment.id
+                                                "
+                                                class="btn btn-orange mb-3"
+                                                >Dettagli</a
+                                            >
+                                        </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -128,7 +131,7 @@ export default {
             "SET_FILTER_KM",
         ]),
 
-        searchApartmentsByAll() {
+        async searchApartmentsByAll() {
             this.sorted = true;
             this.sortedApartments = [...this.APARTMENTS];
             let services = this.SEARCHARRSERVICES;
@@ -136,9 +139,6 @@ export default {
             let bed = parseInt(this.SEARCHNUMBEDS);
             let address = this.SEARCHADDRESS;
             let km = this.SEARCHKM;
-
-
-            
 
             if (room !== 1) {
                 this.sortedApartments = this.sortedApartments.filter((item) => {
@@ -173,7 +173,7 @@ export default {
                                         this.myLocation.lat,
                                         this.myLocation.lng
                                     );
-                                    if (dist <= 200) {
+                                    if (dist <= 20) {
                                         return item;
                                     }
                                 });
@@ -213,12 +213,26 @@ export default {
             for (let index = 0; index < this.markers.length; index++) {
                 this.markers[index].remove();
             }
-
             this.markers = [];
         },
 
+        async sortBySponsor() {
+            if (this.sorted) {
+                this.sortedApartments.sort((a, b) => {
+                    return b.sponsor.length - a.sponsor.length;
+                });
+            } else {
+                this.filteredApartments.sort((a, b) => {
+                    return b.sponsor.length - a.sponsor.length;
+                });
+            }
+        },
+
         async createMarkers() {
-            if(this.filteredApartments == undefined && this.sortedApartments.length == 0){
+            if (
+                this.filteredApartments == undefined &&
+                this.sortedApartments.length == 0
+            ) {
                 return;
             }
             if (this.sortedApartments.length == 0) {
@@ -316,10 +330,17 @@ export default {
 
         filteredApartments() {
             if (this.sortedApartments.length) {
+                this.sortedApartments.sort((a, b) => {
+                    return b.sponsor.length - a.sponsor.length;
+                });
                 return this.sortedApartments;
             } else if (!this.sortedApartments.length && !this.sorted) {
+                this.APARTMENTS.sort((a, b) => {
+                    return b.sponsor.length - a.sponsor.length;
+                });
                 return this.APARTMENTS;
             }
+            
         },
     },
     mounted() {
@@ -330,26 +351,36 @@ export default {
             center: [12.494689, 41.899783],
             zoom: 2,
         });
-
+        this.sortBySponsor();
         this.map.addControl(new tt.FullscreenControl());
         this.map.addControl(new tt.NavigationControl());
     },
 
     watch: {
         SEARCHNUMROOMS() {
-            this.searchApartmentsByAll();
+            this.searchApartmentsByAll().then(async () => {
+                await this.sortBySponsor();
+            });
         },
         SEARCHNUMBEDS() {
-            this.searchApartmentsByAll();
+            this.searchApartmentsByAll().then(async () => {
+                await this.sortBySponsor();
+            });
         },
         SEARCHARRSERVICES() {
-            this.searchApartmentsByAll();
+            this.searchApartmentsByAll().then(async () => {
+                await this.sortBySponsor();
+            });
         },
         SEARCHADDRESS() {
-            this.searchApartmentsByAll();
+            this.searchApartmentsByAll().then(async () => {
+                await this.sortBySponsor();
+            });
         },
         SEARCHKM() {
-            this.searchApartmentsByAll();
+            this.searchApartmentsByAll().then(async () => {
+                await this.sortBySponsor();
+            });
         },
     },
 };
