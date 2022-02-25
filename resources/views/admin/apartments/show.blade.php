@@ -23,13 +23,45 @@
         <div class="container nav-responsive d-flex flex-wrap justify-content-center d-flex-wrap">
             <a href="{{ route('admin.apartments.edit', $apartment->id) }}" class="btn-responsive btn btn-primary btn-lg mb-3">Modifica</a>
             <a href="#messaggi" class="btn-responsive btn btn-warning btn-lg mb-3">Messaggi</a>
+            @if(count($apartment->sponsor) == 0)
             <a href="{{route('admin.sponsors.index', $apartment->id)}}" class="btn-responsive btn btn-success btn-lg mb-3">Sponsorizza</a>
+            @endif
             <a href="{{ route('admin.visits.show', $apartment->id) }}" class="btn-responsive btn btn-info btn-lg mb-3">Statistiche</a>
-            <form action="{{ route('admin.apartments.destroy', $apartment->id) }}" method="post" class="btn-responsive">
+            {{-- <form action="{{ route('admin.apartments.destroy', $apartment->id) }}" method="post" class="btn-responsive">
                 @csrf
                 @method('delete')
                 <button class="btn-responsive btn btn-outline-danger btn-lg" type="submit" onclick="return confirm('Are you sure you want to delete this appartment? With this apartment all related messages will be deleted')">Elimina</button>
-            </form>
+            </form> --}}
+            <!-- Button trigger modal -->
+            <div>
+
+              <button type="button" class="btn-responsive btn btn-outline-danger btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $apartment->id }}">
+                Elimina
+              </button>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal{{ $apartment->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Conferma eleminzione</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    Vuoi davvero cancellare l'appartamento?
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <form action="{{ route('admin.apartments.destroy', $apartment->id) }}" method="post" class="btn-responsive">
+                      @csrf
+                      @method('delete')
+                      <button class="btn btn-outline-danger" type="submit" >Elimina</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
         </div>
 
         <div class="container py-4">
@@ -66,6 +98,28 @@
                 <p style="overflow-wrap:break-word">
                   {{ $apartment->description }}
                 </p>
+            </div>
+            <hr class="my-3">
+            <div class="fs-5">
+                <h3>Sponsor</h3>
+                <span style="overflow-wrap:break-word">
+                
+                  @if(count($apartment->sponsor) == 0)
+                    <span>Base</span>
+                  @else
+                    <span>Premium</span>
+                    <br>
+
+                    @php
+                        $time = strtotime($expiry[0]['expiry']);
+
+                        $dateExpiry = date('d/m/Y',$time);
+
+                        echo "Scadenza: " . $dateExpiry;
+                    @endphp
+                    
+                  @endif
+                </span>
             </div>
             <hr class="my-3">
             <section>

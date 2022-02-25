@@ -12,14 +12,28 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
 use App\Service;
 use App\Sponsor;
+use App\SponsorApartment;
 use Illuminate\Http\Request;
 
 class ApartmentController extends Controller
 {
     public function index()
     {
+        $apartmentSponsoredList=[];
+        $apartmentsId = [];
         $apartmentsList = Apartment::where('user_id', Auth::user()->id)->get();
-        return view('admin.apartments.index', compact('apartmentsList'));
+        foreach ($apartmentsList as $apartment) {
+            array_push($apartmentsId, $apartment->id);
+        }
+        foreach ($apartmentsId as $apartmentId) {
+            $apartmentSponsored = SponsorApartment::where('apartment_id', $apartmentId)->get();
+            array_push($apartmentSponsoredList, $apartmentSponsored);
+        }
+        
+        return view('admin.apartments.index', [
+            'apartmentsList' => $apartmentsList,
+            'apartmentSponsoredList'=> $apartmentSponsoredList
+        ]);
     }
 
 
@@ -29,11 +43,11 @@ class ApartmentController extends Controller
       if($apartment->user_id != Auth::id()){
           return abort(401);
       }
-
+      $expiry = SponsorApartment::where('apartment_id', $apartment->id)->get();
       $address = Address::where('apartment_id', $apartment->id)->get(['latitude', 'longitude']);
       $messages = Message::orderBy('created_at', 'desc')->where('apartment_id', $apartment->id)->get();
       
-      return view('admin.apartments.show', ['apartment'=> $apartment, 'address'=>$address, 'messages'=>$messages]);
+      return view('admin.apartments.show', ['apartment'=> $apartment, 'address'=>$address, 'messages'=>$messages, 'expiry'=>$expiry]);
     }
 
     public function create()

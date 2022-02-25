@@ -12,7 +12,9 @@ class Sponsor extends Model
   ];
 
   public function apartment() {
+
     return $this->belongsToMany('App\Apartment', 'sponsor_apartment');
+
   }
   
   public $timestamps = false;

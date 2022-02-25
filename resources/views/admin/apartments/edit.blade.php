@@ -106,9 +106,9 @@
                               </div>
                                 <div v-if="editImgVisible">
                                   @if (substr($apartment->cover_img, 0, 4 ) === 'http')
-                                  <img src="{{ url($apartment->cover_img) }}" class="img-thumbnail w-25" alt="">
+                                  <img src="{{ url($apartment->cover_img) }}" class="img-thumbnail" alt="">
                                   @else    
-                                  <img src="{{ asset('storage/' . $apartment->cover_img) }}" class="class="img-thumbnail"" alt="">
+                                  <img src="{{ asset('storage/' . $apartment->cover_img) }}" class="img-thumbnail" alt="">
                                   @endif
                                 </div>
                           </div>

@@ -16,12 +16,14 @@ class Apartment extends Model
 
   public function address()
   {
-    return $this->hasOne('App\Address');
+    return $this->hasOne('App\Address','apartment_id');
   }
 
   public function sponsor()
   {
+
     return $this->belongsToMany('App\Sponsor', 'sponsor_apartment')->withTimestamps();;
+
   }
 
   public function services()
@@ -36,7 +38,7 @@ class Apartment extends Model
 
   public function messages()
   {
-    return $this->hasMany('App\Message')->withTimestamps();
+    return $this->hasMany('App\Message');
   }
 
   protected $fillable =  [

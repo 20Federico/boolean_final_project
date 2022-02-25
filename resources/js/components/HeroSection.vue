@@ -13,58 +13,55 @@
             <div class="col-12 col-md-8 mb-5">
               <div class="search">
                 <input
-                  v-on:keyup.enter="search()"
+                  v-on:keyup.enter="search(searchQuery)"
+                  v-model="searchQuery"
                   id="query"
                   type="text"
                   class="form-control"
                   placeholder="Città, Indirizzo, CAP..."
                 />
-                <button @click="search()" class="btn btn-primary">
+                <button @click="search(searchQuery)" class="btn btn-primary">
                   <i class="fa fa-search"></i>
                 </button>
+
               </div>
             </div>
-            <search-filters v-if="searching"></search-filters>
+            <search-filters v-if="searching === true"></search-filters>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  <!-- </div> -->
 </template>
 
 <script>
+import {mapActions} from "vuex";
 export default {
-  name: "HeroSection",
+
+  name: 'HeroSection',
   props: {
     searching: Boolean,
   },
+  
   data() {
     return {
-      searchQuery: {},
-    };
+      searchQuery: '',
+    }
+
   },
+  
   methods: {
-    handleresults(result) {
-      if (result) {
-        this.searchQuery = result;
-        this.$emit("query", this.searchQuery);
-      }
-    },
+    ...mapActions(['GET_FILTER_ADRESSES']),
+    search(value){
+      if (this.searchQuery !== '') {
+          this.searching = true;
+          this.$emit('search');
+        }
+        this.GET_FILTER_ADRESSES(value);
+    }
+  }
+}
 
-    search() {
-      if (document.getElementById("query").value != "") {
-        this.$emit("search");
-
-        tt.services
-          .fuzzySearch({
-            key: "hwUAMJjGlcfAD2Yd3w1owWJqbrrLpfoo",
-            query: document.getElementById("query").value,
-          })
-          .then(this.handleresults);
-      }
-    },
-  },
-};
 </script>
 
 <style lang="scss" scoped>
