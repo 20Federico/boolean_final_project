@@ -108,6 +108,16 @@
                     <span>Base</span>
                   @else
                     <span>Premium</span>
+                    <br>
+
+                    @php
+                        $time = strtotime($expiry[0]['expiry']);
+
+                        $dateExpiry = date('d/m/Y',$time);
+
+                        echo "Scadenza: " . $dateExpiry;
+                    @endphp
+                    
                   @endif
                 </span>
             </div>

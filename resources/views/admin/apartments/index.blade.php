@@ -109,11 +109,8 @@
                         @if ($value->apartment_id == $apartment->id)
                           @php
                               $time = strtotime($value->expiry);
-
-                              $dateExpiry = date('Y/m/d',$time);
-                              $hourExpiry = date('H:i:s',$time);
-
-                              echo $dateExpiry . "<br>" . $hourExpiry;
+                              $dateExpiry = date('d/m/Y',$time);
+                              echo "scadenza" . "<br>". $dateExpiry;
                           @endphp
                         @endif
 

@@ -43,11 +43,11 @@ class ApartmentController extends Controller
       if($apartment->user_id != Auth::id()){
           return abort(401);
       }
-
+      $expiry = SponsorApartment::where('apartment_id', $apartment->id)->get();
       $address = Address::where('apartment_id', $apartment->id)->get(['latitude', 'longitude']);
       $messages = Message::orderBy('created_at', 'desc')->where('apartment_id', $apartment->id)->get();
       
-      return view('admin.apartments.show', ['apartment'=> $apartment, 'address'=>$address, 'messages'=>$messages]);
+      return view('admin.apartments.show', ['apartment'=> $apartment, 'address'=>$address, 'messages'=>$messages, 'expiry'=>$expiry]);
     }
 
     public function create()
