@@ -86,6 +86,7 @@
                                         >
                                       </div>
                                     </div>
+                                    <span class="badge rounded-pill px-3"><i class="fas fa-ribbon"></i> Sponsored</span>
                                 </div>
 
                             </div>
@@ -373,5 +374,12 @@ export default {
 .card-body {
     padding: 0 !important;
     padding-left: 20px !important;
+}
+
+.badge {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: #d48166;
 }
 </style>
