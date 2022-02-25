@@ -243,9 +243,14 @@ class ApartmentController extends Controller
         //     $apartment->messages()->delete();
         // }
 
+        $sponsor = SponsorApartment::where('apartment_id', $id)->first();
+        if ($sponsor) {
+          $sponsor->delete();
+        }
 
         $apartment->address()->delete();
         $apartment->delete();
+
 
 
         

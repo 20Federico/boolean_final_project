@@ -3,8 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class SponsorApartment extends Model
 {
-    protected $table = "sponsor_apartment";
+  use SoftDeletes;
+  protected $table = "sponsor_apartment";
 }
