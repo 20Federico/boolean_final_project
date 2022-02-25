@@ -27,7 +27,7 @@ export default {
     title: String,
     img: String,
     via: String,
-    civico: String,
+    civico: Number,
     citta: String,
   },
   methods: {},
