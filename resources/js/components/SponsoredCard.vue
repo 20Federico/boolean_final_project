@@ -5,7 +5,12 @@
     <img v-if="img.substr(0, 4) === 'http'" :src="img" class="card-img-top" alt="cover" />
     <img v-if="img.substr(0, 4) !== 'http'" :src="'../storage/' + img" class="card-img-top" alt="cover" />
     <div class="card-body text-center">
-      <h5 style="color: #d48166">{{ title }}</h5>
+      <h5 style="color: #d48166">
+          <a class="card_title" :href="'apartments/' + id">
+            {{ title.charAt(0).toUpperCase() + title.slice(1) }}
+          </a>
+
+      </h5>
 
       <hr class="mt-3 mb-3" style="width: 25%; margin: auto" />
 
@@ -29,10 +34,21 @@ export default {
     via: String,
     civico: Number,
     citta: String,
+    id: Number
   },
   methods: {},
 };
 </script>
 
 <style lang="scss" scoped>
+.card_title {
+  color: black;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+
 </style>

@@ -22,6 +22,7 @@
           :via="card[0].address.street_name"
           :civico="card[0].address.street_number"
           :citta="card[0].address.city"
+          :id="card[0].id"
         ></SponsoredCard>
         <!--       <div class="col d-flex justify-content-center">
         <div
