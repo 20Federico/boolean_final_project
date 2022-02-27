@@ -6,9 +6,10 @@ use App\Address;
 use App\Apartment;
 use App\Http\Controllers\Controller;
 use App\Message;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use App\Visit;
+use Illuminate\Support\Carbon;
+use Illuminate\Http\Request;
 
 class ApartmentController extends Controller
 {
@@ -43,10 +44,10 @@ class ApartmentController extends Controller
     public function store(Request $request, Apartment $apartment)
     {
 
-      $request->validate([
-        'email' => ['required', 'string', 'email', 'max:255'],
-        'description' => 'required|min:10',
-      ]);
+        $request->validate([
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'description' => 'required|min:10',
+        ]);
 
         $newMessage = new Message();
         $newMessage->email_sender = $request->email;
@@ -64,8 +65,43 @@ class ApartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Apartment $apartment)
+    public function show(Apartment $apartment, Request $request)
+
+
+
+
     {
+
+        //CREO LA VISITA (DA SPOSTARE NEL VISITCONTROLLER PUBBLICO)
+        function createVisit($ip, $appId)
+        {
+            $visit = new Visit();
+            $visit->n_visits = 1;
+            $visit->ip_address = $ip;
+            $visit->apartment_id = $appId;
+            $visit->save();
+        }
+
+
+        $appartamento_id = $apartment->id;
+        $ipClient = $request->getClientIp();
+        $nowDate = Carbon::now('Europe/Rome');
+        $lastVisitClient = Visit::where('apartment_id', $appartamento_id)->where('ip_address', $ipClient)->orderBy('created_at', 'desc')->first();
+        if ($lastVisitClient == null) {
+            createVisit($ipClient, $appartamento_id);
+        } else {
+            $dataTimeClient = date_format(Carbon::parse($lastVisitClient->attributesToArray()['created_at'], 'Europe/Rome'), 'Y-m-d H:i:s');
+            $diff_in_minutes = Carbon::createFromDate($dataTimeClient)->diffInMinutes(Carbon::createFromDate($nowDate));
+            if ($diff_in_minutes > 30) {
+                createVisit($ipClient, $appartamento_id);
+            }
+        }
+
+
+
+
+
+
         $address = Address::where('apartment_id', $apartment->id)->get(['latitude', 'longitude']);
         /* $messages = Message::orderBy('created_at', 'desc')->where('apartment_id', $apartment->id)->get(); */
 

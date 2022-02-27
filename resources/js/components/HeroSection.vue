@@ -17,7 +17,7 @@
                 </div>
               </div>
             </div>
-            <search-filters v-if="searching === true"></search-filters>
+            <search-filters v-show="searching == true"></search-filters>
           </div>
         </div>
       </div>
@@ -30,13 +30,12 @@ import {mapActions} from "vuex";
 export default {
 
   name: 'HeroSection',
-  props: {
-    searching: Boolean,
-  },
+  
   
   data() {
     return {
       searchQuery: '',
+      searching:false,
     }
 
   },

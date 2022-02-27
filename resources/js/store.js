@@ -12,6 +12,7 @@ let store = new Vuex.Store({
     searchNumServices: [],
     searchQuery : "",
     searchKm : 0,
+    searching: false,
   },
   
 
@@ -34,6 +35,9 @@ let store = new Vuex.Store({
     SET_FILTER_KM: (state, km) => {
       state.searchKm = km;
     },
+    SET_SEARCHING_BOOL:(state,bool)=>{
+       state.searching = bool;
+    }
   },
 
   getters: {
@@ -55,6 +59,9 @@ let store = new Vuex.Store({
     SEARCHKM(state) {
       return state.searchKm;
     },
+    SEARCHING(state){
+      return state.searching;
+    }
 
   },
 
@@ -86,6 +93,9 @@ let store = new Vuex.Store({
     GET_FILTER_KM({ commit }, km) {
       commit("SET_FILTER_KM", km);
     },
+    GET_SEARCHING_BOOL({commit}, bool){
+       commit("SET_SEARCHING_BOOL", bool);
+    }
   },
 });
 

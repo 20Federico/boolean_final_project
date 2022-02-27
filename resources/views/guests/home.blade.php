@@ -6,9 +6,7 @@
 
 
 @section('content')
-  <hero-section @search="searching = true" :searching='searching'></hero-section>
-  <home-page v-if="!searching"></home-page>
-  <searched-view v-if="searching" @back="searching = false" :search='search'></searched-view>
-
-
+  <hero-section @search="searching = true" ></hero-section>
+  <home-page v-show="!searching"></home-page>
+  <searched-view v-show="searching" @back="searching = false" :search='search'></searched-view>
 @endsection
