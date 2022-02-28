@@ -3,19 +3,19 @@
     <div class="row d-flex flex-column flex-md-row py-3 g-0">
       <div class="col-12 col-xl-6">
         <div class="p-4">
-          <div>
-            <button @click="resetAll" class="btn btn-primary py-2">
+          <div class="d-flex gap-2 mb-4">
+            <button
+              @click="$emit('back')"
+              type="button"
+              class="btn btn-outline-dark "
+            >
+              <i class="fas fa-arrow-left"></i>
+              <span class="d-none d-sm-inline">Homepage</span>
+            </button>
+            <button @click="resetAll" class="btn btn-primary">
               Reset All
             </button>
           </div>
-          <button
-            @click="$emit('back')"
-            type="button"
-            class="btn btn-outline-dark mb-4"
-          >
-            <i class="fas fa-arrow-left"></i>
-            <span class="d-none d-sm-inline">Homepage</span>
-          </button>
 
           <div v-if="!filteredApartments">
             <h5>Nessun risultato</h5>
@@ -44,7 +44,7 @@
                   class="card_img"
                   alt="cover"
                 />
-                <span class="badge rounded-pill px-3"
+                <span v-if="apartment.sponsor.length > 0" class="badge rounded-pill px-3"
                   ><i class="fas fa-ribbon"></i> Sponsored</span
                 >
               </div>
