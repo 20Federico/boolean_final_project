@@ -7,5 +7,4 @@
   <home-page v-show="!searching" :pluto="{{json_encode($pluto)}}">
   </home-page>
   <searched-view v-show="searching" @back="searching = false" :search='search'></searched-view>
-
 @endsection

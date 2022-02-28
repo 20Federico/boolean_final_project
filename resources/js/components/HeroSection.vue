@@ -39,9 +39,7 @@ import {mapActions} from "vuex";
 export default {
 
   name: 'HeroSection',
-  props: {
-    searching: Boolean,
-  },
+  
   
   data() {
     return {
