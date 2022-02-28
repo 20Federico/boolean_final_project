@@ -75,13 +75,14 @@
       <div class="row justify-content-center align-items-center">
         <div class="col-8">
           <label class="fs-4" for="distance"
-            ><strong>{{ kmValue }} Km</strong></label
+            ><strong>Distanza</strong></label
           >
           <input
             id="distance"
+            value="20"
             class="form-range"
             type="range"
-            min="0"
+            min="1"
             max="100"
             step="1"
             v-model="kmValue"
@@ -168,7 +169,7 @@ export default {
       services: [],
       roomsValue: 1,
       bedsValue: 1,
-      kmValue: 0,
+      kmValue: 20,
     };
   },
 

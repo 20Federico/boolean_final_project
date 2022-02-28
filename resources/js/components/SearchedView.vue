@@ -126,7 +126,7 @@
                     >
                         <i class="fas fa-arrow-left"></i> Homepage
                     </button>
-                    
+
 
                     <div
                         class="card mb-1 p-3"
@@ -216,7 +216,7 @@
             <div class="text-center pb-0 pt-3">
                 <jw-pagination
                     :maxPages="5"
-                    :pageSize="7"
+                    :pageSize="10"
                     :items="sortedApartments"
                     @changePage="onChangePage"
                 ></jw-pagination>
@@ -245,6 +245,7 @@ export default {
             myLocation: undefined,
             exampleItems,
             pageOfItems: [],
+            services: []
         };
     },
     methods: {
@@ -432,16 +433,27 @@ export default {
                 .then(this.handlePosition);
         },
 
+        getShowServices() {
+          axios.get("/api/apartments").then((resp) => {
+            return (this.services = resp.data.services);
+          });
+        },
         resetAll() {
-            if (this.SEARCHADDRESS !== "") {
-                this.SET_FILTER_ROOM(1);
-                this.SET_FILTER_BED(1);
-                this.SET_FILTER_SERVICE([]);
-                this.resetMap();
-                this.sortedApartments = [];
-                this.deleteMarkers();
-                this.sorted = false;
-            }
+          if (document.getElementById('query').value = this.SEARCHADDRESS) {
+
+            this.SET_FILTER_ROOM(1);
+            this.SET_FILTER_BED(1);
+            this.SET_FILTER_KM(20);
+            this.SET_FILTER_SERVICE([]);
+
+            document.getElementById("distance").value = 20;
+            document.getElementById("beds").value  = 1;
+            document.getElementById("rooms").value  = 1;
+
+            this.services.forEach(element => {
+              document.getElementById(element.id).checked = false;
+            });
+          }
         },
         onChangePage(pageOfItems) {
             // console.log(pageOfItems);
@@ -492,6 +504,7 @@ export default {
         this.sortBySponsor();
         this.map.addControl(new tt.FullscreenControl());
         this.map.addControl(new tt.NavigationControl());
+        this.getShowServices()
     },
 
     watch: {
