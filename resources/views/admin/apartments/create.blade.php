@@ -225,7 +225,7 @@
                         
                         <div class="form-group row mb-4">
                             <label for="" class="col-md-4 col-form-label text-md-right">Servizi aggiuntivi</label>
-                            <div class="col-md-6 d-flex flex-wrap align-items-center gap-3">
+                            <div class="col-md-6 d-flex flex-wrap align-items-center gap-3" style="text-transform: capitalize">
 
                                 @foreach ($services as $service)
                                     <div class="form-check mr-4">

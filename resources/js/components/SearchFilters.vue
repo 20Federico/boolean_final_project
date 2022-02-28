@@ -1,5 +1,5 @@
 <template>
-<!-- 
+  <!-- 
   <div class="mb-3">
     <form action="#" class="p-4">
       <div class="row justify-content-center align-items-center">
@@ -70,126 +70,139 @@
     </form>
   </div> -->
 
-    <div class="mb-3">
-        <form action="#" class="py-4">
-            <div class="row justify-content-center align-items-center">
-                <div class="col-8">
-                    <label class="fs-4" for="distance">{{ kmValue }} Km</label>
-                    <input
-                        id="distance"
-                        class="form-range"
-                        type="range"
-                        min="0"
-                        max="100"
-                        step="1"
-                        v-model="kmValue"
-                        v-on:change="searchByKm"          
-                    />
-                </div>
-            </div>
-            <div class="row justify-content-center align-items-center mb-3">
-                <div class="col-2">
-                    <label class="fs-4" for="rooms">min. rooms</label>
-                    <input
-                        id="rooms"
-                        class="form-control"
-                        type="number"
-                        min="1"
-                        max="20"
-                        v-model="roomsValue"
-                        v-on:change="searchByRoom"
-                    />
-                </div>
-                <div class="col-2">
-                    <label class="fs-4" for="beds">min. beds</label>
-                    <input
-                        id="beds"
-                        class="form-control"
-                        type="number"
-                        min="1"
-                        max="20"
-                        v-model="bedsValue"
-                        v-on:change="searchByBed"
-                    />
-                </div>
-            </div>
+  <div class="mb-3">
+    <form action="#" class="px-5 py-3 p-md-5">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-8">
+          <label class="fs-4" for="distance"
+            ><strong>{{ kmValue }} Km</strong></label
+          >
+          <input
+            id="distance"
+            class="form-range"
+            type="range"
+            min="0"
+            max="100"
+            step="1"
+            v-model="kmValue"
+            v-on:change="searchByKm"
+          />
+        </div>
+      </div>
+      <div class="row justify-content-center align-items-center mb-3">
+        <div class="col-8 col-md-3">
+          <label class="fs-6" for="rooms"><strong>min. stanze</strong></label>
+          <input
+            id="rooms"
+            class="form-control"
+            type="number"
+            min="1"
+            max="20"
+            v-model="roomsValue"
+            v-on:change="searchByRoom"
+          />
+        </div>
+        <div class="col-8 col-md-3">
+          <label class="fs-6" for="beds"><strong>min. letti</strong></label>
+          <input
+            id="beds"
+            class="form-control"
+            type="number"
+            min="1"
+            max="20"
+            v-model="bedsValue"
+            v-on:change="searchByBed"
+          />
+        </div>
+      </div>
 
-            <div>Services</div>
-            <div class="d-flex d-flex-wrap text-center justify-content-center">
-                <div
-                    class="form-check px-3"
-                    v-for="service in services"
-                    :key="service.id"
-                >
-                    <label class="form-check-label" :for="service.id">
-                        {{ service.name }}
-                    </label>
+      <div class="mt-4 mb-2 fs-4"><strong>Servizi</strong></div>
+      <div
+        class="
+          row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5
+          p-0
+          px-lg-5
+          py-lg-3
+          d-flex d-flex-wrap
+          text-center
+          w-100
+          mx-auto
+        "
+      >
+        <div
+          class="form-check col"
+          v-for="service in services"
+          :key="service.id"
+        >
+          <label
+            class="form-check-label w-100"
+            :for="service.id"
+            style="text-transform: capitalize; text-align: left"
+          >
+            <strong>{{ service.name }}</strong>
+          </label>
 
-                    <input
-                        option.checked="true"
-                        class="form-check-input"
-                        type="checkbox"
-                        :value="service.id"
-                        :id="service.id"
-                        v-model="servicesIds"
-                        v-on:change="searchByService"
-                    />
-                </div>
-            </div>
-
-        </form>
-    </div>
+          <input
+            option.checked="true"
+            class="form-check-input"
+            type="checkbox"
+            :value="service.id"
+            :id="service.id"
+            v-model="servicesIds"
+            v-on:change="searchByService"
+          />
+        </div>
+      </div>
+    </form>
+  </div>
 </template>
 
 <script>
 import axios from "axios";
 import { mapActions } from "vuex";
 export default {
-    name: "SearchFilters",
-    data() {
-        return {
-            servicesIds: [],
-            services: [],
-            roomsValue: 1,
-            bedsValue: 1,
-            kmValue: 0,
-        };
-    },
-    
-    methods: {
-        getShowServices() {
-            axios.get("/api/apartments").then((resp) => {
-                return (this.services = resp.data.services);
-            });
-        },
+  name: "SearchFilters",
+  data() {
+    return {
+      servicesIds: [],
+      services: [],
+      roomsValue: 1,
+      bedsValue: 1,
+      kmValue: 0,
+    };
+  },
 
-        ...mapActions([
-            "GET_FILTER_ROOM",
-            "GET_FILTER_BED",
-            "GET_FILTER_SERVICE",
-            "GET_FILTER_KM",
-            
-        ]),
-
-        searchByRoom() {
-            this.GET_FILTER_ROOM(this.roomsValue);
-        },
-        searchByBed() {
-            this.GET_FILTER_BED(this.bedsValue);
-        },
-        searchByService() {
-            this.GET_FILTER_SERVICE(this.servicesIds);
-        },
-        searchByKm(){
-            this.GET_FILTER_KM(this.kmValue);
-        }
+  methods: {
+    getShowServices() {
+      axios.get("/api/apartments").then((resp) => {
+        return (this.services = resp.data.services);
+      });
     },
 
-    mounted() {
-        this.getShowServices();
-    },
+    ...mapActions([
+      "GET_FILTER_ROOM",
+      "GET_FILTER_BED",
+      "GET_FILTER_SERVICE",
+      "GET_FILTER_KM",
+    ]),
 
-    
+    searchByRoom() {
+      this.GET_FILTER_ROOM(this.roomsValue);
+    },
+    searchByBed() {
+      this.GET_FILTER_BED(this.bedsValue);
+    },
+    searchByService() {
+      this.GET_FILTER_SERVICE(this.servicesIds);
+    },
+    searchByKm() {
+      this.GET_FILTER_KM(this.kmValue);
+    },
+  },
+
+  mounted() {
+    this.getShowServices();
+  },
 };
 </script>
 

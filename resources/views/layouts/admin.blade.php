@@ -90,19 +90,19 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a> --}}
-                            <div class="sb-sidenav-menu-heading">Personal Area</div>
+                            <div class="sb-sidenav-menu-heading">Area Personale</div>
                             <a class="nav-link" href="{{route('admin.apartments.index')}}">
                               <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
-                              My Apartments
+                              I Miei Appartamenti
                             </a>
                             <a class="nav-link" href="{{route('admin.messages.index')}}">
                               <div class="sb-nav-link-icon"><i class="fas fa-comment"></i></div>
-                              Messages
+                              Messaggi
                             </a>
-                            <div class="sb-sidenav-menu-heading">Public</div>
+                            <div class="sb-sidenav-menu-heading">Pubblica</div>
                             <a class="nav-link" href="{{route('guests.home')}}">
                               <div class="sb-nav-link-icon"><i class="fas fa-window-restore"></i></div>
-                              Public Page
+                              Area Pubblica
                             </a>
                         </div>
                     </div>

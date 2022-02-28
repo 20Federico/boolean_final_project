@@ -29,11 +29,11 @@
           <ul class="list-group">
             <ul class="list-group">
               <li class="list-group-item">
-                <div><strong>Inviato da:</strong> 
+                <div class="mb-3"><strong>Inviato da:</strong> 
                     {{ $message->email_sender }}
                 </div>
                 <div>
-                    <strong>contenuto:</strong> 
+                    <strong>Testo:</strong> 
                     <p>{{ $message->content }}</p>
                 </div>
              
@@ -44,15 +44,18 @@
           </ul>
         </div>
     </div>
+@endsection
+
+@section('extra_scripts')
     <script>
-        function GoBackWithRefresh(event) {
-            if ('referrer' in document) {
-                window.location = document.referrer;
-                /* OR */
-                //location.replace(document.referrer);
-            } else {
-                window.history.back();
-            }
-        }
-    </script>
+      function GoBackWithRefresh(event) {
+          if ('referrer' in document) {
+              window.location = document.referrer;
+              /* OR */
+              //location.replace(document.referrer);
+          } else {
+              window.history.back();
+          }
+      }
+  </script>
 @endsection

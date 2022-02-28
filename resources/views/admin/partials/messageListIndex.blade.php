@@ -24,7 +24,7 @@
               </div>
               <div class="col d-flex justify-content-center">
                 <div class="pe-3">
-                  <a class="btn btn-primary" href="{{ route('admin.messages.show', $message->id) }}">Dettagli</a>
+                  <a class="btn btn-primary" href="{{ route('admin.messages.show', $message->id) }}">Leggi</a>
                 </div>
                 <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $message->id }}">
                   Elimina
