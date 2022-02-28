@@ -71,7 +71,7 @@
   </div> -->
 
   <div class="mb-3">
-    <form action="#" class="py-4">
+    <form action="#" class="p-3 p-md-5">
       <div class="row justify-content-center align-items-center">
         <div class="col-8">
           <label class="fs-4" for="distance">{{ kmValue }} Km</label>
@@ -88,8 +88,8 @@
         </div>
       </div>
       <div class="row justify-content-center align-items-center mb-3">
-        <div class="col-2">
-          <label class="fs-4" for="rooms">min. rooms</label>
+        <div class="col-8 col-md-3">
+          <label class="fs-6" for="rooms">min. stanze</label>
           <input
             id="rooms"
             class="form-control"
@@ -100,8 +100,8 @@
             v-on:change="searchByRoom"
           />
         </div>
-        <div class="col-2">
-          <label class="fs-4" for="beds">min. beds</label>
+        <div class="col-8 col-md-3">
+          <label class="fs-6" for="beds">min. letti</label>
           <input
             id="beds"
             class="form-control"
@@ -114,10 +114,21 @@
         </div>
       </div>
 
-      <div class="mt-3 mb-2"><strong>Services</strong></div>
-      <div class="d-flex d-flex-wrap text-center justify-content-center">
+      <div class="mt-4 mb-2"><strong>Services</strong></div>
+      <div
+        class="
+          row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5
+          p-0
+          px-lg-5
+          py-lg-3
+          d-flex d-flex-wrap
+          text-center
+          w-100
+          mx-auto
+        "
+      >
         <div
-          class="form-check px-3"
+          class="form-check col"
           v-for="service in services"
           :key="service.id"
         >
