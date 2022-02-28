@@ -196,7 +196,7 @@
         <jw-pagination
           :maxPages="5"
           :pageSize="7"
-          :items="filteredApartments"
+          :items="sortedApartments"
           @changePage="onChangePage"
         ></jw-pagination>
       </div>
@@ -415,7 +415,7 @@ export default {
       }
     },
     onChangePage(pageOfItems) {
-      console.log(pageOfItems);
+      // console.log(pageOfItems);
       // update page of items
       this.pageOfItems = pageOfItems;
 
