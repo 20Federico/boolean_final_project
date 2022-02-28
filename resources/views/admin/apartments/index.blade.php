@@ -16,7 +16,7 @@
         Aggiungi nuovo
       </a>
     </div>
-    <div class="card-body orange-bg">
+    <div class="card-body">
       <ul class="list-group">
         @if (count($apartmentsList) == 0)
         <div class="text-center">
@@ -120,7 +120,13 @@
             </div>
             {{-- Pulsanti --}}
             <div class="col-lg-2 mt-4 mt-md-0 f-shrink-0 2">
-              <a href="{{ route('admin.apartments.edit', $apartment->id) }}" class="btn btn-orange w-100"> 
+
+              <a href="{{ route('admin.apartments.show', $apartment->id) }}" class="btn btn-orange w-100 mb-1">
+                <div class="p d-md-none d-lg-block">Vedi</div> 
+                <i class="fa fa-eye d-lg-none" aria-hidden="true"></i>
+              </a>
+
+              <a href="{{ route('admin.apartments.edit', $apartment->id) }}" class="btn theme-btn-white w-100 mb-1"> 
                 <div class="p d-md-none d-lg-block">Modifica</div> 
                 <i class="fa fa-paint-brush d-lg-none" aria-hidden="true"></i>
               </a>
@@ -153,10 +159,6 @@
                 </div>
               </div>
 
-              <a href="{{ route('admin.apartments.show', $apartment->id) }}" class="btn theme-btn-white w-100">
-                <div class="p d-md-none d-lg-block">Vedi</div> 
-                <i class="fa fa-eye d-lg-none" aria-hidden="true"></i>
-              </a>
             </div>
           </div>
 
