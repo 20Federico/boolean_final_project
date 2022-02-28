@@ -26,6 +26,7 @@
 
 <div class="main-container m-auto h-50 w-100">
     <!-- immagine casa -->
+    {{-- <div class="housepic-container" style="background-image: url({{ asset('storage/' . $apartment->cover_img) }}); background-repeat: no-repeat; background-size: cover; background-position: center; filter: blur(10px); position: relative"> --}}
     <div class="housepic-container">
       <div class="img_container">
         @if (substr($apartment->cover_img, 0, 4 ) === 'http')

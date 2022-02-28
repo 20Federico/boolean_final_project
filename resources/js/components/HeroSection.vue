@@ -8,21 +8,30 @@
           l'avventura!
         </h3>
 
-          <div class="container">
-            <div class="row d-flex justify-content-center align-items-center">
-              <div class="col-12 col-md-8 mb-5">
-                <div class="search"> 
-                  <input v-on:keyup.enter="search(searchQuery)" v-model="searchQuery" id="query" type="text" class="form-control" placeholder="type city or address..."> 
-                  <button  @click="search(searchQuery)" class="btn btn-primary"><i class="fa fa-search"></i></button>
-                </div>
+        <div class="container">
+          <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-12 col-md-8 mb-5">
+              <div class="search">
+                <input
+                  v-on:keyup.enter="search(searchQuery)"
+                  v-model="searchQuery"
+                  id="query"
+                  type="text"
+                  class="form-control"
+                  placeholder="Città, Indirizzo, CAP..."
+                />
+                <button @click="search(searchQuery)" class="btn btn-primary">
+                  <i class="fa fa-search"></i>
+                </button>
+
               </div>
             </div>
-            <search-filters v-show="searching == true"></search-filters>
+            <search-filters v-if="isSearching === true && searching !== false"></search-filters>
           </div>
         </div>
       </div>
     </div>
-  <!-- </div> -->
+  </div>
 </template>
 
 <script>
@@ -35,7 +44,7 @@ export default {
   data() {
     return {
       searchQuery: '',
-      searching:false,
+      isSearching: false
     }
 
   },
@@ -44,7 +53,7 @@ export default {
     ...mapActions(['GET_FILTER_ADRESSES']),
     search(value){
       if (this.searchQuery !== '') {
-          this.searching = true;
+          this.isSearching = true;
           this.$emit('search');
         }
         this.GET_FILTER_ADRESSES(value);

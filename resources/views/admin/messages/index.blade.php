@@ -34,8 +34,11 @@
           @foreach ($messageToReadList as $message)
             @include('admin.partials.messageListIndex')
           @endforeach
-          <hr>
-        @endif
+          @endif
+
+          @if ($messageReadList)
+            <hr>
+          @endif
 
         @foreach ($messageReadList as $message)
           @include('admin.partials.messageListIndex')        

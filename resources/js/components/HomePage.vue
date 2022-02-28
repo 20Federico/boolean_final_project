@@ -3,6 +3,7 @@
     <div class="text-center">
       <h2 class="pb-5">Appartamenti in primo piano</h2>
     </div>
+    <!-- <button type="button" v-on:click="Log">Display</button> -->
     <div
       class="
         row row-cols-1 row-cols-md-2 row-cols-lg-4
@@ -10,7 +11,20 @@
         text-center
       "
     >
-      <div class="col d-flex justify-content-center">
+      <div
+        class="col d-flex justify-content-center"
+        v-for="(card, i) in pluto"
+        :key="i"
+      >
+        <SponsoredCard
+          :title="card[0].title"
+          :img="card[0].cover_img"
+          :via="card[0].address.street_name"
+          :civico="card[0].address.street_number"
+          :citta="card[0].address.city"
+          :id="card[0].id"
+        ></SponsoredCard>
+        <!--       <div class="col d-flex justify-content-center">
         <div
           class="card px-0 shadow-lg mb-5 bg-body rounded"
           style="width: 18rem"
@@ -21,13 +35,13 @@
             alt="..."
           />
           <div class="card-body text-center">
-            <h5 style="color: #d48166">Nome Appartamento</h5>
+            <h5 style="color: #d48166">Villa moderna con piscina</h5>
 
             <hr class="mt-3 mb-3" style="width: 25%; margin: auto" />
 
             <p class="card-text text-center">
               <i class="fas fa-map-marker-alt fs-5" style="color: #d48166"></i>
-              Via roma 83
+              Via Libertà 266/A
             </p>
           </div>
         </div>
@@ -97,9 +111,9 @@
             </p>
           </div>
         </div>
+      </div> -->
       </div>
     </div>
-
     <div class="pb-4">
       <div class="my-5 text-center">
         <h2 style="color: #3d403c">Scopri Boolbnb</h2>
@@ -279,8 +293,25 @@
 </template>
 
 <script>
+import SponsoredCard from "./SponsoredCard.vue";
 export default {
+  components: { SponsoredCard },
   name: "HomePage",
+  props: {
+    apartments: Array,
+    search: Object,
+    pluto: Array,
+  },
+  data() {
+    return {};
+  },
+  methods: {
+    Log() {
+      console.log(this.pluto);
+      console.log(this.apartments);
+      console.log(this.apartment);
+    },
+  },
 };
 </script>
 

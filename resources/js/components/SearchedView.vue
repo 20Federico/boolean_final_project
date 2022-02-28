@@ -1,5 +1,81 @@
 <template>
-    <div>
+
+  <div>
+    <div class="row d-flex flex-column flex-md-row py-3 g-0">
+      <div class="col-12 col-xl-6">
+        <div class="p-4">
+          <div>
+            <button @click="resetAll" class="btn btn-primary py-2">
+              Reset All
+            </button>
+          </div>
+          <button
+            @click="$emit('back')"
+            type="button"
+            class="btn btn-outline-dark mb-4"
+          >
+            <i class="fas fa-arrow-left"></i>
+            <span class="d-none d-sm-inline">Homepage</span>
+          </button>
+
+          <div v-if="!filteredApartments">
+            <h5>Nessun risultato</h5>
+            <p>Prova a modificare la tua ricerca rimuovendo filtri o ampliando l'area nella mappa</p>
+          </div>
+
+          <div
+            class="card p-3"
+            v-for="apartment in filteredApartments"
+            :key="apartment.id"
+          >
+            <div class="row flex-column flex-md-row g-0">
+              <div class="col-md-4 card_img_box">
+                <img v-if="apartment['cover_img'].substr(0, 4) === 'http'" :src="apartment.cover_img" class="card_img" alt="cover" />
+                <img v-if="apartment['cover_img'].substr(0, 4) !== 'http'" :src="'../storage/' + apartment.cover_img" class="card_img" alt="cover" />
+                <span class="badge rounded-pill px-3"><i class="fas fa-ribbon"></i> Sponsored</span>
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <a :href="'apartments/' + apartment.id">
+                      {{ apartment.title.charAt(0).toUpperCase() + apartment.title.slice(1) }}
+                    </a>
+                  </h4>
+                  <hr class="w-25" />
+                  <p class="card-text mb-1">
+                    <small class="text-muted">{{
+                      apartment.shared
+                        ? "Appartamento condiviso"
+                        : "Appartamento intero"
+                    }}</small>
+                  </p>
+                  <div class="card-text">
+                    <ul class="list-unstyled text-secondary mb-4">
+                      <li class="d-inline-block">
+                        Mq: {{ apartment.square_meters }} |
+                      </li>
+                      <li class="d-inline-block">
+                        Stanze: {{ apartment.n_rooms }} |
+                      </li>
+                      <li class="d-inline-block">
+                        Letti: {{ apartment.n_beds }} |
+                      </li>
+                      <li class="d-inline-block">
+                        Bagni: {{ apartment.n_baths }} |
+                      </li>
+                      <li
+                        class="d-inline-block"
+                        v-for="(service, i) in apartment.services"
+                        :key="i"
+                      >
+                        {{ service.name }} |&#160;
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="d-flex justify-content-between">
+
+
+        <!-- <div>
         <div class="row me-0">
             <div class="col-5">
                 <div class="p-4">
@@ -15,7 +91,7 @@
                     >
                         <i class="fas fa-arrow-left"></i> Homepage
                     </button>
-                    <!-- {{apartments}} -->
+                    
 
                     <div
                         class="card mb-1 p-3"
@@ -24,11 +100,8 @@
                     >
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <img
-                                    :src="apartment.cover_img"
-                                    class="card_img"
-                                    alt="cover"
-                                />
+                                <img v-if="apartment['cover_img'].substr(0, 4) === 'http'" :src="apartment.cover_img" class="card_img" alt="cover" />
+                                <img v-if="apartment['cover_img'].substr(0, 4) !== 'http'" :src="'../storage/' + apartment.cover_img" class="card_img" alt="cover" />
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
@@ -73,25 +146,22 @@
                                         </ul>
                                     </div>
 
-                                    <div class="d-flex justify-content-between">
-                                        <div>
-                                            <p class="card-text text-end">
-                                                €
-                                                <strong class="fs-4">{{
-                                                    apartment.price_day
-                                                }}</strong>
-                                                / notte
-                                            </p>
-                                        </div>
-                                        <div>
-                                            <a
-                                                :href="
-                                                    'apartments/' + apartment.id
-                                                "
-                                                class="btn btn-orange mb-3"
-                                                >Dettagli</a
-                                            >
-                                        </div>
+                                    <div class="d-flex justify-content-between"> -->
+
+                                      <div>
+                                        <p class="card-text text-end">
+                                          €
+                                          <strong class="fs-4">{{ apartment.price_day }}</strong>
+                                          / notte
+                                        </p>
+                                      </div>
+                                      <!-- <div>
+                                        <a
+                                          :href="'apartments/' + apartment.id"
+                                          class="btn btn-orange mb-3"
+                                          >Dettagli</a
+                                        >
+                                      </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -99,13 +169,14 @@
                     </div>
                 </div>
             </div>
-            <div class="col-7">
-                <div class="map_container">
-                    <div class="mymap" id="map"></div>
-                </div>
+
+            <div class="col-12 col-xl-6 p-4">
+              <div class="map_container">
+              <div class="mymap" id="map"></div>
             </div>
-        </div>
-    </div>
+          </div>
+      </div>
+  </div>
 </template>
 
 <script>
@@ -387,6 +458,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.card_img_box {
+  position: relative;
+}
 .mymap {
     height: 100% !important;
 }
@@ -403,9 +477,49 @@ export default {
     width: 100%;
     height: 100%;
     border-radius: 10px;
+    object-fit: cover;
 }
 .card-body {
     padding: 0 !important;
     padding-left: 20px !important;
+}
+
+.badge {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background-color: #d48166;
+}
+
+.card-title {
+  a {
+    color: black;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .card_img_box {
+    margin-bottom: 1rem;
+    img {
+      max-width: 300px;
+    }
+  }
+  .card-body {
+    padding-left: 0 !important;
+  }
+}
+@media screen and (max-width: 991px) {
+  .map_container {
+    position: static;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 11;
+  }
 }
 </style>
