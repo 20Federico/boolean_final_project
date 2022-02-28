@@ -51,11 +51,14 @@ Route::get('/', function () {
 
   $apartments = Apartment::limit(10)->with('services', 'address', 'sponsor')->get();
   $sponsored = SponsorApartment::limit(4)->whereDate('expiry', '>', Carbon::now())->orderBy("created_at", "DESC")->get("apartment_id");
+
   $pluto = [];
 
   foreach ($sponsored as $value) {
     $apartment = Apartment::where("id", $value->apartment_id)->with('services', 'address', 'sponsor')->get();
-    array_push($pluto, $apartment);
+    if($apartment[0]['visible'] == 1){
+      array_push($pluto, $apartment);
+    }
   }
 
   return view('guests.home', ['apartments' => $apartments, 'pluto' => $pluto]);
