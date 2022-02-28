@@ -378,15 +378,16 @@ export default {
         },
 
         resetAll() {
+          if (this.SEARCHADDRESS !== '') {
+            
             this.SET_FILTER_ROOM(1);
             this.SET_FILTER_BED(1);
             this.SET_FILTER_SERVICE([]);
-            this.SET_FILTER_ADRESSES("");
-            this.SET_FILTER_KM(0);
             this.resetMap();
             this.sortedApartments = [];
             this.deleteMarkers();
             this.sorted = false;
+          }
         },
     },
     computed: {
