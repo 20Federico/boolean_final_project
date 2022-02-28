@@ -27,7 +27,7 @@
 
           <div
             class="card p-3"
-            v-for="apartment in filteredApartments"
+            v-for="apartment in pageOfItems"
             :key="apartment.id"
           >
             <div class="row flex-column flex-md-row g-0">
@@ -191,11 +191,28 @@
           <div class="mymap" id="map"></div>
         </div>
       </div>
+      <!-- paginazione -->
+      <div class="text-center pb-0 pt-3">
+        <jw-pagination
+          :maxPages="5"
+          :pageSize="7"
+          :items="filteredApartments"
+          @changePage="onChangePage"
+        ></jw-pagination>
+      </div>
+      <!-- fine paginazione -->
+
     </div>
   </div>
 </template>
 
 <script>
+// an example array of items to be paged
+const exampleItems = [...Array(150).keys()].map((i) => ({
+  id: i + 1,
+  name: "Item " + (i + 1),
+}));
+
 import { mapGetters, mapActions, mapMutations } from "vuex";
 export default {
   name: "SearchedView",
@@ -206,6 +223,8 @@ export default {
       sortedApartments: [],
       sorted: false,
       myLocation: undefined,
+      exampleItems,
+      pageOfItems: [],
     };
   },
   methods: {
@@ -217,7 +236,7 @@ export default {
       "SET_FILTER_ADRESSES",
       "SET_FILTER_KM",
     ]),
-
+    
     async searchApartmentsByAll() {
       this.sorted = true;
       this.sortedApartments = [...this.APARTMENTS];
@@ -394,6 +413,12 @@ export default {
         this.deleteMarkers();
         this.sorted = false;
       }
+    },
+    onChangePage(pageOfItems) {
+      console.log(pageOfItems);
+      // update page of items
+      this.pageOfItems = pageOfItems;
+
     },
   },
   computed: {
