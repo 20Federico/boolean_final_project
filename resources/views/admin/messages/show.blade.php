@@ -44,15 +44,18 @@
           </ul>
         </div>
     </div>
+@endsection
+
+@section('extra_scripts')
     <script>
-        function GoBackWithRefresh(event) {
-            if ('referrer' in document) {
-                window.location = document.referrer;
-                /* OR */
-                //location.replace(document.referrer);
-            } else {
-                window.history.back();
-            }
-        }
-    </script>
+      function GoBackWithRefresh(event) {
+          if ('referrer' in document) {
+              window.location = document.referrer;
+              /* OR */
+              //location.replace(document.referrer);
+          } else {
+              window.history.back();
+          }
+      }
+  </script>
 @endsection
