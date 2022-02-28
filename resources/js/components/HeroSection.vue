@@ -48,6 +48,10 @@ export default {
     }
 
   },
+
+  props: {
+    searching: Boolean
+  },
   
   methods: {
     ...mapActions(['GET_FILTER_ADRESSES']),
