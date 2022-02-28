@@ -3,6 +3,10 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+// make jw pagination component available in application
+import JwPagination from 'jw-vue-pagination';
+Vue.component('jw-pagination', JwPagination);
+
 import Vue from "vue";
 import store from "./store";
 require("./bootstrap");
@@ -49,11 +53,11 @@ const app = new Vue({
     el: "#app",
     data() {
 
-      return {
-        searching: false,
-        search: {},
-        editImgVisible: true
-      }
+        return {
+            searching: false,
+            search: {},
+            editImgVisible: true
+        };
 
     },
     methods: {
