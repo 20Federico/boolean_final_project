@@ -29,11 +29,11 @@
           <ul class="list-group">
             <ul class="list-group">
               <li class="list-group-item">
-                <div><strong>Inviato da:</strong> 
+                <div class="mb-3"><strong>Inviato da:</strong> 
                     {{ $message->email_sender }}
                 </div>
                 <div>
-                    <strong>contenuto:</strong> 
+                    <strong>Testo:</strong> 
                     <p>{{ $message->content }}</p>
                 </div>
              
