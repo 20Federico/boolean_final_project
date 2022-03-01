@@ -176,7 +176,7 @@
                           <label for="title" class="col-md-4 col-form-label text-md-right">Il tuo indirizzo email <span style="color: rgb(207, 29, 29)">*</span></label>
 
                           <div class="col-md-7">
-                            <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}">
+                            <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ Auth::user() ? Auth::user()->email : old('email') }}">
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
