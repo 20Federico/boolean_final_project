@@ -91,8 +91,13 @@ class ApartmentsSeeder extends Seeder
           $newApartment->services()->sync($services);
 
           $address = new Address();
-          $address->latitude = rand(41815098, 41962825) / 1000000;;
-          $address->longitude = rand(12383517, 12600497) / 1000000;
+          //appartamenti a roma
+          // $address->latitude = rand(41815098, 41962825) / 1000000;
+          // $address->longitude = rand(12383517, 12600497) / 1000000;
+          //appartamenti a milano
+          $address->latitude = rand(45402633, 45535088) / 1000000;
+          $address->longitude = rand(9091699, 9282998) / 1000000;
+
           $address->apartment_id = $newApartment->id;
 
           $address->save();
