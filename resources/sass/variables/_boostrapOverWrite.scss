@@ -2,11 +2,26 @@
 .btn-primary {
     background-color: #d48166;
     border-color: #d48166;
-  }
-  .btn-primary:hover {
-    color: #fff;
-    background-color: #c96443;
-    border-color: #d48166;
+  
+  
+    &:hover {
+      color: #fff;
+      background-color: #c96443 !important;
+      border-color: #d48166 !important;
+    }
+
+    &:focus {
+      color: #fff;
+      background-color: #c96443 !important;
+      border-color: #d48166 !important;
+    }
+
+    &:active {
+      color: #fff;
+      background-color: #c96443 !important;
+      border-color: #d48166 !important;
+    }
+  
   }
   
   .form-check-input:checked {

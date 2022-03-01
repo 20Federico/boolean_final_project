@@ -73,10 +73,13 @@
   <div class="mb-3">
     <form action="#" class="px-5 py-3 p-md-5">
       <div class="row justify-content-center align-items-center">
-        <div class="col-8">
+        <div class="col-12 col-md-8">
           <label class="fs-4" for="distance"
-            ><strong>Distanza</strong></label
+            ><strong>Distanza - km</strong></label
           >
+          <div class="d-flex align-items-center">
+
+          <p class="pe-3 fs-5 m-0"><strong>1</strong></p>
           <input
             id="distance"
             value="20"
@@ -88,6 +91,8 @@
             v-model="kmValue"
             v-on:change="searchByKm"
           />
+          <p class="ps-3 fs-5 m-0"><strong>100</strong></p>
+          </div>
         </div>
       </div>
       <div class="row justify-content-center align-items-center mb-3">

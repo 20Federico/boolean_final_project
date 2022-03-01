@@ -52,8 +52,8 @@
                     Vuoi davvero cancellare l'appartamento?
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <form action="{{ route('admin.apartments.destroy', $apartment->id) }}" method="post" class="btn-responsive">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                    <form action="{{ route('admin.apartments.destroy', $apartment->id) }}" method="post" class="">
                       @csrf
                       @method('delete')
                       <button class="btn btn-outline-danger" type="submit" >Elimina</button>
