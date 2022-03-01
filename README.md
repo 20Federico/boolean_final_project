@@ -1,78 +1,110 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
 
-## About Laravel
+## About BoolBNB
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+BoolBNB is a website that allows renting any kind of real estate for tourism, with multiple options to customize the vancancy experience to perfectly fit customer needs. 
+Users can view and send messages to hosts to ask for information about the living.
+Hosts can manage messages from their dashboard
+Users can book a home of their property to earn incomes, improving tourism and local economy.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+**Some of the features we offer are:**
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Pleasant design of the website for the customer.
+- Possibility to filter the best location for you. The living you want, when you want, at the best price.
+- You can pay with VISA/Mastercard .
+- You can view a comfortful map to better locate your favourite place.
+- View photos of the home.
+- Send messages to the host 
 
-## Learning Laravel
+**If you're booking your home, you have access to:**
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Detailed apartment dashboard to better manage your rental possessions
+- Detailed apartment show page to edit for the best your rental advertise on our platform engaging more people.
+- Insights page: track advertising performance knowing how much people visit your apartments
+- extremely competitive sponsorships to make more visible your homes and apartments!
+- Messages dashboard from guests who ask for information about your apartment
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+## Technical info
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Our platform is built with Laravel 7 and the project interacts with a database. We created models, controllers, migrations and seeders for each funtionality the platform has, populating the DB with necessary entities to create interactions by the parts of the site.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
+### Technologies
+
+- HTML
+
+- CSS
+
+- SASS
+
+- Bootstrap
+
+- JS
+
+- VueJS
+
+- PHP
+
+- MySQL
+
+- Laravel 7
+
+- Ajax
+
+- MySql
+
+    
+## Launching
+
+For launching this application you need to create your local database and
+clone this repo from Github (https://github.com/20Federico/boolean_final_project) and open with an IDE (maybe VSCode).
+
+Go to the .env file and replace DB_NAME and PORTS to correctly connect to the database.
+
+After that make sure you run all migrations with `php artisan migrate`.
+Done the migrations open a terminal and execute these commands:
+
+`composer install`
+
+`npm install`
+
+`npm run watch`
+
+To run local server launch:
+
+`php artisan serve`
+
+You did it.
+
+
+## Extra Implementations
+
+//
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
+Thank you for considering contributing to the BoolBNB project! 
+Just in case, le us know any major improvements we can do.
 ## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+If you discover a security vulnerability within BoolBNB, please don't use our platform for your personal application. Really. It's for a view-only purpose.
+
+
+## Team and Profiles
+
+
+
+_EddieFreedome:_ https://github.com/EddieFreedome
+
+_Mega-117:_ https://github.com/Mega-117 
+
+_tastytim:_ https://github.com/tastytim
+
+_Riccardo-Grasso:_ https://github.com/Riccardo-Grasso
+
+_20Federico:_ https://github.com/20Federico
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+If you want to take as exaple our platform for your projects you can do. 
+
